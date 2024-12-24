@@ -1,7 +1,12 @@
 import { Button, Text, View } from "react-native";
+import { screen } from "../../App";
 const DetailsScreen = ({navigation}:any) => {
     const goBackHomeFunc =()=>{
-
+      
+      // function go back to home back homescreen
+navigation.navigate(screen.home)
+// home come from apptsx line15
+//<Stack.Navigator initialRouteName="Home">
         
     }
     return(
