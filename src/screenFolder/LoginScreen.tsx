@@ -34,6 +34,9 @@ const LoginScreen = ({navigation}: any) => {
         onChangeText={anothertext => setEmail(anothertext)}
         value={email}
       />
+
+      {/* password and eye */}
+      <View style={styles.passwordWrapper}>
       <TextInput
         style={styles.inputBox}
         placeholder="Password"
@@ -41,8 +44,8 @@ const LoginScreen = ({navigation}: any) => {
         value={password}
         secureTextEntry={securePassword}
       />
-      <View style={styles.eyeIcon}>
       <Icon
+      style={styles.eyeIcon}
         name={securePassword ? 'eye-off' : 'eye'}
         size={30}
         color="black"
@@ -61,7 +64,7 @@ const LoginScreen = ({navigation}: any) => {
       <View>
       <Text>Do not have ab account? </Text>
       <TouchableOpacity onPress={ ()=> navigation.navigate(screen.register)}>
-        <Text style={{color:'blue'}} > Please Register</Text>
+        <Text style={{color:'blue'}}>Please Register</Text>
         </TouchableOpacity>
       </View>
    
@@ -94,8 +97,14 @@ fontWeight:'bold'
   },
   eyeIcon:{
     position:'absolute',
-    top:120,
-    right:10
+    right:10,
+
+  },
+  passwordWrapper:{
+    position:'relative',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
   }
 });
 
