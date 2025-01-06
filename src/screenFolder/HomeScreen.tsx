@@ -1,57 +1,47 @@
 import { useState } from "react";
-import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-import { screen } from "../../App";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button } from 'react-native'
+import DatePicker from 'react-native-date-picker'
+import CheckBox from "../componentFolder/CheckBox";
+import InputBox from "../componentFolder/InputBox";
 
 const HomeScreen = ({ navigation }:any) => {
-  const [fname,setFname] = useState<string>('')
-  const [lname,setLname] = useState<string>('')
-  const [email,setEmail] = useState<string>('')
-  const [error, setError] = useState('');
 
-  const validateEmail = (inputemail:string) => {
-    const emailRegex =
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(inputemail);
-  };
-
-  const checkEmailFunc=()=>{
-    // if (validateEmail(email)&& fname && lname !== "") {
-      if (!validateEmail(email)) {
-      setError('');
-  //  navigation.navigate('Details')
-  Alert.alert('Please fill your email!');
-  setError('Invalid email format');
-  return
-    } 
-// !fname?  Alert.alert('plz fill fname'): !lname?    Alert.alert('plz fill lname'):     navigation.navigate('Details') 
-    if (!fname){
-      Alert.alert('plz fill fname')
-      return
-    }
-    if (!lname) {
-      Alert.alert('plz fill lname')
-      return
-    }
-     navigation.navigate(screen.details) 
-  }
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
   
-  return(<View style={{ flex: 1, alignItems: 'center' , marginTop:70}}>
-    <Text>Home Screen</Text>
+  return (
+    <View>
+<Text>Make A Reservation</Text>
+<CheckBox item="Pick-up and Return to same location"/>
+<InputBox 
+placeholderAr="Enter your pick-up location or zip code"
 
-    <TextInput style={styles.inputBox}  placeholder="Your First Name" onChangeText={(text)=>setFname(text)} value={fname}/>
-    <TextInput style={styles.inputBox}  placeholder="Your Last Name" onChangeText={(anothertext)=>setLname(anothertext)} value={lname}/>
-    <TextInput style={styles.inputBox}  placeholder="Your Email" onChangeText={(anothertext)=>setEmail(anothertext)} value={email}/>
+/>
+
+<CheckBox item="Renter's age is 25 or over"/>
+
+      <Button title="Open" onPress={() => setOpen(true)} />
+      <DatePicker
+        modal
+        open={open}
+        date={date}
+        onConfirm={(date) => {
+          setOpen(false)
+          setDate(date)
+        }}
+        onCancel={() => {
+          setOpen(false)
+        }}
+      />
+      <Text>{date.toString()}</Text>
 
 
-    <TouchableOpacity
-     onPress={()=>checkEmailFunc()}
-     style={styles.inputBox}
-    // disabled={fname == ""}
-    >
-      <Text style={{textAlign:'center'}}>Submit</Text>
-    </TouchableOpacity>
-  </View>
+
+
+
+
+    </View>
   )
 };
 const styles = StyleSheet.create({

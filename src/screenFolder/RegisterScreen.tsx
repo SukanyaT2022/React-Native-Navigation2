@@ -52,7 +52,7 @@ const RegisterScreen = ({ navigation }:any) => {
       <Text style={{textAlign:'center'}}>Submit</Text>
     </TouchableOpacity>
 
-<Text>Already have an acoount?</Text>
+<Text>Already have an account?</Text>
 {/* //how we link screen */}
 <TouchableOpacity onPress={()=>navigation.navigate(screen.login)}><Text>Log in</Text></TouchableOpacity>
   </View>
