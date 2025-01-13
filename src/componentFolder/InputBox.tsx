@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderColor:'black',
         padding:10,
-        borderStyle:'dashed',
+        // borderStyle:'dashed',
         borderRadius:5,
     }
 })
