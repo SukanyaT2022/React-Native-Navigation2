@@ -5,6 +5,7 @@ import DatePicker from 'react-native-date-picker';
 import CheckBox from '../componentFolder/CheckBox';
 import InputBox from '../componentFolder/InputBox';
 import PickupInputBox from '../componentFolder/PickupInputBox';
+import PickupTime from '../componentFolder/PickupTime';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
@@ -15,7 +16,19 @@ const HomeScreen = ({navigation}: any) => {
       <Text>Make A Reservation</Text>
       <CheckBox item="Pick-up and Return to same location" />
       <InputBox placeholderAr="Enter your pick-up location or zip code" />
-      <PickupInputBox message={'Pick - up Date'} />
+      <View style={styles.wrapDateTime}>
+        <View style={styles.oneBox}>
+          <PickupInputBox message={'Pick-up Date'} />
+        </View>
+
+        <PickupTime messageTime="Pick-up Time" />
+      </View>
+
+      <View>
+        <PickupInputBox message={'Return Date'} />
+        <PickupTime messageTime="Drop-off Time" />
+      </View>
+
       <CheckBox item="Renter's age is 25 or over" />
 
       <Button title="Open" onPress={() => setOpen(true)} />
@@ -43,9 +56,18 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginVertical: 10,
   },
-  mainContainer:{
-gap:20,
-paddingHorizontal:10
+  mainContainer: {
+    gap: 20,
+    paddingHorizontal: 10,
+  },
+  wrapDateTime: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  oneBox: {
+    width: '49%',
   },
 });
 export default HomeScreen;
