@@ -20,13 +20,18 @@ const HomeScreen = ({navigation}: any) => {
         <View style={styles.oneBox}>
           <PickupInputBox message={'Pick-up Date'} />
         </View>
-
+        <View style={styles.oneBox}>
         <PickupTime messageTime="Pick-up Time" />
+        </View>
       </View>
 
-      <View>
+      <View style={styles.wrapDateTime}>
+      <View style={styles.oneBox}>
         <PickupInputBox message={'Return Date'} />
+        </View>
+        <View style={styles.oneBox}>
         <PickupTime messageTime="Drop-off Time" />
+        </View>
       </View>
 
       <CheckBox item="Renter's age is 25 or over" />
