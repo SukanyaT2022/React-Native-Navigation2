@@ -4,6 +4,7 @@ import { StyleSheet, TextInput, View } from 'react-native'
 interface InputBoxProp{
     item?:string
     placeholderAr:string
+    
 }
 
 const InputBox = ({item, placeholderAr}:InputBoxProp) => {

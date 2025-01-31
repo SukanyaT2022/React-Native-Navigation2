@@ -39,7 +39,7 @@ const HomeScreen = ({navigation}: any) => {
       </View>
 
       <CheckBox item="Renter's age is 25 or over" />
-<DropDownBox />
+<DropDownBox onSelect={(item)=>console.log(item)}  />
  
     </View>
   );
