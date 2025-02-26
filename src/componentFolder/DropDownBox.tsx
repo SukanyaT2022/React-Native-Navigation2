@@ -50,7 +50,7 @@ setShowCountryModal(false)//after select country --close popup modal
     <View>
       <TouchableOpacity style={styles.wrapperInput} onPress={()=>setShowCountryModal(true)}>
         <View style={styles.wrapText}>
-          <Text>I live in</Text>
+          <Text>Residency:</Text>
           <Text style={styles.countryText}>{selectCountry}</Text>
         </View>
 

@@ -7,6 +7,7 @@ import InputBox from '../componentFolder/InputBox';
 import PickupInputBox from '../componentFolder/PickupInputBox';
 import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';
+import ButttonComp from '../componentFolder/ButttonComp';
 
 
 
@@ -41,6 +42,7 @@ const HomeScreen = ({navigation}: any) => {
       <CheckBox item="Renter's age is 25 or over" />
 <DropDownBox onSelect={(item)=>console.log(item)}  />
  
+ <ButttonComp buttonText='Select My Car'/> 
     </View>
   );
 };
