@@ -1,17 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import ProductItemComp from '../componentFolder/ProductItemComp'
 
-const Products = () => {
+const ProductScreen = () => {
   return (
     <View>
-      <Text>
-
-        
-      </Text>
+     <ProductItemComp/>
     </View>
   )
 }
 
-export default Products
+export default ProductScreen
 
 const styles = StyleSheet.create({})

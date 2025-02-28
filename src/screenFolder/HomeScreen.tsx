@@ -8,6 +8,7 @@ import PickupInputBox from '../componentFolder/PickupInputBox';
 import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
+import { screen } from '../../App';
 
 
 
@@ -42,7 +43,8 @@ const HomeScreen = ({navigation}: any) => {
       <CheckBox item="Renter's age is 25 or over" />
 <DropDownBox onSelect={(item)=>console.log(item)}  />
  
- <ButttonComp buttonText='Select My Car'/> 
+
+ <ButttonComp buttonText='Select My Car' onPressProp={()=>navigation.navigate(screen.productscreen)}/> 
     </View>
   );
 };
@@ -55,6 +57,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   mainContainer: {
+    paddingTop:60,
     gap: 20,
     paddingHorizontal: 10,
   },

@@ -2,11 +2,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 interface ButtonProp{
-buttonText:string
+buttonText:string,
+onPressProp:()=>void,
+
 }
-const ButttonComp = ({buttonText}:ButtonProp) => {
+const ButttonComp = ({buttonText, onPressProp}:ButtonProp) => {
+
   return (
-    <TouchableOpacity style={styles.buttonStyle}>
+    <TouchableOpacity style={styles.buttonStyle} onPress={onPressProp}>
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>
     </TouchableOpacity>
   )
