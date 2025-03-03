@@ -33,7 +33,7 @@ const RegisterScreen = ({ navigation }:any) => {
       Alert.alert('plz fill lname')
       return
     }
-     navigation.navigate('Details') 
+     navigation.navigate(screen.login) 
   }
   
   return(<View style={{ flex: 1, alignItems: 'center' , marginTop:70}}>
