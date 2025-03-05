@@ -24,6 +24,7 @@ const LoginScreen = ({navigation}: any) => {
     }
   };
 
+
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.titleLoginScreen}>LoginScreen</Text>
