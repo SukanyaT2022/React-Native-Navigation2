@@ -6,10 +6,12 @@ interface FilterItemProp {
   label: string;
   isSelected: boolean;
   onPress: () => void;
+  //remove typr car step 1
+  onRemove: () => void;
 }
 
 //below create only one box and we use a box to map
-const FilterItemComp = ({label, isSelected, onPress}: FilterItemProp) => {
+const FilterItemComp = ({label, isSelected, onPress,onRemove}: FilterItemProp) => {
   return (
     <TouchableOpacity style={[styles.mainBox, isSelected ? styles.afterSelected: '']}
     //isSelected ? styles.afterSelected: '' and isSelected && styles.afterSelected is the same
@@ -19,23 +21,37 @@ const FilterItemComp = ({label, isSelected, onPress}: FilterItemProp) => {
     onPress={onPress}>
       <Text style={isSelected ? styles.chageColorLabelAfterClick: ''}>{label}</Text>
       {/* //only box is seleted it show icon x */}
-      {isSelected && <Icon name="close" size={15} color={myColor.greenColor} />}
+      {isSelected && <Icon name="close" size={15} color={myColor.greenColor} onPress={onRemove}/>}
     </TouchableOpacity>
   );
 };
+
 const FilterTypeCarComp = () => {
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const carTypeArray: string[] = ['SUVs', 'Trucks', 'Cars', 'Vans', 'Bikes'];
+  const [carTypeArray, setCarTypeArray] = useState<string[]>(['SUVs', 'Trucks', 'Cars', 'Vans', 'Bikes']);
+  const [storeRemoveItem, setStoreRemoveItem] = useState<string[]>([])// store type car the we remove and restart
+  const onRemoveFunc =(item:string)=>{
+setCarTypeArray((previousState)=>previousState.filter((car)=>car !== item))
+setStoreRemoveItem((previous)=>[...previous, item])
+  }
+
   const selectedFunc = (item: string) => {
     setSelectedValue(item);
   };
+
+const refreshCarTypeFunc =()=>{
+  setCarTypeArray(storeRemoveItem)
+  setStoreRemoveItem([])
+}
   console.log(selectedValue)
   return (
     //map te box
     <View style={styles.wrapper}>
+      {carTypeArray.length == 0 && <Icon name="refresh" size={30} color={myColor.greenColor} onPress={refreshCarTypeFunc} /> }
       {carTypeArray.map((item, index) => {
         return (
           <FilterItemComp
+          onRemove={()=>onRemoveFunc(item)}
             key={index}
             label={item}
             isSelected={selectedValue === item}
