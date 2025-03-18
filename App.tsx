@@ -10,6 +10,7 @@ import LoginScreen from './src/screenFolder/LoginScreen';
 import ConfirmScreen from './src/screenFolder/ConfirmScreen';
 import Products from './src/screenFolder/ProductScreen';
 import ProductScreen from './src/screenFolder/ProductScreen';
+import InsuranceProtectionScreen from './src/screenFolder/InsuranceProtectionScreen';
 
 const Stack = createStackNavigator();
 export const screen = {
@@ -19,6 +20,7 @@ register:'Register',
 login:'Login',
 confirm:'Confirm',
 productscreen: 'ProductScreen',
+insuranceScreen: 'InsuranceProtectionScreen',
 }
 const App = () => {
   return (
@@ -31,6 +33,7 @@ const App = () => {
         <Stack.Screen name={screen.login} component={LoginScreen} />
         <Stack.Screen name={screen.confirm} component={ConfirmScreen} />
         <Stack.Screen name={screen.productscreen} component={ProductScreen} />
+        <Stack.Screen name={screen.insuranceScreen} component={InsuranceProtectionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

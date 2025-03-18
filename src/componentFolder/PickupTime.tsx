@@ -41,9 +41,7 @@ setTime(selectedTime);
 setShowPicker(false); // Automatically close after selection
 }}
 onCancel={() => setShowPicker(false)}
-
-/>
-    
+/>  
     </View>
   );
 };
