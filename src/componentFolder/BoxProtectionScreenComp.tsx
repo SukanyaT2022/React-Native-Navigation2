@@ -1,26 +1,37 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {myColor} from '../constant/color';
 import TowTruckIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CarCrashIcon from 'react-native-vector-icons/FontAwesome6';
 import LawIcon from 'react-native-vector-icons/Octicons';
 import UmbrellaIcon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import DiscountTagIcon from 'react-native-vector-icons/Entypo';
+
 //make component for smallbox
 
-interface DiscountSmallBoxProp{
-  message:string;
-  bgColor:string;
-  textColor:string;
-  iconColor:string;
+interface DiscountSmallBoxProp {
+  message: string;
+  bgColor: string;
+  textColor: string;
+  iconColor: string;
+  icon: React.ReactNode;
 }
-const DiscountSmallBox =({message, bgColor, textColor, iconColor}:DiscountSmallBoxProp)=>{
-return(
-  <View style={[styles.smallBox, {backgroundColor:bgColor}]}>
-  <CarCrashIcon name="star" size={15} color={iconColor}  />
-    <Text style={{color:textColor}}>{message}</Text>
-  </View>
-)
-}
+const DiscountSmallBox = ({
+  message,
+  bgColor,
+  textColor,
+  iconColor,
+  icon,
+}: DiscountSmallBoxProp) => {
+  return (
+    <View style={[styles.smallBox, {backgroundColor: bgColor}]}>
+      {icon}
+      {/* <CarCrashIcon name="star" size={15} color={iconColor}  /> */}
+      <Text style={{color: textColor}}>{message}</Text>
+    </View>
+  );
+};
 
 const BoxProtectionScreenComp = () => {
   const iconColor = myColor.darkYellow;
@@ -31,16 +42,36 @@ const BoxProtectionScreenComp = () => {
     '24/7 Emergency Roadside Assistance.',
     'Liability coverage.',
     'Accidental injury/death or theft.',
-  ]
+  ];
   return (
     <View style={styles.mainBox}>
       {/* start small box wrapper-- recommend and only discount button */}
-      <View >
-       <DiscountSmallBox message='Recommended' bgColor={myColor.greenColor} textColor='white' iconColor={myColor.darkYellow}/>
-       <DiscountSmallBox message='Recommended' bgColor={myColor.greenColor} textColor='white' iconColor={myColor.darkYellow}/>
+      <View style={styles.wrapTwoRecommendBox}>
+        <DiscountSmallBox
+          message="Recommended"
+          bgColor={myColor.greenColor}
+          textColor="white"
+          iconColor={myColor.darkYellow}
+          icon={
+            <CarCrashIcon name="star" size={15} color={myColor.darkYellow} />
+          }
+        />
+        <DiscountSmallBox
+          message="Online Only Discount "
+          bgColor={myColor.lightYellow}
+          textColor="black"
+          iconColor={myColor.darkYellow}
+          icon={
+            <DiscountTagIcon
+              name="price-tag"
+              size={15}
+              color={myColor.greenColor}
+            />
+          }
+        />
       </View>
-    
-         {/* end small box wrapper-- recommend and only discount button */}
+
+      {/* end small box wrapper-- recommend and only discount button */}
 
       {/* start wrap title and icons */}
       <View>
@@ -57,21 +88,24 @@ const BoxProtectionScreenComp = () => {
 
       {/* Check and text */}
       <View style={styles.mainWrapperCheckText}>
-        {
-          checkTextDetailArray.map((item, index)=>{
-            return(
-              <View style={styles.wrapperCheckText} key={index}>
+        {checkTextDetailArray.map((item, index) => {
+          return (
+            <View style={styles.wrapperCheckText} key={index}>
               <CarCrashIcon name="check" size={20} color={myColor.greenColor} />
               <Text>{item}</Text>
               {/* style={styles.title} */}
             </View>
-            )
-          })
-        }
-       
+          );
+        })}
       </View>
       {/* end check and text  */}
-      <Text></Text>
+      {/* start price /day and select button */}
+      <View style={styles.wrapPriceDaySelectBtn}>
+        <Text style={styles.pricePerDayStyle}>$34.56/ Day</Text>
+        <TouchableOpacity style={styles.selectBtnStyle}>
+          <Text style={styles.selectTextStyle}>Select</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -83,16 +117,16 @@ const styles = StyleSheet.create({
     borderColor: myColor.greenColor,
     borderWidth: 2,
     padding: 20,
-    gap: 15,
+    gap: 10,
   },
- 
+
   smallBox: {
     backgroundColor: myColor.lightYellow,
-    flexDirection:'row',
-    gap:5,
-    alignItems:'center',
-    padding:10,
-    borderRadius:10,
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 10,
   },
   title: {
     textAlign: 'center',
@@ -105,12 +139,37 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 50,
   },
-  mainWrapperCheckText:{
-paddingHorizontal:10
-  }, 
+  mainWrapperCheckText: {
+    paddingHorizontal: 10,
+  },
   wrapperCheckText: {
     flexDirection: 'row',
     gap: 20,
-
   },
+  // wrap 2 small box recommend and discount online
+  wrapTwoRecommendBox: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'flex-start',
+  },
+  wrapPriceDaySelectBtn: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop:10,
+  },
+  pricePerDayStyle: {
+    fontSize:24,
+    fontWeight:'semibold'
+  },
+  selectBtnStyle: {
+padding:10,
+width:'50%',
+backgroundColor:'black',
+alignItems:'center',
+borderRadius:20,
+  },
+  selectTextStyle:{
+color:'white',
+fontWeight:'semibold',
+  }
 });
