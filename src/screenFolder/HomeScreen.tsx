@@ -18,7 +18,7 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Text>Make A Reservation</Text>
+      <Text style={{fontWeight:'bold'}}>Make A Reservation</Text>
       <CheckBox item="Pick-up and Return to same location" />
       <InputBox placeholderAr="Enter your pick-up location or zip code" />
       <InputBox placeholderAr="Enter your return location or zip code" />
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   mainContainer: {
-    paddingTop:60,
+    paddingTop:70,
     gap: 20,
     paddingHorizontal: 10,
   },

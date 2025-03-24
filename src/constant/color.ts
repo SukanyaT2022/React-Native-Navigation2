@@ -5,4 +5,5 @@ export const myColor = {
   lightGray: ' #d6dbdf ',
   lightYellow: '#FFEAAE',
   darkYellow: '#FFCD06',
+  red:'#cb4335',
 };

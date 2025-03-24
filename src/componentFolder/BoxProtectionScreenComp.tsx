@@ -7,6 +7,7 @@ import LawIcon from 'react-native-vector-icons/Octicons';
 import UmbrellaIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DiscountTagIcon from 'react-native-vector-icons/Entypo';
+import CrossIcon from 'react-native-vector-icons/Entypo';
 
 //make component for smallbox
 
@@ -32,17 +33,27 @@ const DiscountSmallBox = ({
     </View>
   );
 };
+export interface ArrayItemType{
+  title:string;
+  check:boolean;//check if cross or check mark
+}
+interface MainProtectionType{
+  checkTextDetailArray: ArrayItemType[]
+}
 
-const BoxProtectionScreenComp = () => {
+
+
+const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
   const iconColor = myColor.darkYellow;
   const iconSize = 40;
-  const checkTextDetailArray = [
-    'No deductible for vehicle loss or damage.',
-    '100% coverage for car damage.',
-    '24/7 Emergency Roadside Assistance.',
-    'Liability coverage.',
-    'Accidental injury/death or theft.',
-  ];
+  // const checkTextDetailArray: ArrayItemType[]= [
+  //   {title:'No deductible for vehicle loss or damage.', check:true},
+  //   {title: '100% coverage for car damage.', check:true},
+  //   {title:'24/7 Emergency Roadside Assistance.', check:true},
+  //   {title: 'Liability coverage.', check:true},
+  //   {title: 'Accidental injury/death or theft.', check:true},
+
+  // ];
   return (
     <View style={styles.mainBox}>
       {/* start small box wrapper-- recommend and only discount button */}
@@ -91,8 +102,9 @@ const BoxProtectionScreenComp = () => {
         {checkTextDetailArray.map((item, index) => {
           return (
             <View style={styles.wrapperCheckText} key={index}>
-              <CarCrashIcon name="check" size={20} color={myColor.greenColor} />
-              <Text>{item}</Text>
+             {item.check? <CarCrashIcon name={"check"} size={20} color={ myColor.greenColor} />:  <CrossIcon name = 'cross' size={20} color={myColor.red}/>} 
+           
+              <Text>{item.title}</Text>
               {/* style={styles.title} */}
             </View>
           );
