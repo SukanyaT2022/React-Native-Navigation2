@@ -37,13 +37,16 @@ export interface ArrayItemType{
   title:string;
   check:boolean;//check if cross or check mark
 }
+
 interface MainProtectionType{
+  //below are property
   checkTextDetailArray: ArrayItemType[]
+  priceProp:string
+  titleProp:string
+  recommendTagProp?:string
 }
 
-
-
-const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
+const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp}:MainProtectionType) => {
   const iconColor = myColor.darkYellow;
   const iconSize = 40;
   // const checkTextDetailArray: ArrayItemType[]= [
@@ -58,15 +61,17 @@ const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
     <View style={styles.mainBox}>
       {/* start small box wrapper-- recommend and only discount button */}
       <View style={styles.wrapTwoRecommendBox}>
-        <DiscountSmallBox
-          message="Recommended"
+        {/* we pass recommednProp to this this component and put prop inside  {}-
+        - && operation when recommendTagProp is true when you pass that prop  */}
+        {recommendTagProp && <DiscountSmallBox
+          message={recommendTagProp}
           bgColor={myColor.greenColor}
           textColor="white"
           iconColor={myColor.darkYellow}
           icon={
             <CarCrashIcon name="star" size={15} color={myColor.darkYellow} />
           }
-        />
+        />}
         <DiscountSmallBox
           message="Online Only Discount "
           bgColor={myColor.lightYellow}
@@ -86,7 +91,7 @@ const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
 
       {/* start wrap title and icons */}
       <View>
-        <Text style={styles.title}>Complete Protection</Text>
+        <Text style={styles.title}>{titleProp}</Text>
         {/* start wrap 4 icon */}
         <View style={styles.wrapIconStyle}>
           <CarCrashIcon name="car-burst" size={iconSize} color={iconColor} />
@@ -97,11 +102,12 @@ const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
       </View>
       {/* end wrap title and icons */}
 
-      {/* Check and text */}
+      {/* Checkmark and text */}
       <View style={styles.mainWrapperCheckText}>
         {checkTextDetailArray.map((item, index) => {
           return (
             <View style={styles.wrapperCheckText} key={index}>
+              {/* check? is boolean if it true show checkmark- if not show cross */}
              {item.check? <CarCrashIcon name={"check"} size={20} color={ myColor.greenColor} />:  <CrossIcon name = 'cross' size={20} color={myColor.red}/>} 
            
               <Text>{item.title}</Text>
@@ -113,7 +119,7 @@ const BoxProtectionScreenComp = ({checkTextDetailArray}:MainProtectionType) => {
       {/* end check and text  */}
       {/* start price /day and select button */}
       <View style={styles.wrapPriceDaySelectBtn}>
-        <Text style={styles.pricePerDayStyle}>$34.56/ Day</Text>
+        <Text style={styles.pricePerDayStyle}>${priceProp}/ Day</Text>
         <TouchableOpacity style={styles.selectBtnStyle}>
           <Text style={styles.selectTextStyle}>Select</Text>
         </TouchableOpacity>
