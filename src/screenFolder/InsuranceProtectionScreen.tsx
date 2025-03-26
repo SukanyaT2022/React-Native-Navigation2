@@ -34,17 +34,29 @@ import { ScrollView } from 'react-native-gesture-handler';
 // ]
 const InsuranceProtectionScreen = () => {
   return (
-    <ScrollView>
+    <View style={styles.mainView}>
+      <Text>Choose your coverage</Text>
+    <ScrollView contentContainerStyle={styles.scrollViewWrapper}>
       {/* checkTextDetailArray={checkTextDetailArray} come from interface BoxprotectionScreenComp-- front is parperty and { value} */}
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArray} priceProp="32.47" titleProp="Complete Protection" recommendTagProp='Recommended'/>
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayStandard} priceProp="29.50" titleProp="Standard Protection"/>
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayBasic} priceProp="18.50" titleProp="Basic Protection"/>
     </ScrollView>
+    </View>
   )
 }
 
 export default InsuranceProtectionScreen
 
 const styles = StyleSheet.create({
-  
+  mainView:{
+gap:20,
+paddingHorizontal:10
+
+
+  },
+  scrollViewWrapper:{
+    gap:20
+    
+  }
 })

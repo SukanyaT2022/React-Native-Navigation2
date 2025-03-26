@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {myColor} from '../constant/color';
 import TowTruckIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CarCrashIcon from 'react-native-vector-icons/FontAwesome6';
@@ -44,9 +44,11 @@ interface MainProtectionType{
   priceProp:string
   titleProp:string
   recommendTagProp?:string
+  disabled?: boolean
+  selected?: boolean
 }
 
-const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp}:MainProtectionType) => {
+const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp, disabled, selected}:MainProtectionType) => {
   const iconColor = myColor.darkYellow;
   const iconSize = 40;
   // const checkTextDetailArray: ArrayItemType[]= [
@@ -57,6 +59,8 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
   //   {title: 'Accidental injury/death or theft.', check:true},
 
   // ];
+
+  const [selectUnselectedBtn, setSelectUnselectedBtn] = useState<boolean>(false)
   return (
     <View style={styles.mainBox}>
       {/* start small box wrapper-- recommend and only discount button */}
@@ -120,7 +124,7 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
       {/* start price /day and select button */}
       <View style={styles.wrapPriceDaySelectBtn}>
         <Text style={styles.pricePerDayStyle}>${priceProp}/ Day</Text>
-        <TouchableOpacity style={styles.selectBtnStyle}>
+        <TouchableOpacity onPress={()=>setSelectUnselectedBtn(!selectUnselectedBtn)} style={[styles.selectBtnStyle, selectUnselectedBtn? {backgroundColor:myColor.greenColor}: {backgroundColor:"gray"}]}>
           <Text style={styles.selectTextStyle}>Select</Text>
         </TouchableOpacity>
       </View>
@@ -134,6 +138,7 @@ const styles = StyleSheet.create({
   mainBox: {
     borderColor: myColor.greenColor,
     borderWidth: 2,
+    borderRadius:10,
     padding: 20,
     gap: 10,
   },
@@ -168,7 +173,7 @@ const styles = StyleSheet.create({
   wrapTwoRecommendBox: {
     flexDirection: 'row',
     gap: 10,
-    alignItems: 'flex-start',
+    justifyContent:'center'
   },
   wrapPriceDaySelectBtn: {
     flexDirection: 'row',
@@ -189,5 +194,6 @@ borderRadius:20,
   selectTextStyle:{
 color:'white',
 fontWeight:'semibold',
-  }
+  },
+
 });
