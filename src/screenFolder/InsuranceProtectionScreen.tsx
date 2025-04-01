@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import BoxProtectionScreenComp, { ArrayItemType } from '../componentFolder/BoxProtectionScreenComp'
 import { ScrollView } from 'react-native-gesture-handler';
 // interface ProtectionDataType{
@@ -33,14 +33,19 @@ import { ScrollView } from 'react-native-gesture-handler';
   ];
 // ]
 const InsuranceProtectionScreen = () => {
+const [selectedBtn, setSelected] = useState<boolean>(false)
+const [selectedBtn2, setSelected2] = useState<boolean>(false)
+const [selectedBtn3, setSelected3] = useState<boolean>(false)
   return (
     <View style={styles.mainView}>
       <Text>Choose your coverage</Text>
     <ScrollView contentContainerStyle={styles.scrollViewWrapper}>
       {/* checkTextDetailArray={checkTextDetailArray} come from interface BoxprotectionScreenComp-- front is parperty and { value} */}
-     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArray} priceProp="32.47" titleProp="Complete Protection" recommendTagProp='Recommended'/>
-     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayStandard} priceProp="29.50" titleProp="Standard Protection"/>
-     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayBasic} priceProp="18.50" titleProp="Basic Protection"/>
+     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArray} priceProp="32.47" titleProp="Complete Protection" recommendTagProp='Recommended' disabled = {selectedBtn2 || selectedBtn3} selected = {selectedBtn} onpressProp={()=>setSelected(!selectedBtn)}/>
+
+     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayStandard} priceProp="29.50" titleProp="Standard Protection" disabled = {selectedBtn || selectedBtn3} selected = {selectedBtn2}  onpressProp={()=>setSelected2(!selectedBtn2)}/>
+
+     <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayBasic} priceProp="18.50" titleProp="Basic Protection" disabled = {selectedBtn || selectedBtn2} selected = {selectedBtn3}  onpressProp={()=>setSelected2(!selectedBtn3)}/>
     </ScrollView>
     </View>
   )
@@ -51,7 +56,8 @@ export default InsuranceProtectionScreen
 const styles = StyleSheet.create({
   mainView:{
 gap:20,
-paddingHorizontal:10
+paddingHorizontal:10,
+paddingBottom:100,
 
 
   },

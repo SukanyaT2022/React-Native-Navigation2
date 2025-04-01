@@ -46,9 +46,11 @@ interface MainProtectionType{
   recommendTagProp?:string
   disabled?: boolean
   selected?: boolean
+onpressProp?: ()=>void
+
 }
 
-const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp, disabled, selected}:MainProtectionType) => {
+const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp, disabled, selected, onpressProp}:MainProtectionType) => {
   const iconColor = myColor.darkYellow;
   const iconSize = 40;
   // const checkTextDetailArray: ArrayItemType[]= [
@@ -124,7 +126,9 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
       {/* start price /day and select button */}
       <View style={styles.wrapPriceDaySelectBtn}>
         <Text style={styles.pricePerDayStyle}>${priceProp}/ Day</Text>
-        <TouchableOpacity onPress={()=>setSelectUnselectedBtn(!selectUnselectedBtn)} style={[styles.selectBtnStyle, selectUnselectedBtn? {backgroundColor:myColor.greenColor}: {backgroundColor:"gray"}]}>
+        <TouchableOpacity 
+        disabled = {disabled}
+        onPress={disabled?()=>null : onpressProp} style={[styles.selectBtnStyle, selected? {backgroundColor:myColor.greenColor}: {backgroundColor:"gray"}]}>
           <Text style={styles.selectTextStyle}>Select</Text>
         </TouchableOpacity>
       </View>
