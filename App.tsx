@@ -11,6 +11,8 @@ import ConfirmScreen from './src/screenFolder/ConfirmScreen';
 import Products from './src/screenFolder/ProductScreen';
 import ProductScreen from './src/screenFolder/ProductScreen';
 import InsuranceProtectionScreen from './src/screenFolder/InsuranceProtectionScreen';
+import ExtraServiceOneMainBoxComp from './src/componentFolder/ExtraServiceOneMainBoxComp';
+import ExtraServiceScreen from './src/screenFolder/ExtraServiceScreen';
 
 const Stack = createStackNavigator();
 export const screen = {
@@ -21,11 +23,12 @@ login:'Login',
 confirm:'Confirm',
 productscreen: 'ProductScreen',
 insuranceScreen: 'InsuranceProtectionScreen',
+extraServiceScreen: 'ExtraServiceScreen',
 }
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={screen.register}>
+      <Stack.Navigator initialRouteName={screen.extraServiceScreen}>
       {/* //options={{headerShown:false}} if donot want header on the screen*/}
         <Stack.Screen name={screen.home} component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name={screen.details} component={DetailsScreen} />
@@ -34,6 +37,7 @@ const App = () => {
         <Stack.Screen name={screen.confirm} component={ConfirmScreen} />
         <Stack.Screen name={screen.productscreen} component={ProductScreen} />
         <Stack.Screen name={screen.insuranceScreen} component={InsuranceProtectionScreen} />
+        <Stack.Screen name={screen.extraServiceScreen} component={ExtraServiceScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

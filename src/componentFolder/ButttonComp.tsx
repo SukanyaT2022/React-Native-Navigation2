@@ -1,15 +1,16 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 interface ButtonProp{
 buttonText:string,
 onPressProp:()=>void,
-
+iconBtnCompProp : ImageSourcePropType
 }
-const ButttonComp = ({buttonText, onPressProp}:ButtonProp) => {
+const ButttonComp = ({buttonText, onPressProp, iconBtnCompProp}:ButtonProp) => {
 
   return (
     <TouchableOpacity style={styles.buttonStyle} onPress={onPressProp}>
+      <Image source={iconBtnCompProp}/>
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>
     </TouchableOpacity>
   )
