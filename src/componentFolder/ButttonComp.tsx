@@ -1,16 +1,18 @@
 import { Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface ButtonProp{
 buttonText:string,
 onPressProp:()=>void,
-iconBtnCompProp : ImageSourcePropType
+
 }
-const ButttonComp = ({buttonText, onPressProp, iconBtnCompProp}:ButtonProp) => {
+const ButttonComp = ({buttonText, onPressProp, }:ButtonProp) => {
 
   return (
-    <TouchableOpacity style={styles.buttonStyle} onPress={onPressProp}>
-      <Image source={iconBtnCompProp}/>
+    <TouchableOpacity style={styles.buttonStyle} onPress={onPressProp} >
+      <Icon name="plus" size={17} color="white" />
+      {/* <Image source={iconBtnCompProp}/> */}
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>
     </TouchableOpacity>
   )
@@ -23,11 +25,16 @@ const styles = StyleSheet.create({
 backgroundColor:'black',
 alignItems:'center',
 padding:15,
-borderRadius:5,
+borderRadius:25,
+flexDirection:'row',
+gap:10,
+justifyContent:'center',
+
 
   },
   buttonTextStyle:{
 color:'white',
 fontWeight:'bold',
+fontSize:16,
   },
 })

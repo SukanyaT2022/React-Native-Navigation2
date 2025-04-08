@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Image, ImageSourcePropType } from 'react-native'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ButttonComp from './ButttonComp'
-import iconOne from '../asset/imagesFolder/cat1.png'
+
 interface OneMainBoxProp{
 title: string,
 smallImg: ImageSourcePropType,
 onPressXtraProp: ()=>void
-iconProp: ImageSourcePropType,
+iconProp: ReactNode,// this is icon
 message:string,
 
 }
@@ -15,13 +15,16 @@ const ExtraServiceOneMainBoxComp = ({title,smallImg, iconProp, message, onPressX
     <View style = {styles.main} >
       <Text>ExtraServiceScreen</Text>
 <Text>{title}</Text>
-<Image source={smallImg}/>
+<Image source={smallImg} />
 
 <View style = {styles.iconMessageStyle}>
-<Image source={iconProp}/>
+
+{/* //metal sheild icon */}
+{iconProp}
 <Text>{message}</Text>
 </View>
-<ButttonComp onPressProp={onPressXtraProp}  iconBtnCompProp = {iconOne} buttonText='Add' />
+<ButttonComp onPressProp={onPressXtraProp} 
+ buttonText='Add' />
     </View>
   )
 }
@@ -36,4 +39,9 @@ main:{
 iconMessageStyle:{
 
 },
+imageStyle:{
+  width:40,
+  height:40,
+  objectFit:'contain',
+}
 })
