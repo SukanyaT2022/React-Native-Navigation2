@@ -3,15 +3,19 @@ import React from 'react';
 import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBoxComp';
 import gaspump from '../asset/imagesFolder/gaspumpimg2.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 const ExtraServiceScreen = () => {
   return (
     <View>
-      <Text>ExtraServiceScreen</Text>
+      {/* <Text>ExtraServiceScreen</Text> */}
       <ExtraServiceOneMainBoxComp
         title="Skip the Pump and Save Time"
         smallImg={gaspump as any}
         message="Save time, Return wihout refueling"
-        iconProp={<Icon name="rocket" size={30} color="#900" />}
+        iconProp={<Icon name="shield" size={30} color="#900" />}
+   shieldMessage={['Comparable to local fuel prices', 'Avoid $9.99 for not refueling']}
+
       />
     </View>
   );
