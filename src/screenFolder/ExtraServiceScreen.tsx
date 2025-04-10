@@ -4,19 +4,21 @@ import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBo
 import gaspump from '../asset/imagesFolder/gaspumpimg2.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 const ExtraServiceScreen = () => {
   return (
     <View>
       {/* <Text>ExtraServiceScreen</Text> */}
       <ExtraServiceOneMainBoxComp
-   
+      recommendationTag = {true}// leave it like that it's a boolean
         title="Skip the Pump and Save Time"
         smallImg={gaspump as any}
         message="Save time, Return wihout refueling"
         iconProp={<Icon name="shield" size={30} color="green" />}
-   shieldMessage={['Comparable to local fuel prices', 'Avoid $9.99 for not refueling']}
-priceText='$50.99/ rental'
+        shieldMessage={[
+          'Comparable to local fuel prices',
+          'Avoid $9.99 for not refueling',
+        ]}
+        priceText="$50.99/ rental"
       />
     </View>
   );
@@ -24,6 +26,4 @@ priceText='$50.99/ rental'
 
 export default ExtraServiceScreen;
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

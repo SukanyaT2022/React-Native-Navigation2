@@ -21,7 +21,7 @@ const ButttonComp = ({buttonText, onPressProp, }:ButtonProp) => {
 export default ButttonComp
 
 const styles = StyleSheet.create({
-  buttonStyle:{
+buttonStyle:{
 backgroundColor:'black',
 alignItems:'center',
 padding:15,
