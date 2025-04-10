@@ -10,6 +10,7 @@ interface OneMainBoxProp {
   iconProp: ReactNode; // this is icon
   message: string;
   shieldMessage: string[];
+  priceText: string;
 }
 const ExtraServiceOneMainBoxComp = ({
   title,
@@ -18,18 +19,18 @@ const ExtraServiceOneMainBoxComp = ({
   message,
   onPressXtraProp,
   shieldMessage,
+  priceText,
 }: OneMainBoxProp) => {
   return (
     <View style={styles.main}>
       {/* text and gas pump  */}
-  <View style={styles.wrapTextImg}>
-      <Text>{title}</Text>
-      <Image source={smallImg} style={styles.smallimgStyle} />
+      <View style={styles.wrapTextImg}>
+        <Text style={styles.headerStyle}>{title}</Text>
+        <Image source={smallImg} style={styles.smallimgStyle} />
       </View>
+      <Text style={styles.subMessage}>{message}</Text>
 
       <View style={styles.iconMessageStyle}>
-        <Text style={styles.subMessage}>{message}</Text>
-
         {/* map shiled icon and message */}
         {shieldMessage.map((item, index) => {
           return (
@@ -41,7 +42,11 @@ const ExtraServiceOneMainBoxComp = ({
           );
         })}
       </View>
-      <ButttonComp onPressProp={onPressXtraProp} buttonText="Add" />
+
+      <View style={styles.wrapPriceAddBtn}>
+        <Text style={styles.priceStyle}>{priceText}</Text>
+        <ButttonComp  onPressProp={onPressXtraProp} buttonText="Add" />
+      </View>
     </View>
   );
 };
@@ -49,17 +54,24 @@ const ExtraServiceOneMainBoxComp = ({
 export default ExtraServiceOneMainBoxComp;
 const styles = StyleSheet.create({
   main: {
-    borderColor: 'gray',
+    borderColor: 'blue',
     borderWidth: 2,
-    padding: 5,
-    gap:10,
-    alignItems:'center',
-    backgroundColor:'red'
+    padding: 20,
+    gap: 10,
+    // alignItems:'center',
+    backgroundColor: 'red',
   },
-  wrapTextImg:{
-flexDirection:'row',
-justifyContent:'space-between',
-  backgroundColor:'green'
+  wrapTextImg: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'green',
+    width: '100%',
+  },
+  headerStyle: {
+    fontSize: 20,
+    fontWeight: 500,
+    width: '70%',
+    lineHeight: 28,
   },
   iconMessageStyle: {},
   imageStyle: {
@@ -67,18 +79,32 @@ justifyContent:'space-between',
     height: 40,
     objectFit: 'contain',
   },
-  // icon sheild
+  // image coner
   smallimgStyle: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     objectFit: 'contain',
   },
+  // shieldicon and text
   mapSheildMesaageStyle: {
     flexDirection: 'row',
-    // alignItems: 'center',
-    gap: 10,
+    // gap: 10,
+    backgroundColor: 'pink',
+    width: '100%',
   },
-  subMessage:{
-    fontSize:20,
-  }
+  subMessage: {
+    fontSize: 18,
+  },
+  wrapPriceAddBtn: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'purple',
+    width: '100%',
+  },
+  priceStyle: {
+    fontSize: 20,
+    width:'50%',
+    backgroundColor:'blue'
+  },
+
 });

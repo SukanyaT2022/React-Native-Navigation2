@@ -29,7 +29,7 @@ borderRadius:25,
 flexDirection:'row',
 gap:10,
 justifyContent:'center',
-
+width:'40%'
 
   },
   buttonTextStyle:{

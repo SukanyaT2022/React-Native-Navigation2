@@ -10,12 +10,13 @@ const ExtraServiceScreen = () => {
     <View>
       {/* <Text>ExtraServiceScreen</Text> */}
       <ExtraServiceOneMainBoxComp
+   
         title="Skip the Pump and Save Time"
         smallImg={gaspump as any}
         message="Save time, Return wihout refueling"
-        iconProp={<Icon name="shield" size={30} color="#900" />}
+        iconProp={<Icon name="shield" size={30} color="green" />}
    shieldMessage={['Comparable to local fuel prices', 'Avoid $9.99 for not refueling']}
-
+priceText='$50.99/ rental'
       />
     </View>
   );
@@ -23,4 +24,6 @@ const ExtraServiceScreen = () => {
 
 export default ExtraServiceScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});
