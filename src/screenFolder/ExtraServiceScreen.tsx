@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ExtraServiceScreen = () => {
   return (
-    <View>
+    <View style = {styles.main}>
       {/* <Text>ExtraServiceScreen</Text> */}
       <ExtraServiceOneMainBoxComp
       recommendationTag = {true}// leave it like that it's a boolean
@@ -26,4 +26,8 @@ const ExtraServiceScreen = () => {
 
 export default ExtraServiceScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  main:{
+    padding:10,
+  }
+});

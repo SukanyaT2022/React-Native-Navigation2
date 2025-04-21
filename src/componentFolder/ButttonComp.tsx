@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
 buttonStyle:{
 backgroundColor:'black',
 alignItems:'center',
-padding:15,
+padding:10,
 borderRadius:25,
 flexDirection:'row',
 gap:10,
 justifyContent:'center',
-width:'40%'
+width:'35%'
 
   },
   buttonTextStyle:{
