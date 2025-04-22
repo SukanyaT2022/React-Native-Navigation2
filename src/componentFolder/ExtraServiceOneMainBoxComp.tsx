@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, Image, ImageSourcePropType} from 'react-native';
 import React, {ReactNode} from 'react';
 import ButttonComp from './ButttonComp';
-import {Directions} from 'react-native-gesture-handler';
+import {Directions, ScrollView} from 'react-native-gesture-handler';
 import {myColor} from '../constant/color';
 import InfoCircleIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -27,7 +27,8 @@ const ExtraServiceOneMainBoxComp = ({
 }: OneMainBoxProp) => {
   return (
     <View style={styles.main}>
-      {/* text and gas pump  */}
+
+
 
       {/* //recommend tag condition put {} */}
       <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
@@ -64,6 +65,7 @@ const ExtraServiceOneMainBoxComp = ({
           <ButttonComp onPressProp={onPressXtraProp} buttonText="Add" />
         </View>
       </View>
+
     </View>
   );
 };
