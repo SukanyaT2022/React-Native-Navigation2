@@ -44,9 +44,8 @@ export const extraServiceData: ExtraServiceProp[] = [
         'Fixed daily rate',
     ],
     image:gaspump,
-    recommendedTag:"Recommended",
     price:"$20.99",
-    id:"1"
+    id:"3"
 },
 ]
 

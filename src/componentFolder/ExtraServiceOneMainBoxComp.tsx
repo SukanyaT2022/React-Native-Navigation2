@@ -14,6 +14,7 @@ interface OneMainBoxProp {
   shieldMessage: string[];
   priceText: string;
   recommendationTag?: boolean;
+  selected?: boolean;
 }
 const ExtraServiceOneMainBoxComp = ({
   title,
@@ -24,22 +25,31 @@ const ExtraServiceOneMainBoxComp = ({
   shieldMessage,
   priceText,
   recommendationTag,
+  selected,
 }: OneMainBoxProp) => {
   return (
-    <View style={styles.main}>
-
-
-
+    <View style={[styles.main,selected && {borderColor:myColor.greenColor} ]}>
       {/* //recommend tag condition put {} */}
-      <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+      <View
+        style={[
+          {width: '100%'},
+          recommendationTag
+            ? {flexDirection: 'row', justifyContent: 'space-between'}
+            : {},
+        ]}>
         {recommendationTag && (
           <View style={styles.recommendTagStyle}>
             <Text style={styles.textRecommend}>Recommended</Text>
           </View>
-
         )}
-        <InfoCircleIcon style={styles.infoIconStyle} name="info-circle" size={20} color={myColor.greenColor} />
 
+        <View style={styles.infoIconStyle}>
+          <InfoCircleIcon
+            name="info-circle"
+            size={20}
+            color={myColor.greenColor}
+          />
+        </View>
       </View>
       <View style={styles.wrapHeaderToAll}>
         <View style={styles.wrapTextImg}>
@@ -62,10 +72,9 @@ const ExtraServiceOneMainBoxComp = ({
 
         <View style={styles.wrapPriceAddBtn}>
           <Text style={styles.priceStyle}>{priceText}</Text>
-          <ButttonComp onPressProp={onPressXtraProp} buttonText="Add" />
+          <ButttonComp onPressProp={onPressXtraProp} buttonText="Add"/>
         </View>
       </View>
-
     </View>
   );
 };
@@ -73,11 +82,10 @@ const ExtraServiceOneMainBoxComp = ({
 export default ExtraServiceOneMainBoxComp;
 const styles = StyleSheet.create({
   main: {
-    borderColor: myColor.greenColor,
+    borderColor: myColor.lightGray,
     borderWidth: 2,
     gap: 10,
     borderRadius: 15,
-
     // alignItems:'center',
   },
   // wrap subtitle to add btn
@@ -93,10 +101,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 40,
     width: '40%',
   },
-  infoIconStyle:{
-marginRight:5,
-marginTop:5,
-
+  infoIconStyle: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    paddingTop: 10,
+    paddingRight: 10,
   },
   wrapTextImg: {
     flexDirection: 'row',
