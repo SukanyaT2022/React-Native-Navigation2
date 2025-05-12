@@ -5,7 +5,8 @@ import gaspump from '../asset/imagesFolder/gaspumpimg2.jpg';
 import truck from '../asset/imagesFolder/cat1.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from 'react-native-gesture-handler';
-import {extraServiceData} from '../constant/extraServiceData'
+import { extraServiceData } from '../constant/extraServiceData';
+
 const ExtraServiceScreen = () => {
   const [selectedItem, setSelectedItem] = useState<string[]>([])
 console.log(selectedItem, "this is for test selected id")
@@ -25,19 +26,20 @@ console.log(selectedItem, "this is for test selected id")
     <View style = {styles.main}>
       <Text style={styles.header}>Coverages & Improve your trip</Text>
      <FlatList
+     //name based on extraservicedata
      contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20 }}
      data = {extraServiceData}
-     keyExtractor={(item)=>item.id}
+     keyExtractor={(item)=>item.id.toString()}
      renderItem={({item})=><ExtraServiceOneMainBoxComp
-     recommendationTag = {item?.recommendedTag as any }// leave it like that it's a boolean
-        title={item.title}
-        smallImg={item.image as any}
-        message={item.subtitle}
+     recommendationTag = {item?. type as any }// leave it like that it's a boolean
+        title={item.name}
+        smallImg={item.icon as any}
+        message={item.description}
         iconProp={<Icon name="shield" size={30} color="green" />}
-        shieldMessage={item.text}
-        priceText={item.price}
-     selected ={selectedItem.includes(item.id)}
-     onPressXtraProp={()=>handleSelectBox(item.id)}
+        shieldMessage={item.benefits}
+        priceText={item.price.toString()}
+     selected ={selectedItem.includes(item.id.toString())}
+     onPressXtraProp={()=>handleSelectBox(item.id.toString())}
      />}
      
      
