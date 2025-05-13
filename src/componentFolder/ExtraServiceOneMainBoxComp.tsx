@@ -72,7 +72,7 @@ const ExtraServiceOneMainBoxComp = ({
 
         <View style={styles.wrapPriceAddBtn}>
           <Text style={styles.priceStyle}>{priceText}</Text>
-          <ButttonComp onPressProp={onPressXtraProp} buttonText="Add"/>
+          <ButttonComp onPressProp={onPressXtraProp} selectedProp = {selected} buttonText="Add"/>
         </View>
       </View>
     </View>
@@ -82,7 +82,7 @@ const ExtraServiceOneMainBoxComp = ({
 export default ExtraServiceOneMainBoxComp;
 const styles = StyleSheet.create({
   main: {
-    borderColor: myColor.lightGray,
+    borderColor: myColor.verylightGray,
     borderWidth: 2,
     gap: 10,
     borderRadius: 15,

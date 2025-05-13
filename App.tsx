@@ -28,7 +28,7 @@ extraServiceScreen: 'ExtraServiceScreen',
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={screen.extraServiceScreen}>
+      <Stack.Navigator initialRouteName={screen.insuranceScreen}>
       {/* //options={{headerShown:false}} if donot want header on the screen*/}
         <Stack.Screen name={screen.home} component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name={screen.details} component={DetailsScreen} />

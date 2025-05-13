@@ -64,7 +64,7 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
 
   const [selectUnselectedBtn, setSelectUnselectedBtn] = useState<boolean>(false)
   return (
-    <View style={styles.mainBox}>
+    <View style={[styles.mainBox, selected && {borderColor: myColor.greenColor}]}>
       {/* start small box wrapper-- recommend and only discount button */}
       <View style={styles.wrapTwoRecommendBox}>
         {/* we pass recommednProp to this this component and put prop inside  {}-
@@ -140,7 +140,7 @@ export default BoxProtectionScreenComp;
 
 const styles = StyleSheet.create({
   mainBox: {
-    borderColor: myColor.greenColor,
+    borderColor: myColor.verylightGray,
     borderWidth: 2,
     borderRadius:10,
     padding: 20,
@@ -199,5 +199,20 @@ borderRadius:20,
 color:'white',
 fontWeight:'semibold',
   },
+  // boxShadow: {
+  //   // iOS shadow properties
+  //   shadowColor: '#000',
+  //   shadowOffset: { width: 0, height: 5 },
+  //   shadowOpacity: 0.35,
+  //   shadowRadius: 15,
+    
+  //   // Android elevation
+  //   elevation: 10,
+    
+  //   // Required for iOS shadows to work properly
+  //   backgroundColor: 'white', // or any color you need
+  // }
 
 });
+
+

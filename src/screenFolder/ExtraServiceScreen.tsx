@@ -98,6 +98,7 @@ export default ExtraServiceScreen;
 const styles = StyleSheet.create({
   main:{
     padding:10,
+
   },
   header:{
     fontSize:18,
