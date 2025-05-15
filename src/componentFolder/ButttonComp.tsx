@@ -23,14 +23,15 @@ export default ButttonComp
 
 const styles = StyleSheet.create({
 buttonStyle:{
-backgroundColor:myColor.verylightGray,
+// backgroundColor:myColor.verylightGray,
+backgroundColor:'gray',
 alignItems:'center',
 padding:10,
 borderRadius:25,
 flexDirection:'row',
 gap:10,
 justifyContent:'center',
-width:'35%'
+// width:'35%'
 
   },
   buttonTextStyle:{

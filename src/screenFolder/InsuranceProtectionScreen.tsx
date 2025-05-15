@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import BoxProtectionScreenComp, { ArrayItemType } from '../componentFolder/BoxProtectionScreenComp'
 import { ScrollView } from 'react-native-gesture-handler';
+import ButttonComp from '../componentFolder/ButttonComp';
+import { screen } from '../../App';
 // interface ProtectionDataType{
 //   id:string;
 //   data:
@@ -32,7 +34,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
   ];
 // ]
-const InsuranceProtectionScreen = () => {
+const InsuranceProtectionScreen = ({navigation}:any) => {
 const [selectedBtn, setSelected] = useState<boolean>(false)
 const [selectedBtn2, setSelected2] = useState<boolean>(false)
 const [selectedBtn3, setSelected3] = useState<boolean>(false)
@@ -46,6 +48,13 @@ const [selectedBtn3, setSelected3] = useState<boolean>(false)
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayStandard} priceProp="29.50" titleProp="Standard Protection" disabled = {selectedBtn || selectedBtn3} selected = {selectedBtn2}  onpressProp={()=>setSelected2(!selectedBtn2)}/>
 
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayBasic} priceProp="18.50" titleProp="Basic Protection" disabled = {selectedBtn || selectedBtn2} selected = {selectedBtn3}  onpressProp={()=>setSelected2(!selectedBtn3)}/>
+    <View style={{paddingHorizontal:10}}>
+    <ButttonComp 
+    buttonText = "Continue"
+    selectedProp = {false}
+ onPressProp = {()=>navigation.navigate(screen.home)}
+    />
+</View>
     </ScrollView>
     </View>
   )
