@@ -71,8 +71,8 @@ const ExtraServiceOneMainBoxComp = ({
         </View>
 
         <View style={styles.wrapPriceAddBtn}>
-          <Text style={styles.priceStyle}>{priceText}</Text>
-          <ButttonComp onPressProp={onPressXtraProp} selectedProp = {selected} buttonText="Add"/>
+          <Text style={styles.priceStyle}>${priceText}</Text>
+          <View style={styles.targetOnlyBtn}><ButttonComp onPressProp={onPressXtraProp} selectedProp = {selected} buttonText="Add"/></View>
         </View>
       </View>
     </View>
@@ -154,6 +154,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
+  },
+targetOnlyBtn:{
+    width: '40%',
   },
   priceStyle: {
     fontSize: 20,

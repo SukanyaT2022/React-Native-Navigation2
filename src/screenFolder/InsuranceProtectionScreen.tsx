@@ -52,7 +52,7 @@ const [selectedBtn3, setSelected3] = useState<boolean>(false)
     <ButttonComp 
     buttonText = "Continue"
     selectedProp = {false}
- onPressProp = {()=>navigation.navigate(screen.home)}
+ onPressProp = {()=>navigation.navigate(screen.extraServiceScreen)}
     />
 </View>
     </ScrollView>

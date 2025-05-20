@@ -1,16 +1,19 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, { useState } from 'react';
+import {FlatList, StyleSheet, Text, View, Animated, NativeSyntheticEvent, NativeScrollEvent} from 'react-native';
+import React, { useState, useRef } from 'react';
 import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBoxComp';
 import gaspump from '../asset/imagesFolder/gaspumpimg2.jpg';
 import truck from '../asset/imagesFolder/cat1.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from 'react-native-gesture-handler';
 import { extraServiceData } from '../constant/extraServiceData';
+import ButttonComp from '../componentFolder/ButttonComp';
+import { screen } from '../../App';
 
-const ExtraServiceScreen = () => {
+const ExtraServiceScreen = ({navigation}:any) => {
   const [selectedItem, setSelectedItem] = useState<string[]>([])
-console.log(selectedItem, "this is for test selected id")
-  //
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const [showContinueButton, setShowContinueButton] = useState(false)
+  
   const handleSelectBox = (id:string)=>{
     //if click again the green border chnage to gray as original color
     var checkIfAlreadyCkick = selectedItem.includes(id);
@@ -19,34 +22,114 @@ console.log(selectedItem, "this is for test selected id")
     }else{
       setSelectedItem((pervState)=>[...pervState, id])
     }
-
-
   }
+
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    { 
+      useNativeDriver: false,
+      listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const offsetY = event.nativeEvent.contentOffset.y;
+        if (offsetY > 100) { // Show button after scrolling 100 units
+          setShowContinueButton(true);
+        } else {
+          setShowContinueButton(false);
+        }
+      }
+    }
+  );
+
   return (
-    <View style = {styles.main}>
+    <View style={styles.main}>
       <Text style={styles.header}>Coverages & Improve your trip</Text>
-     <FlatList
-     //name based on extraservicedata
-     contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20 }}
-     data = {extraServiceData}
-     keyExtractor={(item)=>item.id.toString()}
-     renderItem={({item})=><ExtraServiceOneMainBoxComp
-     recommendationTag = {item?. type as any }// leave it like that it's a boolean
-        title={item.name}
-        smallImg={item.icon as any}
-        message={item.description}
-        iconProp={<Icon name="shield" size={30} color="green" />}
-        shieldMessage={item.benefits}
-        priceText={item.price.toString()}
-     selected ={selectedItem.includes(item.id.toString())}
-     onPressXtraProp={()=>handleSelectBox(item.id.toString())}
-     />}
-     
-     
-     
-     
-     />
-     {/* if not use flat list do like below code */}
+ 
+      <FlatList
+        contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20 }}
+        data={extraServiceData}
+        keyExtractor={(item)=>item.id.toString()}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        renderItem={({item})=>
+          <ExtraServiceOneMainBoxComp
+            recommendationTag={item.type === "Recommended"}
+            title={item.name}
+            smallImg={item.icon as any}
+            message={item.description}
+            iconProp={<Icon name="shield" size={30} color="green" />}
+            shieldMessage={item.benefits}
+            priceText={item.price.toString()}
+            selected={selectedItem.includes(item.id.toString())}
+            onPressXtraProp={()=>handleSelectBox(item.id.toString())}
+          />
+        }
+      />
+      
+      {selectedItem.length > 0 && (
+        <Animated.View 
+          style={[
+            styles.buttonContainer,
+            {
+              opacity: scrollY.interpolate({
+                inputRange: [0, 100],
+                outputRange: [0, 1],
+                extrapolate: 'clamp'
+              }),
+              transform: [{
+                translateY: scrollY.interpolate({
+                  inputRange: [0, 100],
+                  outputRange: [50, 0],
+                  extrapolate: 'clamp'
+                })
+              }]
+            }
+          ]}
+        >
+       
+        </Animated.View>
+      )}
+           <ButttonComp 
+            buttonText="Continue"
+            selectedProp={false}
+            onPressProp={()=>navigation.navigate(screen.checkout)}
+          />
+    </View>
+  );
+};
+
+export default ExtraServiceScreen;
+
+const styles = StyleSheet.create({
+  main:{
+    padding:10,
+    flex: 1,
+  },
+  header:{
+    fontSize:18,
+    fontWeight:'bold',
+    paddingVertical:10,
+    alignSelf:'center',
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 10,
+    right: 10,
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  }
+});
+
+
+{/* if not use flat list do like below code */}
       {/* <ScrollView contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20}}> */}
       {/* <Text>ExtraServiceScreen</Text> */}
       
@@ -89,21 +172,3 @@ console.log(selectedItem, "this is for test selected id")
         priceText="$19.99/ rental"
       /> */}
       {/* </ScrollView> */}
-    </View>
-  );
-};
-
-export default ExtraServiceScreen;
-
-const styles = StyleSheet.create({
-  main:{
-    padding:10,
-
-  },
-  header:{
-    fontSize:18,
-    fontWeight:'bold',
-    paddingVertical:10,
-    alignSelf:'center',
-  }
-});

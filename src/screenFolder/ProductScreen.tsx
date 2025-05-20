@@ -3,9 +3,11 @@ import React from 'react'
 import ProductItemComp from '../componentFolder/ProductItemComp'
 import FilterTypeCarComp from '../componentFolder/FilterTypeCarComp'
 import { screen } from '../../App'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const ProductScreen = ({navigation}:any) => {
   return (
+    <ScrollView>
     <View style={styles.mainBox}>
       <FilterTypeCarComp/>
 
@@ -15,6 +17,7 @@ const ProductScreen = ({navigation}:any) => {
 
      <ProductItemComp/>
     </View>
+    </ScrollView>
   )
 }
 
