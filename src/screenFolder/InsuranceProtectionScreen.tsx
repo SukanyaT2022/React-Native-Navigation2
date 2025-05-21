@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import BoxProtectionScreenComp, { ArrayItemType } from '../componentFolder/BoxProtectionScreenComp'
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import ButttonComp from '../componentFolder/ButttonComp';
 import { screen } from '../../App';
+import { extraServiceData } from '../constant/extraServiceData';
+import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBoxComp';
 // interface ProtectionDataType{
 //   id:string;
 //   data:
@@ -41,8 +43,8 @@ const [selectedBtn3, setSelected3] = useState<boolean>(false)
   return (
     <View style={styles.mainView}>
       <Text>Choose your coverage</Text>
-    <ScrollView contentContainerStyle={styles.scrollViewWrapper}>
-      {/* checkTextDetailArray={checkTextDetailArray} come from interface BoxprotectionScreenComp-- front is parperty and { value} */}
+    {/* <ScrollView contentContainerStyle={styles.scrollViewWrapper}>
+     
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArray} priceProp="32.47" titleProp="Complete Protection" recommendTagProp='Recommended' disabled = {selectedBtn2 || selectedBtn3} selected = {selectedBtn} onpressProp={()=>setSelected(!selectedBtn)}/>
 
      <BoxProtectionScreenComp checkTextDetailArray={checkTextDetailArrayStandard} priceProp="29.50" titleProp="Standard Protection" disabled = {selectedBtn || selectedBtn3} selected = {selectedBtn2}  onpressProp={()=>setSelected2(!selectedBtn2)}/>
@@ -55,7 +57,35 @@ const [selectedBtn3, setSelected3] = useState<boolean>(false)
  onPressProp = {()=>navigation.navigate(screen.extraServiceScreen)}
     />
 </View>
-    </ScrollView>
+    </ScrollView> */}
+
+<View style={styles.wrapFlatlistStyle}>
+      <FlatList
+        contentContainerStyle={{gap:15, paddingBottom:30, paddingTop:20 }}
+        data={extraServiceData}
+        keyExtractor={(item)=>item.id.toString()}
+        // onScroll={handleScroll}
+        scrollEventThrottle={16}
+        renderItem={({item})=>
+          <ExtraServiceOneMainBoxComp
+            recommendationTag={item.type === "Recommended"}
+            title={item.name}
+            smallImg={item.icon as any}
+            message={item.description}
+            iconProp={<Icon name="shield" size={30} color="green" />}
+            shieldMessage={item.benefits}
+            priceText={item.price.toString()}
+            selected={selectedItem.includes(item.id.toString())}
+            onPressXtraProp={()=>handleSelectBox(item.id.toString())}
+          />
+        }
+      />
+      </View>
+      {/* // close view flate list */}
+
+
+
+
     </View>
   )
 }
@@ -67,11 +97,16 @@ const styles = StyleSheet.create({
 gap:20,
 paddingHorizontal:10,
 paddingBottom:100,
-
-
   },
   scrollViewWrapper:{
     gap:20
     
-  }
+  },
+  wrapFlatlistStyle:{
+    // backgroundColor:'red',
+    // padding:10,
+    // flex:1,
+    height:'85%',
+    // width:'100%',
+  },
 })

@@ -24,30 +24,30 @@ const ExtraServiceScreen = ({navigation}:any) => {
     }
   }
 
-  const handleScroll = Animated.event(
-    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-    { 
-      useNativeDriver: false,
-      listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const offsetY = event.nativeEvent.contentOffset.y;
-        if (offsetY > 100) { // Show button after scrolling 100 units
-          setShowContinueButton(true);
-        } else {
-          setShowContinueButton(false);
-        }
-      }
-    }
-  );
+  // const handleScroll = Animated.event(
+  //   [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+  //   { 
+  //     useNativeDriver: false,
+  //     listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //       const offsetY = event.nativeEvent.contentOffset.y;
+  //       if (offsetY > 100) { // Show button after scrolling 100 units
+  //         setShowContinueButton(true);
+  //       } else {
+  //         setShowContinueButton(false);
+  //       }
+  //     }
+  //   }
+  // );
 
   return (
     <View style={styles.main}>
       <Text style={styles.header}>Coverages & Improve your trip</Text>
- 
+ <View style={styles.wrapFlatlistStyle}>
       <FlatList
-        contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20 }}
+        contentContainerStyle={{gap:15, paddingBottom:30, paddingTop:20 }}
         data={extraServiceData}
         keyExtractor={(item)=>item.id.toString()}
-        onScroll={handleScroll}
+        // onScroll={handleScroll}
         scrollEventThrottle={16}
         renderItem={({item})=>
           <ExtraServiceOneMainBoxComp
@@ -63,8 +63,10 @@ const ExtraServiceScreen = ({navigation}:any) => {
           />
         }
       />
-      
-      {selectedItem.length > 0 && (
+      </View>
+      {/* // close view flate list */}
+
+      {/* {selectedItem.length > 0 && (
         <Animated.View 
           style={[
             styles.buttonContainer,
@@ -87,11 +89,14 @@ const ExtraServiceScreen = ({navigation}:any) => {
        
         </Animated.View>
       )}
+       */}
+      <View style={styles.submitBtnStyle}>
            <ButttonComp 
             buttonText="Continue"
             selectedProp={false}
             onPressProp={()=>navigation.navigate(screen.checkout)}
           />
+          </View>
     </View>
   );
 };
@@ -99,9 +104,16 @@ const ExtraServiceScreen = ({navigation}:any) => {
 export default ExtraServiceScreen;
 
 const styles = StyleSheet.create({
+  wrapFlatlistStyle:{
+    // backgroundColor:'red',
+    // padding:10,
+    // flex:1,
+    height:'85%',
+    // width:'100%',
+  },
   main:{
     padding:10,
-    flex: 1,
+    // flex: 1,
   },
   header:{
     fontSize:18,
@@ -109,22 +121,26 @@ const styles = StyleSheet.create({
     paddingVertical:10,
     alignSelf:'center',
   },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 10,
-    right: 10,
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+  // buttonContainer: {
+  //   position: 'absolute',
+  //   bottom: 20,
+  //   left: 10,
+  //   right: 10,
+  //   backgroundColor: 'white',
+  //   padding: 10,
+  //   borderRadius: 10,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.25,
+  //   shadowRadius: 3.84,
+  //   elevation: 5,
+  // },
+  submitBtnStyle:{
+    // marginVertical:10,
+    // paddingVertical:10,
   }
 });
 

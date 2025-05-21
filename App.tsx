@@ -34,7 +34,7 @@ backScreen2: 'BackScreen2',
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={screen.backScreen1}>
+      <Stack.Navigator initialRouteName={screen.home}>
       {/* //options={{headerShown:false}} if donot want header on the screen*/}
         <Stack.Screen name={screen.home} component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name={screen.details} component={DetailsScreen} />
