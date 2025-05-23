@@ -36,6 +36,7 @@ const DiscountSmallBox = ({
 export interface ArrayItemType{
   title:string;
   check:boolean;//check if cross or check mark
+  id:string;
 }
 
 interface MainProtectionType{
