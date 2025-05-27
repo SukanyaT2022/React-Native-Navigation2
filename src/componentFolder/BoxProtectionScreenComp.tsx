@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {myColor} from '../constant/color';
 import TowTruckIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CarCrashIcon from 'react-native-vector-icons/FontAwesome6';
@@ -33,25 +33,32 @@ const DiscountSmallBox = ({
     </View>
   );
 };
-export interface ArrayItemType{
-  title:string;
-  check:boolean;//check if cross or check mark
-  id:string;
+export interface ArrayItemType {
+  title: string;
+  check: boolean; //check if cross or check mark
+  id: string;
 }
 
-interface MainProtectionType{
+interface MainProtectionType {
   //below are property
-  checkTextDetailArray: ArrayItemType[]
-  priceProp:string
-  titleProp:string
-  recommendTagProp?:string
-  disabled?: boolean
-  selected?: boolean
-onpressProp?: ()=>void
-
+  checkTextDetailArray: ArrayItemType[];
+  priceProp: string;
+  titleProp: string;
+  recommendTagProp?: string;
+  disabled?: boolean;
+  selected?: boolean;
+  onpressProp?: () => void;
 }
 
-const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, recommendTagProp, disabled, selected, onpressProp}:MainProtectionType) => {
+const BoxProtectionScreenComp = ({
+  checkTextDetailArray,
+  priceProp,
+  titleProp,
+  recommendTagProp,
+  disabled,
+  selected,
+  onpressProp,
+}: MainProtectionType) => {
   const iconColor = myColor.darkYellow;
   const iconSize = 40;
   // const checkTextDetailArray: ArrayItemType[]= [
@@ -63,22 +70,26 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
 
   // ];
 
-  const [selectUnselectedBtn, setSelectUnselectedBtn] = useState<boolean>(false)
+  const [selectUnselectedBtn, setSelectUnselectedBtn] =
+    useState<boolean>(false);
   return (
-    <View style={[styles.mainBox, selected && {borderColor: myColor.greenColor}]}>
+    <View
+      style={[styles.mainBox, selected && {borderColor: myColor.greenColor}]}>
       {/* start small box wrapper-- recommend and only discount button */}
       <View style={styles.wrapTwoRecommendBox}>
         {/* we pass recommednProp to this this component and put prop inside  {}-
         - && operation when recommendTagProp is true when you pass that prop  */}
-        {recommendTagProp && <DiscountSmallBox
-          message={recommendTagProp}
-          bgColor={myColor.greenColor}
-          textColor="white"
-          iconColor={myColor.darkYellow}
-          icon={
-            <CarCrashIcon name="star" size={15} color={myColor.darkYellow} />
-          }
-        />}
+        {recommendTagProp && (
+          <DiscountSmallBox
+            message={recommendTagProp}
+            bgColor={myColor.greenColor}
+            textColor="white"
+            iconColor={myColor.darkYellow}
+            icon={
+              <CarCrashIcon name="star" size={15} color={myColor.darkYellow} />
+            }
+          />
+        )}
         <DiscountSmallBox
           message="Online Only Discount "
           bgColor={myColor.lightYellow}
@@ -115,8 +126,16 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
           return (
             <View style={styles.wrapperCheckText} key={index}>
               {/* check? is boolean if it true show checkmark- if not show cross */}
-             {item.check? <CarCrashIcon name={"check"} size={20} color={ myColor.greenColor} />:  <CrossIcon name = 'cross' size={20} color={myColor.red}/>} 
-           
+              {item.check ? (
+                <CarCrashIcon
+                  name={'check'}
+                  size={20}
+                  color={myColor.greenColor}
+                />
+              ) : (
+                <CrossIcon name="cross" size={20} color={myColor.red} />
+              )}
+
               <Text>{item.title}</Text>
               {/* style={styles.title} */}
             </View>
@@ -127,9 +146,15 @@ const BoxProtectionScreenComp = ({checkTextDetailArray, priceProp,titleProp, rec
       {/* start price /day and select button */}
       <View style={styles.wrapPriceDaySelectBtn}>
         <Text style={styles.pricePerDayStyle}>${priceProp}/ Day</Text>
-        <TouchableOpacity 
-        disabled = {disabled}
-        onPress={disabled?()=>null : onpressProp} style={[styles.selectBtnStyle, selected? {backgroundColor:myColor.greenColor}: {backgroundColor:"gray"}]}>
+        <TouchableOpacity
+          disabled={disabled}
+          onPress={disabled ? () => null : onpressProp}
+          style={[
+            styles.selectBtnStyle,
+            selected
+              ? {backgroundColor: myColor.greenColor}
+              : {backgroundColor: 'gray'},
+          ]}>
           <Text style={styles.selectTextStyle}>Select</Text>
         </TouchableOpacity>
       </View>
@@ -143,7 +168,7 @@ const styles = StyleSheet.create({
   mainBox: {
     borderColor: myColor.verylightGray,
     borderWidth: 2,
-    borderRadius:10,
+    borderRadius: 10,
     padding: 20,
     gap: 10,
   },
@@ -178,27 +203,27 @@ const styles = StyleSheet.create({
   wrapTwoRecommendBox: {
     flexDirection: 'row',
     gap: 10,
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   wrapPriceDaySelectBtn: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop:10,
+    marginTop: 10,
   },
   pricePerDayStyle: {
-    fontSize:24,
-    fontWeight:'semibold'
+    fontSize: 24,
+    fontWeight: 'semibold',
   },
   selectBtnStyle: {
-padding:10,
-width:'50%',
-backgroundColor:'black',
-alignItems:'center',
-borderRadius:20,
+    padding: 10,
+    width: '50%',
+    backgroundColor: 'black',
+    alignItems: 'center',
+    borderRadius: 20,
   },
-  selectTextStyle:{
-color:'white',
-fontWeight:'semibold',
+  selectTextStyle: {
+    color: 'white',
+    fontWeight: 'semibold',
   },
   // boxShadow: {
   //   // iOS shadow properties
@@ -206,14 +231,11 @@ fontWeight:'semibold',
   //   shadowOffset: { width: 0, height: 5 },
   //   shadowOpacity: 0.35,
   //   shadowRadius: 15,
-    
+
   //   // Android elevation
   //   elevation: 10,
-    
+
   //   // Required for iOS shadows to work properly
   //   backgroundColor: 'white', // or any color you need
   // }
-
 });
-
-
