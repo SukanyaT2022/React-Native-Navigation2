@@ -3,14 +3,29 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {myColor} from '../constant/color';
 
-const ProductItemComp = () => {
+interface ProductItemCompProps {
+  carType: string;
+  carBrand: string;
+  imageUrl: string;
+  pricePerDay: number;
+  totalPricePerWeek: number;
+ capacity: number;
+}
+const ProductItemComp = ({
+  carType,
+  carBrand,
+  imageUrl,
+  pricePerDay,
+  totalPricePerWeek,
+ capacity,
+}: ProductItemCompProps) => {
   return (
     <View style={styles.mainBoxProductItem}>
-      <Text style={styles.textStyle}>Type of Car:</Text>
-      <Text style={styles.textStyle}>Brand of Car:</Text>
+      <Text style={styles.textStyle}>Type of Car:{carType}</Text>
+      <Text style={styles.textStyle}>Brand of Car:{carBrand}</Text>
       <Image
         source={{
-          uri: 'https://plus.unsplash.com/premium_photo-1683121313071-14132bf02e1c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmFufGVufDB8fDB8fHww',
+          uri: imageUrl,
         }}
         style={styles.imgaeStyle}
       />
@@ -22,8 +37,9 @@ const ProductItemComp = () => {
           <Text style={[styles.textStyle, {fontWeight: 'bold'}]}>
             Best Price
           </Text>
-          <Text style={styles.textStyle}>$23/ day</Text>
-          <Text style={styles.textStyle}>$530 est total per week</Text>
+          <Text style={styles.textStyle}>${pricePerDay}/ day</Text>
+          <Text style={styles.textStyle}>${totalPricePerWeek} est total per week</Text>
+          <Text style={styles.textStyle}>{capacity} passenger</Text>
         </View>
         <View></View>
       </View>

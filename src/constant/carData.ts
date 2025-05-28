@@ -1,117 +1,72 @@
-[
-    {
-      "type": "Truck",
-      "price_per_day": 85,
-      "capacity": 2,
-      "brand": "Ford"
-    },
-    {
-      "type": "Bike",
-      "price_per_day": 20,
-      "capacity": 1,
-      "brand": "Yamaha"
-    },
-    {
-      "type": "Van",
-      "price_per_day": 90,
-      "capacity": 8,
-      "brand": "Mercedes-Benz"
-    },
-    {
-      "type": "Sedan",
-      "price_per_day": 55,
-      "capacity": 5,
-      "brand": "Honda"
-    },
-    {
-      "type": "SUV",
-      "price_per_day": 75,
-      "capacity": 7,
-      "brand": "Nissan"
-    },
-    {
-      "type": "Compact",
-      "price_per_day": 40,
-      "capacity": 4,
-      "brand": "Hyundai"
-    },
-    {
-      "type": "Luxury",
-      "price_per_day": 120,
-      "capacity": 5,
-      "brand": "BMW"
-    },
-    {
-      "type": "Convertible",
-      "price_per_day": 95,
-      "capacity": 2,
-      "brand": "Mazda"
-    },
-    {
-      "type": "Electric Car",
-      "price_per_day": 70,
-      "capacity": 5,
-      "brand": "Tesla"
-    },
-    {
-      "type": "Mini Van",
-      "price_per_day": 65,
-      "capacity": 6,
-      "brand": "Kia"
-    },
-    {
-      "type": "Off-Road SUV",
-      "price_per_day": 110,
-      "capacity": 5,
-      "brand": "Jeep"
-    },
-    {
-      "type": "Sports Car",
-      "price_per_day": 150,
-      "capacity": 2,
-      "brand": "Porsche"
-    },
-    {
-      "type": "Crossover",
-      "price_per_day": 68,
-      "capacity": 5,
-      "brand": "Subaru"
-    },
-    {
-      "type": "Motorbike",
-      "price_per_day": 18,
-      "capacity": 1,
-      "brand": "Harley-Davidson"
-    },
-    {
-      "type": "Hybrid Sedan",
-      "price_per_day": 62,
-      "capacity": 5,
-      "brand": "Toyota"
-    },
-    {
-      "type": "Electric SUV",
-      "price_per_day": 88,
-      "capacity": 5,
-      "brand": "Volkswagen"
-    },
-    {
-      "type": "Luxury Van",
-      "price_per_day": 130,
-      "capacity": 7,
-      "brand": "Lexus"
-    },
-    {
-      "type": "Pickup",
-      "price_per_day": 78,
-      "capacity": 5,
-      "brand": "Chevrolet"
-    },
-    {
-      "type": "Scooter",
-      "price_per_day": 15,
-      "capacity": 1,
-      "brand": "Vespa"
-    }
-  ]
-  
+export const carData = [
+  {
+    "type": "Truck",
+    "price_per_day": 85,
+    "capacity": 2,
+    "brand": "Ford",
+    "image": "https://example.com/images/ford-truck.jpg"
+  },
+  {
+    "type": "Bike",
+    "price_per_day": 20,
+    "capacity": 1,
+    "brand": "Yamaha",
+    "image": "https://example.com/images/yamaha-bike.jpg"
+  },
+  {
+    "type": "Van",
+    "price_per_day": 90,
+    "capacity": 8,
+    "brand": "Mercedes-Benz",
+    "image": "https://example.com/images/mercedes-van.jpg"
+  },
+  {
+    "type": "Sedan",
+    "price_per_day": 55,
+    "capacity": 5,
+    "brand": "Honda",
+    "image": "https://example.com/images/honda-sedan.jpg"
+  },
+  {
+    "type": "SUV",
+    "price_per_day": 75,
+    "capacity": 7,
+    "brand": "Nissan",
+    "image": "https://example.com/images/nissan-suv.jpg"
+  },
+  {
+    "type": "Compact",
+    "price_per_day": 40,
+    "capacity": 4,
+    "brand": "Hyundai",
+    "image": "https://example.com/images/hyundai-compact.jpg"
+  },
+  {
+    "type": "Luxury",
+    "price_per_day": 120,
+    "capacity": 5,
+    "brand": "BMW",
+    "image": "https://example.com/images/bmw-luxury.jpg"
+  },
+  {
+    "type": "Convertible",
+    "price_per_day": 95,
+    "capacity": 2,
+    "brand": "Mazda",
+    "image": "https://example.com/images/mazda-convertible.jpg"
+  },
+  {
+    "type": "Electric Car",
+    "price_per_day": 70,
+    "capacity": 5,
+    "brand": "Tesla",
+    "image": "https://example.com/images/tesla-electric.jpg"
+  },
+  {
+    "type": "Mini Van",
+    "price_per_day": 65,
+    "capacity": 6,
+    "brand": "Kia",
+    "image": "https://example.com/images/tesla-electric.jpg"
+  },
+]
