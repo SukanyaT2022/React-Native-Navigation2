@@ -8,6 +8,7 @@ interface FilterItemProp {
   onPress: () => void;
   //remove typr car step 1
   onRemove: () => void;
+
 }
 
 //below create only one box and we use a box to map
@@ -26,7 +27,13 @@ const FilterItemComp = ({label, isSelected, onPress,onRemove}: FilterItemProp) =
   );
 };
 
-const FilterTypeCarComp = () => {
+interface CarTypeProp {
+ 
+  onPress: (value:string) => void;
+ 
+
+}
+const FilterTypeCarComp = ({onPress}:CarTypeProp) => {
   const [selectedValue, setSelectedValue] = useState<string>('');
   const [carTypeArray, setCarTypeArray] = useState<string[]>(['SUVs', 'Trucks', 'Cars', 'Vans', 'Bikes']);
   const [storeRemoveItem, setStoreRemoveItem] = useState<string[]>([])// store type car the we remove and restart
@@ -36,7 +43,9 @@ setStoreRemoveItem((previous)=>[...previous, item])
   }
 
   const selectedFunc = (item: string) => {
+    onPress(item);
     setSelectedValue(item);
+
   };
 
 const refreshCarTypeFunc =()=>{

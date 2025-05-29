@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {myColor} from '../constant/color';
@@ -24,9 +24,10 @@ const ProductItemComp = ({
       <Text style={styles.textStyle}>Type of Car:{carType}</Text>
       <Text style={styles.textStyle}>Brand of Car:{carBrand}</Text>
       <Image
-        source={{
-          uri: imageUrl,
-        }}
+        // source={{
+        //   uri: imageUrl,
+        // }}
+        source={imageUrl as ImageSourcePropType} 
         style={styles.imgaeStyle}
       />
 
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 150,
     objectFit: 'contain',
+    marginVertical:10,
   },
   textStyle: {
     textAlign: 'center',

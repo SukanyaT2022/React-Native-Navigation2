@@ -7,11 +7,17 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import {carData} from '../constant/carData'
 
 const ProductScreen = ({navigation}:any) => {
+  const [selectedCarType, setSelectedCarType] = React.useState<string>('');
+  const [holdArrayProducts, setHoldArrayProducts] = React.useState<any[]>([]);
   return (
-    <ScrollView>
+ <View style={styles.mainBox}>
+      <FilterTypeCarComp onPress={(val)=>setSelectedCarType(val)}/>
+        
     <FlatList
       data={carData}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString(
+
+      )}
       renderItem={({item})=>{
         return (
           <ProductItemComp
@@ -24,18 +30,15 @@ const ProductScreen = ({navigation}:any) => {
           />
         )
       }
-    
-    
-    
-    
-    
+  
     }
+    // create the gap betwen small boc top and bottom vertical
+    ItemSeparatorComponent={() => <View style={{height: 20}} />} // Add space between items
       />
 
     {/* <View style={styles.mainBox}>
 
-      <FilterTypeCarComp/>
-
+  
       <TouchableOpacity onPress={()=>navigation.navigate(screen.insuranceScreen)}>
      <ProductItemComp/>
      </TouchableOpacity>
@@ -44,9 +47,8 @@ const ProductScreen = ({navigation}:any) => {
 
 
     </View> */}
+    </View>
 
-
-    </ScrollView>
   )
 }
 
