@@ -7,14 +7,43 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import {carData} from '../constant/carData'
 
 const ProductScreen = ({navigation}:any) => {
+  //step 1
   const [selectedCarType, setSelectedCarType] = React.useState<string>('');
-  const [holdArrayProducts, setHoldArrayProducts] = React.useState<any[]>([]);
+  //step 2
+  const [filterdCarTypeArray, setFilteredCarTypeArray] = React.useState<any[]>([]);
+  // Our goal is to filter the products by the car type.
+  // When we click on the car type, we display just the cars related to that car type.
+  
+  // First. we have a state that stores the selected car, in this 'selectedCarType' state.
+  // Secondly. we will have another state that holds the products or the filtered products.
+  // Thirdly, We right a filter method to filtered this products base on the select car type.
+  // We use a useEffect hook to re-render this method when ever the selectedCarType state changes.
+  
+  //if '' show all cars if filter show only filtered car
+  //step 3
+  // const data = selectedCarType.split("")
+  // const 
+  const filterProductFunc=() => {
+    if (selectedCarType === '') {
+      setFilteredCarTypeArray(carData);
+    } else {
+      const filteredData = carData.filter((item) => item.type.toLowerCase() === selectedCarType.slice(0,-1).toLowerCase());
+      //slice(0,-1) is used to remove the last character from the string
+      setFilteredCarTypeArray(filteredData);
+    }
+  }
+  //step 4
+  React.useEffect(() => {
+    filterProductFunc();
+  }, [selectedCarType]);
+
+
   return (
  <View style={styles.mainBox}>
       <FilterTypeCarComp onPress={(val)=>setSelectedCarType(val)}/>
         
     <FlatList
-      data={carData}
+      data={filterdCarTypeArray}
       keyExtractor={(item) => item.id.toString(
 
       )}
