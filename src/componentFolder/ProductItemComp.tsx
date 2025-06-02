@@ -1,4 +1,4 @@
-import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {myColor} from '../constant/color';
@@ -10,6 +10,7 @@ interface ProductItemCompProps {
   pricePerDay: number;
   totalPricePerWeek: number;
  capacity: number;
+ onPressProp : () => void; 
 }
 const ProductItemComp = ({
   carType,
@@ -18,9 +19,10 @@ const ProductItemComp = ({
   pricePerDay,
   totalPricePerWeek,
  capacity,
+ onPressProp, // This prop is not used in the component, but can be used for further functionality
 }: ProductItemCompProps) => {
   return (
-    <View style={styles.mainBoxProductItem}>
+    <TouchableOpacity style={styles.mainBoxProductItem} onPress={onPressProp}>
       <Text style={styles.textStyle}>Type of Car:{carType}</Text>
       <Text style={styles.textStyle}>Brand of Car:{carBrand}</Text>
       <Image
@@ -44,7 +46,7 @@ const ProductItemComp = ({
         </View>
         <View></View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

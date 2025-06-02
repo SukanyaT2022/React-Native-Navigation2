@@ -35,7 +35,7 @@ interface CarTypeProp {
 }
 const FilterTypeCarComp = ({onPress}:CarTypeProp) => {
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [carTypeArray, setCarTypeArray] = useState<string[]>(['SUVs', 'Trucks', 'Cars', 'Vans', 'Bikes']);
+  const [carTypeArray, setCarTypeArray] = useState<string[]>(['SUVs', 'Trucks', 'Sedans', 'Vans', 'Bikes']);
   const [storeRemoveItem, setStoreRemoveItem] = useState<string[]>([])// store type car the we remove and restart
   const onRemoveFunc =(item:string)=>{
 setCarTypeArray((previousState)=>previousState.filter((car)=>car !== item))
