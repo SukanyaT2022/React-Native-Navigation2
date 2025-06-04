@@ -2,6 +2,8 @@ import { Button, Image, StyleSheet, Text, View } from "react-native";
 import { screen } from "../../App";
 import { useRoute } from "@react-navigation/native";
 import {carData} from '../constant/carData'
+import CheckoutCarDateComp from "../componentFolder/CheckoutCarDateComp";
+import Checkout2PayNow from "../componentFolder/Checkout2PayNow";
 
 const DetailsScreen = ({navigation}:any) => {
   const route = useRoute();
@@ -21,11 +23,37 @@ navigation.navigate(screen.home)
         
     }
     return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={styles.mainBox}>
       <Text>Details Screen</Text>
       <Text>{findItemBasedOnId?.type}</Text>
       <Text>{findItemBasedOnId?.brand}</Text>
       <Image style ={styles.imgStyle} source={findItemBasedOnId?.image}/>
+
+
+<CheckoutCarDateComp 
+ title = {"Checkout"}
+ carType = {findItemBasedOnId?.type || ""}
+ carBrand = {findItemBasedOnId?.brand || ""}
+ image = {findItemBasedOnId?.image || ""}
+ unlimitedmileage = {true}
+ location = {"Bangkok"}
+ checkInDate = {"03.10.2025"}
+ checkOutDate = {"10.18.2025"}
+ checkInTime = {"3 PM"}
+ checkOutTime = {"3PM"}
+
+
+/>
+
+<Checkout2PayNow
+title={`Pay Now for ${findItemBasedOnId?.brand || ""}`}
+description={`Pay Now for ${findItemBasedOnId?.brand || ""}`}
+price={`Pay Now for ${findItemBasedOnId?.brand || ""}`}
+selected={true} // Assuming you want to show this option as selected
+onSelect = {() => console.log("Pay Now selected")}
+
+/>
+
       <Button title="Go back to HomeScreen" onPress={()=>goBackHomeFunc()}/>
     </View>
     )
@@ -40,6 +68,9 @@ navigation.navigate(screen.home)
     borderRadius: 10,
     marginVertical: 20,
   },
-
+  mainBox: {
+    flex: 1,
+padding:20,
+  },
 
   })
