@@ -1,33 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-type PriceOptionProps = {
+interface PriceOptionProps {
   title: string;
   description: string;
   price: string;
   selected: boolean;
   onSelect: () => void;
+  dataProp: any[]
 };
 
-const Checkout2PayNow
-: React.FC<PriceOptionProps> = ({
+const Checkout2PayNow = ({
   title,
   description,
   price,
   selected,
-  onSelect
-}) => {
+  onSelect,
+  dataProp
+}:PriceOptionProps) => {
+
+  const [storeTotalPrice,SetStoreTotalPrice] = useState<number>(0);
+
   return (
-    <TouchableOpacity onPress={onSelect} style={[styles.card, selected && styles.selectedCard]}>
+    <View >
+      <Text style={styles.titleSelectUrPrice}>Select your price</Text>
+{
+  dataProp.map((item, index) => (
+    <TouchableOpacity 
+      key={index} 
+      onPress={() => {
+        SetStoreTotalPrice(item.price);
+
+      }} 
+      style={[styles.card, selected && styles.selectedCard]}>
       <View style={styles.radioCircle}>
         {selected && <View style={styles.selectedDot} />}
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{title} <Text style={styles.price}>${price}</Text></Text>
-        <Text style={styles.description}>{description}</Text>
+
+      <View style={styles.wrapTitleprice}>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.price}>${item.price}</Text>
+        </View>
+
+        <Text style={styles.description}>{item.desciption}</Text>
       </View>
     </TouchableOpacity>
-  );
+  ))
+}
+
+{/* total price brfore select pay now or pay later */}
+    <TouchableOpacity onPress={onSelect} style={[styles.card, selected && styles.selectedCard]}>
+     <View style={styles.wrapTitleprice}>
+     <Text  style={styles.title}>Total</Text>
+     <Text style={styles.price}>${storeTotalPrice}</Text>
+     </View>
+    </TouchableOpacity>
+
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({
@@ -69,12 +100,26 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   price: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#000'
+  },
+  wrapTitleprice:{
+    width: '100%',
+flexDirection: 'row',
+justifyContent: 'space-between',
+
   },
   description: {
     color: '#555',
     marginTop: 4
+  },
+  titleSelectUrPrice:{
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: '#0077b6',
+    marginVertical:30,
   }
 });
 

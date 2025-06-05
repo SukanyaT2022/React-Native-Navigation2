@@ -4,6 +4,8 @@ import { useRoute } from "@react-navigation/native";
 import {carData} from '../constant/carData'
 import CheckoutCarDateComp from "../componentFolder/CheckoutCarDateComp";
 import Checkout2PayNow from "../componentFolder/Checkout2PayNow";
+import { ScrollView } from "react-native-gesture-handler";
+import Checkput3DriveDetail from "../componentFolder/Checkput3DriveDetail";
 
 const DetailsScreen = ({navigation}:any) => {
   const route = useRoute();
@@ -22,7 +24,15 @@ navigation.navigate(screen.home)
 //<Stack.Navigator initialRouteName="Home">
         
     }
+let discount = 20; 
+
+let storePayNowPayLater = [
+  {id: 1, name: "Pay Now and Save 20%", price: 100, desciption: `Cancel for free : Discount $${discount}`},
+   {id: 2, name: "Book Now and Pay Later", price: 120, desciption: "Pay at your time for rent"},
+  ]
+
     return(
+   <ScrollView>
     <View style={styles.mainBox}>
       <Text>Details Screen</Text>
       <Text>{findItemBasedOnId?.type}</Text>
@@ -51,12 +61,15 @@ description={`Pay Now for ${findItemBasedOnId?.brand || ""}`}
 price={`Pay Now for ${findItemBasedOnId?.brand || ""}`}
 selected={true} // Assuming you want to show this option as selected
 onSelect = {() => console.log("Pay Now selected")}
-
+dataProp={storePayNowPayLater }
 />
+
+<Checkput3DriveDetail/>
 
       <Button title="Go back to HomeScreen" onPress={()=>goBackHomeFunc()}/>
     </View>
-    )
+    </ScrollView>
+    )//close return
 }
 
   export default DetailsScreen
