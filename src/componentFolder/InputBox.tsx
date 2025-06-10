@@ -19,11 +19,11 @@ const InputBox = ({item, placeholderAr}:InputBoxProp) => {
 }
 const styles = StyleSheet.create({
     wrapperInput:{
-        borderWidth:2,
+        borderWidth:1,
         borderColor:'black',
         padding:10,
-        // borderStyle:'dashed',
         borderRadius:5,
+
     }
 })
 

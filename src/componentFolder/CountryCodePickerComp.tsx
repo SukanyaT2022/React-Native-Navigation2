@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-
+// https://www.npmjs.com/package/react-native-dropdown-picker
 const CountryCodePickerComp = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
