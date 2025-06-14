@@ -32,13 +32,13 @@ container:{
 borderColor:'green',
 borderWidth:1,
 padding:10,
-  borderRadius:10,
-  marginTop:30,
+borderRadius:10,
+marginTop:30,
   
 },
 wrapper:{
-  marginVertical:20,
-  gap:5,
+marginVertical:20,
+gap:5,
 
 },
 

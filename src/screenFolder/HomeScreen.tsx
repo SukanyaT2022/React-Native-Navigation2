@@ -10,14 +10,15 @@ import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
 import { screen } from '../../App';
 
-
-
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   return (
     <View style={styles.mainContainer}>
+         <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
+        Hello with Google Font!
+      </Text>
       <Text style={{fontWeight:'bold'}}>Make A Reservation</Text>
       <CheckBox item="Pick-up and Return to same location" />
       <InputBox placeholderAr="Enter your pick-up location or zip code" />
