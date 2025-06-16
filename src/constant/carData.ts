@@ -1,3 +1,4 @@
+import image1 from '../../assets/imagesFolder/sedanCar.jpg';
 export const carData = [
   {
     id: 1,
@@ -5,7 +6,7 @@ export const carData = [
     price_per_day: 85,
     capacity: 2,
     brand: "Ford",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 2,
@@ -13,7 +14,7 @@ export const carData = [
     price_per_day: 20,
     capacity: 1,
     brand: "Yamaha",
-    image: require('../asset/imagesFolder/cat1.png'),
+    image: image1,
   },
   {
     id: 3,
@@ -21,7 +22,7 @@ export const carData = [
     price_per_day: 90,
     capacity: 8,
     brand: "Mercedes-Benz",
-    image: require('../asset/imagesFolder/dog1.png'),
+    image: image1,
   },
   {
     id: 4,
@@ -29,7 +30,7 @@ export const carData = [
     price_per_day: 55,
     capacity: 5,
     brand: "Honda",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 5,
@@ -37,7 +38,7 @@ export const carData = [
     price_per_day: 75,
     capacity: 7,
     brand: "Nissan",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 6,
@@ -45,7 +46,7 @@ export const carData = [
     price_per_day: 40,
     capacity: 4,
     brand: "Hyundai",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 7,
@@ -53,7 +54,7 @@ export const carData = [
     price_per_day: 120,
     capacity: 5,
     brand: "BMW",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 8,
@@ -61,7 +62,7 @@ export const carData = [
     price_per_day: 95,
     capacity: 2,
     brand: "Mazda",
-    image: require('../asset/imagesFolder/sedanCar.jpg'),
+    image: image1,
   },
   {
     id: 9,
@@ -69,7 +70,7 @@ export const carData = [
     price_per_day: 70,
     capacity: 5,
     brand: "Tesla",
-    image: require('../asset/imagesFolder/cat1.png'),
+    image: image1,
   },
   {
     id: 10,
@@ -77,6 +78,6 @@ export const carData = [
     price_per_day: 65,
     capacity: 6,
     brand: "Kia",
-    image: require('../asset/imagesFolder/dog1.png'),
+    image: image1,
   },
 ];

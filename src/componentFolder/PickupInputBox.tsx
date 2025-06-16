@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import  Icon  from 'react-native-vector-icons/AntDesign'
 import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
-import JustPractice2 from './JustPractice2';
+
 
 interface PickupProp{
     message:string,
