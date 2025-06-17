@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ScrollView} from 'react-native-gesture-handler';
+import InputBox from './InputBox';
 
 const NewCountryCode2 = () => {
   const [countries, setCountries] = useState<any[]>([]);
@@ -45,14 +46,19 @@ const NewCountryCode2 = () => {
   return (
     <View>
       <TouchableOpacity
+
         onPress={() => setShowCountries(!showCountries)}
         style={styles.container}>
+
+        <View  style={styles.inputSelectCountry}>
+        <InputBox placeholderAr = "Select your country" onchangeFuncProp={(text)=>setSearchCountryParam(text)} />
+        </View>
    
-        {selectedCountry ? (
+        {/* {selectedCountry ? (
           <Text>{selectedCountry}</Text>
         ) : (
           <Text style={{color: 'gray'}}>Select a country</Text>
-        )}
+        )} */}
         <Icon name="chevron-down" size={20} color="gray" />
       </TouchableOpacity>
       {showCountries && (
@@ -93,5 +99,8 @@ const styles = StyleSheet.create({
   },
   countryItem: {
     paddingVertical: 5,
+  },
+  inputSelectCountry: {
+    width: '90%',
   },
 });
