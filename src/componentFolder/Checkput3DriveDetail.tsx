@@ -5,6 +5,7 @@ import InputBox from './InputBox'
 import NewCountryCodePicker from './NewCountryCodePicker'
 import NewCountryCode2 from './NewCountryCode2'
 
+
 const Checkput3DriveDetail = () => {
   return (
    <View style={styles.container}>
@@ -16,7 +17,7 @@ const Checkput3DriveDetail = () => {
  <InputBox placeholderAr='Phone Number' />
     </View>
         <View>
-   <NewCountryCode2/>
+   <NewCountryCode2 onCountrySelection={(val) => console.log('THE COUNTRY VALUE SELECTED', val)}/>
 
   
       </View>

@@ -6,6 +6,7 @@ import CheckoutCarDateComp from "../componentFolder/CheckoutCarDateComp";
 import Checkout2PayNow from "../componentFolder/Checkout2PayNow";
 import { ScrollView } from "react-native-gesture-handler";
 import Checkput3DriveDetail from "../componentFolder/Checkput3DriveDetail";
+import NewCountryCode2 from "../componentFolder/NewCountryCode2";
 
 const DetailsScreen = ({navigation}:any) => {
   const route = useRoute();
@@ -68,7 +69,17 @@ dataProp={storePayNowPayLater }
 
       <Button title="Go back to HomeScreen" onPress={()=>goBackHomeFunc()}/>
     </View>
+
+
+
+
+
+    {/* <NewCountryCode2/> */}
+    
     </ScrollView>
+
+
+
     )//close return
 }
 

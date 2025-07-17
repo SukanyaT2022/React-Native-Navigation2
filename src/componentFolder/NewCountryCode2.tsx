@@ -5,7 +5,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {ScrollView} from 'react-native-gesture-handler';
 import InputBox from './InputBox';
 
-const NewCountryCode2 = () => {
+// The interfaces defined the types and the properties your component is going to take, for example
+interface NewCountryProp {
+  onCountrySelection: (val: string) => void ; // The onCountrySelection is a method the will pass down the country value selected to the parent. e.g (when you select Thailan, the Thailand value will be passed down from this component to the parent component where this component is rendered)
+}
+
+const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
+  // This states holds our country list.
   const [countries, setCountries] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showCountries, setShowCountries] = useState<boolean>(false);
@@ -15,11 +21,13 @@ const NewCountryCode2 = () => {
 
   // this function store country user select and it closes the dropdown
   const handleCountrySelect = (country: string) => {
-    setSelectedCountry(country);//select country
-    setShowCountries(false);// close dropdown
+    onCountrySelection(country); // We call the method here to make sure when the country is selected we have the value to pass down to the parent.
+    setSelectedCountry(country); //select country
+    setShowCountries(false); // close dropdown
     //   setSearchCountryParam(country);
   };
 
+  // This useEffect fetch the list of countries from the api.
   useEffect(() => {
     axios
       .get('https://restcountries.com/v3.1/all?fields=name,idd,cca2')
@@ -33,7 +41,7 @@ const NewCountryCode2 = () => {
             value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
           }))
           .sort((a, b) => a.label.localeCompare(b.label));
-        setCountries(formatted);
+        setCountries(formatted); // This stored the fetched and formated countries on the country state above.
       })
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -42,18 +50,25 @@ const NewCountryCode2 = () => {
   if (loading) {
     return <Text>Loading...</Text>;
   }
+// We will use this useEffect to search for a country on typing in the input box.
+// It will filter the countries based on the search paremater the user selects or types.
+  useEffect(() => {
+    
+  }, [countries])//countries from line 13
 
   return (
     <View>
       <TouchableOpacity
-
         onPress={() => setShowCountries(!showCountries)}
         style={styles.container}>
+        <View style={styles.inputSelectCountry}>
+          <InputBox
+            placeholderAr="Select your country"
+            onchangeFuncProp={text => setSearchCountryParam(text)}
 
-        <View  style={styles.inputSelectCountry}>
-        <InputBox placeholderAr = "Select your country" onchangeFuncProp={(text)=>setSearchCountryParam(text)} />
+          />
         </View>
-   
+
         {/* {selectedCountry ? (
           <Text>{selectedCountry}</Text>
         ) : (
