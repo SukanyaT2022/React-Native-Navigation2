@@ -25,11 +25,14 @@ navigation.navigate(screen.home)
 //<Stack.Navigator initialRouteName="Home">
         
     }
+    const totalPrice = findItemBasedOnId?.price_per_day || 0; // Default to 0 if price_per_day is undefined
 let discount = 20; 
+let discountAmount = (totalPrice * discount) / 100; // Calculate the discount amount
+let discountedPrice = totalPrice - discountAmount; // Calculate the discounted price
 
 let storePayNowPayLater = [
-  {id: 1, name: "Pay Now and Save 20%", price: 100, desciption: `Cancel for free : Discount $${discount}`},
-   {id: 2, name: "Book Now and Pay Later", price: 120, desciption: "Pay at your time for rent"},
+  {id: 1, name: "Pay Now and Save 20%", price: discountedPrice, desciption: `Cancel for free : Discount $${discountAmount}`},
+   {id: 2, name: "Pay Later", price: totalPrice, desciption: "Pay at your time for rent"},
   ]
 
     return(

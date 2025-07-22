@@ -18,13 +18,14 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
   //below for search and select functionality
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [searchCountryParam, setSearchCountryParam] = useState<string>('');
+  const [holdFilter, setHoldFilter] = useState<any[]>([]);
 
   // this function store country user select and it closes the dropdown
   const handleCountrySelect = (country: string) => {
     onCountrySelection(country); // We call the method here to make sure when the country is selected we have the value to pass down to the parent.
     setSelectedCountry(country); //select country
     setShowCountries(false); // close dropdown
-    //   setSearchCountryParam(country);
+    setSearchCountryParam(country);
   };
 
   // This useEffect fetch the list of countries from the api.
@@ -52,9 +53,28 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
   }
 // We will use this useEffect to search for a country on typing in the input box.
 // It will filter the countries based on the search paremater the user selects or types.
-  useEffect(() => {
-    
-  }, [countries])//countries from line 13
+
+
+  // Function to handle changes in the search input country
+  const handleSearch = (text:string) => {
+    setSearchCountryParam(text); // Update the search query state
+  
+  if (text) {
+  // Filter the original 'countries' array based on the search text
+  const newData = countries.filter(item => {
+  // Convert both the country name and search text to uppercase for case-insensitive comparison
+  const itemData = item.label ? item.label.toUpperCase() : ''.toUpperCase();
+  const textData = text.toUpperCase();
+  // Check if the country name includes the search text
+  return itemData.includes(textData); // Using .includes() for better readability
+  });
+  setHoldFilter(newData); // Update the filtered list
+  } else {
+  // If the search text is empty, display all countries
+  setHoldFilter(countries);
+  }
+  };
+
 
   return (
     <View>
@@ -64,8 +84,8 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
         <View style={styles.inputSelectCountry}>
           <InputBox
             placeholderAr="Select your country"
-            onchangeFuncProp={text => setSearchCountryParam(text)}
-
+            onchangeFuncProp={text => handleSearch(text)}
+value={searchCountryParam}
           />
         </View>
 
@@ -78,7 +98,7 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
       </TouchableOpacity>
       {showCountries && (
         <ScrollView style={styles.dropdown}>
-          {countries.map((country, index) => (
+          {holdFilter.map((country, index) => (
             <TouchableOpacity
               key={index}
               style={{paddingVertical: 5}}

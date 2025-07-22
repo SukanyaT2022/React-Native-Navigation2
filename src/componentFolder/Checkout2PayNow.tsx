@@ -25,8 +25,9 @@ const Checkout2PayNow = ({
     <View >
       <Text style={styles.titleSelectUrPrice}>Select your price</Text>
 {
-  dataProp.map((item, index) => (
-    <TouchableOpacity 
+  dataProp.map((item, index) => {
+console.log(item)
+    return <TouchableOpacity 
       key={index} 
       onPress={() => {
         SetStoreTotalPrice(item.price);
@@ -46,7 +47,7 @@ const Checkout2PayNow = ({
         <Text style={styles.description}>{item.desciption}</Text>
       </View>
     </TouchableOpacity>
-  ))
+})
 }
 
 {/* total price brfore select pay now or pay later */}

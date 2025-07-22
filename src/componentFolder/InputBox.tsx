@@ -5,9 +5,10 @@ interface InputBoxProp {
   item?: string;
   placeholderAr: string;
   onchangeFuncProp?: (text: string) => void;
+  value?: string;
 }
 
-const InputBox = ({item, placeholderAr, onchangeFuncProp}: InputBoxProp) => {
+const InputBox = ({item, placeholderAr, onchangeFuncProp, value}: InputBoxProp) => {
   const [text, setText] = React.useState<string>('');
   const onChangeTextFunc = (text: string) => {
     setText(text);
@@ -20,7 +21,7 @@ const InputBox = ({item, placeholderAr, onchangeFuncProp}: InputBoxProp) => {
     <View>
       <TextInput
         placeholder={placeholderAr}
-        value={text}
+        value={value}
         onChangeText={onChangeTextFunc}
         style={styles.wrapperInput}
       />
