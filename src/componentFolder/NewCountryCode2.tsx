@@ -43,6 +43,7 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
           }))
           .sort((a, b) => a.label.localeCompare(b.label));
         setCountries(formatted); // This stored the fetched and formated countries on the country state above.
+      setHoldFilter(formatted); // This stored the fetched and formated countries on the holdFilter state above.
       })
       .catch(console.error)
       .finally(() => setLoading(false));

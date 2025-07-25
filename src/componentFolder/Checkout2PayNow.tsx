@@ -20,7 +20,7 @@ const Checkout2PayNow = ({
 }:PriceOptionProps) => {
 
   const [storeTotalPrice,SetStoreTotalPrice] = useState<number>(0);
-
+  const [activeIndex,SetActiveIndex] = useState<number>();
   return (
     <View >
       <Text style={styles.titleSelectUrPrice}>Select your price</Text>
@@ -31,7 +31,7 @@ console.log(item)
       key={index} 
       onPress={() => {
         SetStoreTotalPrice(item.price);
-
+        SetActiveIndex(index);
       }} 
       style={[styles.card, selected && styles.selectedCard]}>
       <View style={styles.radioCircle}>
