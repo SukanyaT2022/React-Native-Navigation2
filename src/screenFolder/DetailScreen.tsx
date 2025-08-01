@@ -25,7 +25,7 @@ navigation.navigate(screen.home)
 //<Stack.Navigator initialRouteName="Home">
         
     }
-    const totalPrice = findItemBasedOnId?.price_per_day || 0; // Default to 0 if price_per_day is undefined
+const totalPrice = findItemBasedOnId?.price_per_day || 0; // Default to 0 if price_per_day is undefined
 let discount = 20; 
 let discountAmount = (totalPrice * discount) / 100; // Calculate the discount amount
 let discountedPrice = totalPrice - discountAmount; // Calculate the discounted price
@@ -33,6 +33,7 @@ let discountedPrice = totalPrice - discountAmount; // Calculate the discounted p
 let storePayNowPayLater = [
   {id: 1, name: "Pay Now and Save 20%", price: discountedPrice, desciption: `Cancel for free : Discount $${discountAmount}`},
    {id: 2, name: "Pay Later", price: totalPrice, desciption: "Pay at your time for rent"},
+   {id: 2, name: "Pay for test", price: totalPrice, desciption: "Pay only for test"},
   ]
 
     return(
@@ -53,7 +54,7 @@ let storePayNowPayLater = [
  location = {"Bangkok"}
  checkInDate = {"03.10.2025"}
  checkOutDate = {"10.18.2025"}
- checkInTime = {"3 PM"}
+ checkInTime = {"3PM"}
  checkOutTime = {"3PM"}
 
 
@@ -72,11 +73,6 @@ dataProp={storePayNowPayLater }
 
       <Button title="Go back to HomeScreen" onPress={()=>goBackHomeFunc()}/>
     </View>
-
-
-
-
-
     {/* <NewCountryCode2/> */}
     
     </ScrollView>
