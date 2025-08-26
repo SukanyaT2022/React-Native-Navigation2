@@ -2,7 +2,7 @@ import 'react-native-gesture-handler'; // Make sure to import this at the top
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
 import HomeScreen from './src/screenFolder/HomeScreen';
 import DetailsScreen from './src/screenFolder/DetailScreen';
 import RegisterScreen from './src/screenFolder/RegisterScreen';
@@ -16,7 +16,7 @@ import ExtraServiceScreen from './src/screenFolder/ExtraServiceScreen';
 import BackScreen1 from './src/screenFolder/BackScreen1';
 import BackScreen2 from './src/screenFolder/BackScreen2';
 import CheckoutScreen from './src/screenFolder/CheckoutScreen';
-
+import Icon from 'react-native-vector-icons/FontAwesome6';
 const Stack = createStackNavigator();
 export const screen = {
 home:'Home',
@@ -34,7 +34,7 @@ backScreen2: 'BackScreen2',
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={screen.home}>
+      <Stack.Navigator initialRouteName={screen.home} screenOptions={{headerLeft:()=> (<TouchableOpacity style={{width: 40, height:40, borderRadius:4, backgroundColor:'white', justifyContent:'center', alignItems:'center',}}><Icon name = "chevron-left" size={16}/></TouchableOpacity>), headerTransparent:true, headerTitle:"", }}> 
       {/* //options={{headerShown:false}} if donot want header on the screen*/}
         <Stack.Screen name={screen.home} component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name={screen.details} component={DetailsScreen} />
