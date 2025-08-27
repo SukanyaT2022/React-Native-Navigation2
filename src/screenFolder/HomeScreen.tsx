@@ -9,13 +9,14 @@ import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
 import { screen } from '../../App';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView contentContainerStyle={styles.mainContainer}>
          <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
         Hello with Google Font!
       </Text>
@@ -46,7 +47,7 @@ const HomeScreen = ({navigation}: any) => {
  
 
  <ButttonComp buttonText='Select My Car' onPressProp={()=>navigation.navigate(screen.productscreen)}/> 
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -58,9 +59,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   mainContainer: {
-    paddingTop:70,
-    gap: 20,
+    paddingTop:40,
+    gap: 15,
     paddingHorizontal: 10,
+    
   },
   wrapDateTime: {
     width: '100%',
