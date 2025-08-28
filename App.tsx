@@ -1,24 +1,32 @@
-import 'react-native-gesture-handler'; // Make sure to import this at the top
+import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, Text, Button, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import {myColor} from './src/constant/color';
+
+// Screens
 import HomeScreen from './src/screenFolder/HomeScreen';
 import DetailsScreen from './src/screenFolder/DetailScreen';
 import RegisterScreen from './src/screenFolder/RegisterScreen';
 import LoginScreen from './src/screenFolder/LoginScreen';
 import ConfirmScreen from './src/screenFolder/ConfirmScreen';
-import Products from './src/screenFolder/ProductScreen';
 import ProductScreen from './src/screenFolder/ProductScreen';
 import InsuranceProtectionScreen from './src/screenFolder/InsuranceProtectionScreen';
-import ExtraServiceOneMainBoxComp from './src/componentFolder/ExtraServiceOneMainBoxComp';
 import ExtraServiceScreen from './src/screenFolder/ExtraServiceScreen';
 import BackScreen1 from './src/screenFolder/BackScreen1';
 import BackScreen2 from './src/screenFolder/BackScreen2';
 import CheckoutScreen from './src/screenFolder/CheckoutScreen';
-import Icon from 'react-native-vector-icons/FontAwesome6';
-import { myColor } from './src/constant/color';
+
 const Stack = createStackNavigator();
+
 export const screen = {
   home: 'Home',
   details: 'Details',
@@ -32,55 +40,104 @@ export const screen = {
   backScreen1: 'BackScreen1',
   backScreen2: 'BackScreen2',
 };
+
+const CustomHeader = ({navigation}:any) => {
+  return (
+    <View style={styles.headerContainer}>
+      <TouchableOpacity
+        style={styles.arrowHeader}
+        onPress={() => navigation.canGoBack() && navigation.goBack()}>
+        <Icon name="chevron-left" size={20} color="white" />
+      </TouchableOpacity>
+      <Text style={styles.headerTitle}>My App Header</Text>
+    </View>
+  );
+};
+
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={screen.home}
-         // {navigation}: any -- use it for move one screen to other sceen look line 42 and 43
-        screenOptions={({navigation}) => ({
-         
-          headerLeft: () => (
-            <TouchableOpacity style={styles.arrowHeader} onPress={() => navigation.goBack()}>
-              <Icon name="chevron-left" size={30} color= "white"/>
-            </TouchableOpacity>
-          ),
-          headerTransparent: true,
-          headerTitle: '',
-          headerStyle: {height: 100},
-        })}>
-        {/* //options={{headerShown:false}} if donot want header on the screen*/}
+        // initialRouteName={screen.home}
+        screenOptions={{
+          headerShown: false, // Disable built-in headers
+        }}>
         <Stack.Screen
-          name={screen.home}
-          component={HomeScreen}
+          name="MainLayout"
+          component={MainLayoutWithHeader}
           options={{headerShown: false}}
         />
-        <Stack.Screen name={screen.details} component={DetailsScreen} />
-        <Stack.Screen name={screen.register} component={RegisterScreen} />
-        <Stack.Screen name={screen.login} component={LoginScreen} />
-        <Stack.Screen name={screen.confirm} component={ConfirmScreen} />
-        <Stack.Screen name={screen.productscreen} component={ProductScreen} />
-        <Stack.Screen
-          name={screen.insuranceScreen}
-          component={InsuranceProtectionScreen}
-        />
-        <Stack.Screen
-          name={screen.extraServiceScreen}
-          component={ExtraServiceScreen}
-        />
-        <Stack.Screen name={screen.checkout} component={CheckoutScreen} />
-        <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
-        <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
       </Stack.Navigator>
-      <View style={styles.spaceBtHeaderAndBody}>
-
-      </View>
     </NavigationContainer>
   );
 };
 
+// This wraps all screens and adds your header
+const MainLayoutWithHeader = ({navigation}:any) => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <CustomHeader navigation={navigation} />
+      <View style={styles.navigatorContainer}>
+        <InnerStack />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+// Stack containing your actual screens
+const InnerStack = () => {
+  const Inner = createStackNavigator();
+
+  return (
+    <Inner.Navigator
+      screenOptions={{
+        headerShown: false, // No headers here
+ 
+      }}>
+      <Inner.Screen name={screen.home} component={HomeScreen} />
+      <Inner.Screen name={screen.details} component={DetailsScreen} />
+      <Inner.Screen name={screen.register} component={RegisterScreen} />
+      <Inner.Screen name={screen.login} component={LoginScreen} />
+      <Inner.Screen name={screen.confirm} component={ConfirmScreen} />
+      <Inner.Screen name={screen.productscreen} component={ProductScreen} />
+      <Inner.Screen
+        name={screen.insuranceScreen}
+        component={InsuranceProtectionScreen}
+      />
+      <Inner.Screen
+        name={screen.extraServiceScreen}
+        component={ExtraServiceScreen}
+      />
+      <Inner.Screen name={screen.checkout} component={CheckoutScreen} />
+      <Inner.Screen name={screen.backScreen1} component={BackScreen1} />
+      <Inner.Screen name={screen.backScreen2} component={BackScreen2} />
+    </Inner.Navigator>
+  );
+};
+
 export default App;
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  headerContainer: {
+    height:50,
+    paddingTop:10,
+    marginLeft:10,
+
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // paddingHorizontal: 16,
+    backgroundColor: myColor.lightGray,
+  },
+  headerTitle: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    marginLeft: 16,
+  },
   arrowHeader: {
     width: 40,
     height: 40,
@@ -88,11 +145,9 @@ const styles = StyleSheet.create({
     backgroundColor: myColor.darkYellow,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 20,
-   
   },
-  spaceBtHeaderAndBody: {
-    height: 60,
-    backgroundColor: 'transparent',
+  navigatorContainer: {
+    flex: 1,
+
   },
 });
