@@ -41,7 +41,7 @@ export const screen = {
   backScreen2: 'BackScreen2',
 };
 
-const CustomHeader = ({navigation}:any) => {
+const CustomHeader = ({navigation}: any) => {
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity
@@ -49,71 +49,61 @@ const CustomHeader = ({navigation}:any) => {
         onPress={() => navigation.canGoBack() && navigation.goBack()}>
         <Icon name="chevron-left" size={20} color="white" />
       </TouchableOpacity>
-      <Text style={styles.headerTitle}>My App Header</Text>
     </View>
   );
 };
 
 const App = () => {
   return (
+    <View style={styles.container}>
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName={screen.home}
-        screenOptions={{
-          headerShown: false, // Disable built-in headers
-        }}>
+        screenOptions={({navigation}) => ({
+          headerLeft: () => <CustomHeader navigation={navigation} />,
+          headerTitle: '',
+          // below change color header arrow back screen
+          // headerStyle: {backgroundColor: "red"},
+
+          //below remove boder out from the header
+          headerStyle: {
+            borderBottomWidth: 0,
+            shadowOpacity: 0,
+            elevation: 0,
+          },
+          //chnage all screen background color to cardStyle-- below
+          cardStyle: {backgroundColor: '#fff', paddingTop:5},
+  
+
+        })}>
         <Stack.Screen
-          name="MainLayout"
-          component={MainLayoutWithHeader}
-          options={{headerShown: false}}
+          name={screen.home}
+          component={HomeScreen}
+          options={{headerLeft: () => <></>}}
         />
+        <Stack.Screen name={screen.details} component={DetailsScreen} />
+        <Stack.Screen name={screen.register} component={RegisterScreen} />
+        <Stack.Screen name={screen.login} component={LoginScreen} />
+        <Stack.Screen name={screen.confirm} component={ConfirmScreen} />
+        <Stack.Screen name={screen.productscreen} component={ProductScreen} />
+        <Stack.Screen
+          name={screen.insuranceScreen}
+          component={InsuranceProtectionScreen}
+        />
+        <Stack.Screen
+          name={screen.extraServiceScreen}
+          component={ExtraServiceScreen}
+        />
+        <Stack.Screen name={screen.checkout} component={CheckoutScreen} />
+        <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
+        <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-};
-
-// This wraps all screens and adds your header
-const MainLayoutWithHeader = ({navigation}:any) => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <CustomHeader navigation={navigation} />
-      <View style={styles.navigatorContainer}>
-        <InnerStack />
-      </View>
-    </SafeAreaView>
+   </View>
   );
 };
 
 // Stack containing your actual screens
-const InnerStack = () => {
-  const Inner = createStackNavigator();
-
-  return (
-    <Inner.Navigator
-      screenOptions={{
-        headerShown: false, // No headers here
- 
-      }}>
-      <Inner.Screen name={screen.home} component={HomeScreen} />
-      <Inner.Screen name={screen.details} component={DetailsScreen} />
-      <Inner.Screen name={screen.register} component={RegisterScreen} />
-      <Inner.Screen name={screen.login} component={LoginScreen} />
-      <Inner.Screen name={screen.confirm} component={ConfirmScreen} />
-      <Inner.Screen name={screen.productscreen} component={ProductScreen} />
-      <Inner.Screen
-        name={screen.insuranceScreen}
-        component={InsuranceProtectionScreen}
-      />
-      <Inner.Screen
-        name={screen.extraServiceScreen}
-        component={ExtraServiceScreen}
-      />
-      <Inner.Screen name={screen.checkout} component={CheckoutScreen} />
-      <Inner.Screen name={screen.backScreen1} component={BackScreen1} />
-      <Inner.Screen name={screen.backScreen2} component={BackScreen2} />
-    </Inner.Navigator>
-  );
-};
 
 export default App;
 
@@ -123,14 +113,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   headerContainer: {
-    height:50,
-    paddingTop:10,
-    marginLeft:10,
+    height: 50,
+    paddingTop: 20,
+    marginBottom: 20,
+    marginLeft: 10,
 
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // paddingHorizontal: 16,
-    backgroundColor: myColor.lightGray,
   },
   headerTitle: {
     fontSize: 18,
@@ -148,6 +135,5 @@ const styles = StyleSheet.create({
   },
   navigatorContainer: {
     flex: 1,
-
   },
 });

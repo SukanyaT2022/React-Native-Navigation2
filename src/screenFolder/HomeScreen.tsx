@@ -59,10 +59,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   mainContainer: {
-    paddingTop:40,
+    paddingTop:20,
     gap: 15,
-    paddingHorizontal: 10,
-    
+    paddingHorizontal: 10, 
   },
   wrapDateTime: {
     width: '100%',
