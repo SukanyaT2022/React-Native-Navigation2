@@ -79,7 +79,10 @@ const App = () => {
         <Stack.Screen
           name={screen.home}
           component={HomeScreen}
-          options={{headerLeft: () => <></>}}
+          //we put logo on option
+          options={{headerLeft: () =>  <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 30,width:500, color: "green", paddingTop:5, paddingLeft:10, fontWeight:'bold' }}>
+  Roam
+         </Text>}}
         />
         <Stack.Screen name={screen.details} component={DetailsScreen} />
         <Stack.Screen name={screen.register} component={RegisterScreen} />

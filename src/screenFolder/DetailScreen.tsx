@@ -56,8 +56,6 @@ let storePayNowPayLater = [
  checkOutDate = {"10.18.2025"}
  checkInTime = {"3PM"}
  checkOutTime = {"3PM"}
-
-
 />
 
 <Checkout2PayNow
@@ -70,15 +68,11 @@ dataProp={storePayNowPayLater }
 />
 
 <Checkput3DriveDetail/>
-
       <Button title="Go back to HomeScreen" onPress={()=>goBackHomeFunc()}/>
     </View>
     {/* <NewCountryCode2/> */}
     
     </ScrollView>
-
-
-
     )//close return
 }
 

@@ -17,10 +17,10 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
-         <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
-        Hello with Google Font!
-      </Text>
-      <Text style={{fontWeight:'bold'}}>Make A Reservation</Text>
+         {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
+       RentCars
+      </Text> */}
+      <Text style={{fontWeight:'bold'}}>FIND YOUR BEST CAR RENTAL WITH RENTCARS</Text>
       <CheckBox item="Pick-up and Return to same location" />
       <InputBox placeholderAr="Enter your pick-up location or zip code" />
       <InputBox placeholderAr="Enter your return location or zip code" />
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingTop:20,
-    gap: 15,
+    gap: 20,
     paddingHorizontal: 10, 
   },
   wrapDateTime: {

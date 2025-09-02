@@ -20,7 +20,9 @@ const Checkout2PayNow = ({
 }: PriceOptionProps) => {
   const [storeTotalPrice, SetStoreTotalPrice] = useState<number>(0);
   const [activeIndex, SetActiveIndex] = useState<number>();
+  const [pricePlusTax, SetPricePlusTax] = useState<number>(0);
   console.log(activeIndex, 'activeIndex');
+  const tax = 7; 
   return (
     <View>
       <Text style={styles.titleSelectUrPrice}>Select your price</Text>
@@ -33,6 +35,8 @@ const Checkout2PayNow = ({
             onPress={() => {
               SetStoreTotalPrice(item.price);
               SetActiveIndex(index);
+              const calculatedTax = (item.price * tax) / 100;
+              SetPricePlusTax(item.price + calculatedTax);
             }}
             style={[styles.card, isSelected && styles.selectedCard]}>
             <View style={styles.radioCircle}>
@@ -57,7 +61,12 @@ const Checkout2PayNow = ({
           <Text style={styles.title}>Total</Text>
           <Text style={styles.price}>${storeTotalPrice}</Text>
         </View>
+      
       </TouchableOpacity>
+      <View style={styles.wrapTitleprice}>
+          <Text style={styles.title}>Total + taxes 7%</Text>
+          <Text style={styles.price}>${pricePlusTax}</Text>
+        </View>
     </View>
   );
 };
