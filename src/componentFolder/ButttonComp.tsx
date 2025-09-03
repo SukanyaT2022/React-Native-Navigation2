@@ -24,7 +24,7 @@ export default ButttonComp
 const styles = StyleSheet.create({
 buttonStyle:{
 // backgroundColor:myColor.verylightGray,
-backgroundColor:'gray',
+backgroundColor:myColor.primaryColor,
 alignItems:'center',
 padding:10,
 borderRadius:25,

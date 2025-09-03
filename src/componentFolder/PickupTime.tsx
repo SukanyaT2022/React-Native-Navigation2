@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {myCardBorder, myColor} from '../constant/color';
 
 // time third party
 // https://www.npmjs.com/package/@react-native-community/datetimepicker
@@ -31,17 +32,22 @@ const PickupTime = ({messageTime}: PickupTimeProp) => {
           <Text>{messageTime}</Text>
           <Text>{moment(time).format('hh:mm A')}</Text>
         </View>
-        <Icon name="clockcircleo" size={30} color="#900" onPress={()=>setShowPicker(true)} />
+        <Icon
+          name="clockcircleo"
+          size={30}
+          color="#900"
+          onPress={() => setShowPicker(true)}
+        />
       </View>
       <DateTimePickerModal
-isVisible={showPicker}
-mode="time"
-onConfirm={(selectedTime) => {
-setTime(selectedTime);
-setShowPicker(false); // Automatically close after selection
-}}
-onCancel={() => setShowPicker(false)}
-/>  
+        isVisible={showPicker}
+        mode="time"
+        onConfirm={selectedTime => {
+          setTime(selectedTime);
+          setShowPicker(false); // Automatically close after selection
+        }}
+        onCancel={() => setShowPicker(false)}
+      />
     </View>
   );
 };
@@ -49,7 +55,8 @@ onCancel={() => setShowPicker(false)}
 const styles = StyleSheet.create({
   containerTime: {
     borderWidth: 2,
-    borderColor: 'gray',
+    borderColor: myColor.borderColor,
+    borderRadius: myCardBorder,
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',

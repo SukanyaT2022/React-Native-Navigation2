@@ -23,8 +23,8 @@ const ProductItemComp = ({
 }: ProductItemCompProps) => {
   return (
     <TouchableOpacity style={styles.mainBoxProductItem} onPress={onPressProp}>
-      <Text style={styles.textStyle}>Type of Car:{carType}</Text>
-      <Text style={styles.textStyle}>Brand of Car:{carBrand}</Text>
+<Text style={[styles.textStyle,{fontWeight:700, fontSize:18} ]}>{carType}</Text>
+      <Text style={styles.textStyle}>{carBrand}</Text>
       <Image
         // source={{
         //   uri: imageUrl,
@@ -40,9 +40,9 @@ const ProductItemComp = ({
           <Text style={[styles.textStyle, {fontWeight: 'bold'}]}>
             Best Price
           </Text>
-          <Text style={styles.textStyle}>${pricePerDay}/ day</Text>
+          <Text style={[styles.textStyle ,{fontWeight:700, fontSize:18}]}>${pricePerDay}/ day</Text>
           <Text style={styles.textStyle}>${totalPricePerWeek} est total per week</Text>
-          <Text style={styles.textStyle}>{capacity} passenger</Text>
+          <Text style={styles.textStyle}>{capacity} passengers</Text>
         </View>
         <View></View>
       </View>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   textStyle: {
     textAlign: 'center',
     paddingVertical: 2,
+ 
   },
   title: {},
   subtitle: {},

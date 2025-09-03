@@ -9,26 +9,25 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {myCardBorder, myColor} from '../constant/color';
 
 var countryList =
   'https://countryapi.io/api/all?apikey=U84lmsMTELUagtHqL9VRIBm00db4w0mRAYuqWr6p';
 
-interface DropDownBoxProp{
-  onSelect: (value: string) => void;// pass function--onselec is a function
-
+interface DropDownBoxProp {
+  onSelect: (value: string) => void; // pass function--onselec is a function
 }
 
-const DropDownBox = ({onSelect}:DropDownBoxProp) => {
+const DropDownBox = ({onSelect}: DropDownBoxProp) => {
   const [selectCountry, setSelectCountry] = useState('Select Country');
   const [data, setData] = useState({}) as any;
   const [showCountryModal, setShowCountryModal] = useState(false);
 
-
-  const handleSelectFunc=(item:string)=>{
-setSelectCountry(item)
-onSelect(item)// pass selected country to the home screen
-setShowCountryModal(false)//after select country --close popup modal
-  }
+  const handleSelectFunc = (item: string) => {
+    setSelectCountry(item);
+    onSelect(item); // pass selected country to the home screen
+    setShowCountryModal(false); //after select country --close popup modal
+  };
 
   useEffect(() => {
     fetch(countryList) // Replace with your API URL
@@ -45,10 +44,11 @@ setShowCountryModal(false)//after select country --close popup modal
       .catch(err => console.error('Error:', err));
   }, []);
 
-
   return (
     <View>
-      <TouchableOpacity style={styles.wrapperInput} onPress={()=>setShowCountryModal(true)}>
+      <TouchableOpacity
+        style={styles.wrapperInput}
+        onPress={() => setShowCountryModal(true)}>
         <View style={styles.wrapText}>
           <Text>Residency:</Text>
           <Text style={styles.countryText}>{selectCountry}</Text>
@@ -59,30 +59,35 @@ setShowCountryModal(false)//after select country --close popup modal
         </View>
       </TouchableOpacity>
       {/* start modal for location country city */}
-<View style={styles.mainViewModalCountry}>
-      <Modal onRequestClose={()=>setShowCountryModal(false)} animationType='slide' transparent = {true} visible={showCountryModal}>
-          
-       <View style={styles.wrapperCountryModal}>
-       <View style={styles.wrapFlatlist}>
-          <FlatList
-            data={data}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => (
-              <TouchableOpacity onPress={()=>handleSelectFunc(item.name + ", " +item.city )}>
-                <Text>{item.name + ", " +item.city }</Text>
-              </TouchableOpacity>
-            )}
-            //below line give space between country list
-            ItemSeparatorComponent={(item)=><View style={styles.padding2CountryList}/>}
-          />
-        </View>
-        </View>
-
-
-      </Modal>
+      <View style={styles.mainViewModalCountry}>
+        <Modal
+          onRequestClose={() => setShowCountryModal(false)}
+          animationType="slide"
+          transparent={true}
+          visible={showCountryModal}>
+          <View style={styles.wrapperCountryModal}>
+            <View style={styles.wrapFlatlist}>
+              <FlatList
+                data={data}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    onPress={() =>
+                      handleSelectFunc(item.name + ', ' + item.city)
+                    }>
+                    <Text>{item.name + ', ' + item.city}</Text>
+                  </TouchableOpacity>
+                )}
+                //below line give space between country list
+                ItemSeparatorComponent={item => (
+                  <View style={styles.padding2CountryList} />
+                )}
+              />
+            </View>
+          </View>
+        </Modal>
       </View>
       {/* end modal */}
-
     </View>
   );
 };
@@ -98,35 +103,31 @@ const styles = StyleSheet.create({
   },
   wrapperInput: {
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: myColor.borderColor,
+    borderRadius: myCardBorder,
     padding: 10,
     // borderStyle:'dashed',
-    borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  mainViewModalCountry:{
-backgroundColor:'white',
-borderRadius:20,
-flex:1
-
+  mainViewModalCountry: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    flex: 1,
   },
-  wrapperCountryModal:{
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-flex:1
+  wrapperCountryModal: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flex: 1,
   },
-  wrapFlatlist:{
-backgroundColor:'white',
-borderRadius:20,
-width:'90%',
-padding:20,
-margin:'auto',
-height:'90%',
-
-
-
+  wrapFlatlist: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    width: '90%',
+    padding: 20,
+    margin: 'auto',
+    height: '90%',
   },
-  padding2CountryList:{
-    marginTop:12,
-  }
+  padding2CountryList: {
+    marginTop: 12,
+  },
 });

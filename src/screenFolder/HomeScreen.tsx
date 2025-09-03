@@ -8,8 +8,9 @@ import PickupInputBox from '../componentFolder/PickupInputBox';
 import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
-import { screen } from '../../App';
-import { ScrollView } from 'react-native-gesture-handler';
+import {screen} from '../../App';
+import {ScrollView} from 'react-native-gesture-handler';
+import {myCardBorder, myColor} from '../constant/color';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
@@ -17,10 +18,12 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
-         {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
+      {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
-      <Text style={{fontWeight:'bold'}}>FIND YOUR BEST CAR RENTAL WITH RENTCARS</Text>
+      <Text style={{fontWeight: 'bold'}}>
+        FIND YOUR BEST CAR RENTAL WITH ROAM
+      </Text>
       <CheckBox item="Pick-up and Return to same location" />
       <InputBox placeholderAr="Enter your pick-up location or zip code" />
       <InputBox placeholderAr="Enter your return location or zip code" />
@@ -29,24 +32,26 @@ const HomeScreen = ({navigation}: any) => {
           <PickupInputBox message={'Pick-up Date'} />
         </View>
         <View style={styles.oneBox}>
-        <PickupTime messageTime="Pick-up Time" />
+          <PickupTime messageTime="Pick-up Time" />
         </View>
       </View>
 
       <View style={styles.wrapDateTime}>
-      <View style={styles.oneBox}>
-        <PickupInputBox message={'Return Date'} />
+        <View style={styles.oneBox}>
+          <PickupInputBox message={'Return Date'} />
         </View>
         <View style={styles.oneBox}>
-        <PickupTime messageTime="Drop-off Time" />
+          <PickupTime messageTime="Drop-off Time" />
         </View>
       </View>
 
       <CheckBox item="Renter's age is 25 or over" />
-<DropDownBox onSelect={(item)=>console.log(item)}  />
- 
+      <DropDownBox onSelect={item => console.log(item)} />
 
- <ButttonComp buttonText='Select My Car' onPressProp={()=>navigation.navigate(screen.productscreen)}/> 
+      <ButttonComp
+        buttonText="Select My Car"
+        onPressProp={() => navigation.navigate(screen.productscreen)}
+      />
     </ScrollView>
   );
 };
@@ -54,14 +59,15 @@ const styles = StyleSheet.create({
   inputBox: {
     width: '80%',
     padding: 10,
-    borderColor: 'green',
+    borderColor: myColor.borderColor,
+    borderRadius: myCardBorder,
     borderWidth: 2,
     marginVertical: 10,
   },
   mainContainer: {
-    paddingTop:20,
+    paddingTop: 20,
     gap: 20,
-    paddingHorizontal: 10, 
+    paddingHorizontal: 10,
   },
   wrapDateTime: {
     width: '100%',

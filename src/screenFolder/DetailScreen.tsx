@@ -39,7 +39,7 @@ let storePayNowPayLater = [
     return(
    <ScrollView>
     <View style={styles.mainBox}>
-      <Text>Details Screen</Text>
+      {/* <Text>Details Screen</Text> */}
       <Text>{findItemBasedOnId?.type}</Text>
       <Text>{findItemBasedOnId?.brand}</Text>
       <Image style ={styles.imgStyle} source={findItemBasedOnId?.image}/>

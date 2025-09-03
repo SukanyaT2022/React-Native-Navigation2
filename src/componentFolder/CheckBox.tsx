@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
+import { myCardBorder, myColor } from '../constant/color';
 
 //ex 2 for typescript
 interface CheckboxProp{
@@ -32,11 +33,12 @@ alignItems:'center',
   checkBox: {
     width: 30,
     height: 30,
-    borderColor: 'gray',
+borderColor:myColor.borderColor,
+borderRadius: myCardBorder,
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius:5,
+
   },
   checkIcon:{
     fontSize:20,

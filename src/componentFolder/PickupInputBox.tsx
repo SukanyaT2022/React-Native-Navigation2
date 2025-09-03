@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import  Icon  from 'react-native-vector-icons/AntDesign'
 import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
+import { myCardBorder, myColor } from '../constant/color';
 
 
 interface PickupProp{
@@ -63,7 +64,8 @@ setOpen(true)
 const styles = StyleSheet.create({
 container:{
 borderWidth:2,
-borderColor:'gray',
+borderColor:myColor.borderColor,
+borderRadius: myCardBorder,
 padding:10,
 flexDirection:'row',
 alignItems:'center',
