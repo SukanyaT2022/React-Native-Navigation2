@@ -35,7 +35,7 @@ const PickupTime = ({messageTime}: PickupTimeProp) => {
         <Icon
           name="clockcircleo"
           size={30}
-          color="#900"
+          color= {myColor.iconColor}
           onPress={() => setShowPicker(true)}
         />
       </View>

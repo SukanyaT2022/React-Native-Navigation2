@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ImageSource } from 'react-native-vector-icons/Icon';
+import { myColor } from '../constant/color';
 interface CheckoutCarDateCompProps {
     title: string;
     carType: string;
@@ -61,8 +62,8 @@ export default CheckoutCarDateComp
 const styles = StyleSheet.create({
 main:{
     padding: 10, 
-    borderWidth: 1, 
-    borderColor: '#ccc', 
+    borderWidth: 1.5, 
+    borderColor: myColor.greenColor, 
     borderRadius: 10, 
     marginBottom: 10
     },

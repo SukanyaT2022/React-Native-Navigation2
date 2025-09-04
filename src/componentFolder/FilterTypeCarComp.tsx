@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   mainBox: {
-    borderColor: myColor.lightGray,
-    borderWidth: 1,
+    borderColor: myColor.iconColor,
+    borderWidth: 1.5,
     padding: 10,
     alignItems: 'center',
     borderRadius: 10,

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { myColor } from '../constant/color';
 
 interface PriceOptionProps {
   title: string;
@@ -25,7 +26,7 @@ const Checkout2PayNow = ({
   const tax = 7; 
   return (
     <View>
-      <Text style={styles.titleSelectUrPrice}>Select your price</Text>
+      <Text style={styles.titleSelectUrPrice}>Select your options</Text>
       {dataProp.map((item, index) => {
         const isSelected = activeIndex === index;
        
@@ -63,9 +64,11 @@ const Checkout2PayNow = ({
         </View>
       
       </TouchableOpacity>
+      <View  style={[styles.card, selected && styles.selectedCard]}>
       <View style={styles.wrapTitleprice}>
           <Text style={styles.title}>Total + taxes 7%</Text>
           <Text style={styles.price}>${pricePlusTax}</Text>
+        </View>
         </View>
     </View>
   );
@@ -75,22 +78,22 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     padding: 16,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    borderWidth: 1.5,
+    borderColor: myColor.greenColor,
     borderRadius: 10,
     marginBottom: 12,
     alignItems: 'flex-start',
   },
   selectedCard: {
-    borderColor: '#0077b6',
-    backgroundColor: '#e0f7fa',
+    // borderColor: '#0077b6',
+    backgroundColor:  myColor.verylightGreen,
   },
   radioCircle: {
     height: 20,
     width: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#0077b6',
+    borderColor: myColor.greenColor,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 5,
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#0077b6',
+    borderColor: myColor.greenColor,
     marginVertical: 30,
   },
 });

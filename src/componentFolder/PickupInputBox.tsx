@@ -54,7 +54,7 @@ setOpen(true)
                 setOpen(false)
               }}
             />
-      <Icon name="calendar" size={30} color="#900" />
+      <Icon name="calendar" size={30} color={myColor.iconColor}/>
 
     </TouchableOpacity>
 

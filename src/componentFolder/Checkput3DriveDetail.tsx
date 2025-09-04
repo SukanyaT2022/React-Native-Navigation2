@@ -4,6 +4,7 @@ import InputBox from './InputBox';
 // import CountryCodePickerComp from './CountryCodePickerComp'
 import NewCountryCodePicker from './NewCountryCodePicker';
 import NewCountryCode2 from './NewCountryCode2';
+import { myColor } from '../constant/color';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -23,7 +24,7 @@ interface DriverDataProp {
 //  firstName:string
 // }
 
-const Checkput3DriveDetail = () => {
+const  Checkput3DriveDetail = () => {
   const [driverData, setDriverData] = React.useState<DriverDataProp>({
     fName: '',
     lName: '',
@@ -49,7 +50,7 @@ const Checkput3DriveDetail = () => {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          <Text>Driver Details</Text>
+          <Text style={{fontSize:18, fontWeight:600}}>Driver Details</Text>
 
           {/* //option1 part 2 */}
           {/* <InputBox placeholderAr='First Name' onchangeFuncProp={(text)=>setFirstName(text)}  />
@@ -92,8 +93,8 @@ export default Checkput3DriveDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderColor: 'green',
-    borderWidth: 1,
+    borderColor: myColor.greenColor,
+    borderWidth: 1.5,
     padding: 10,
     borderRadius: 10,
     marginTop: 30,

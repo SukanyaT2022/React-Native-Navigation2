@@ -55,7 +55,7 @@ const DropDownBox = ({onSelect}: DropDownBoxProp) => {
         </View>
 
         <View>
-          <Icon name="down" size={25} color="#900" />
+          <Icon name="down" size={28} color={myColor.primaryColor} />
         </View>
       </TouchableOpacity>
       {/* start modal for location country city */}

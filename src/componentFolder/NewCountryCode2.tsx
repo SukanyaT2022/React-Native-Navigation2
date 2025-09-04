@@ -4,6 +4,7 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ScrollView} from 'react-native-gesture-handler';
 import InputBox from './InputBox';
+import { myColor } from '../constant/color';
 
 // The interfaces defined the types and the properties your component is going to take, for example
 interface NewCountryProp {
@@ -95,7 +96,7 @@ value={searchCountryParam}
         ) : (
           <Text style={{color: 'gray'}}>Select a country</Text>
         )} */}
-        <Icon name="chevron-down" size={20} color="gray" />
+        <Icon name="chevron-down" size={20} color={myColor.greenColor} />
       </TouchableOpacity>
       {showCountries && (
         <ScrollView style={styles.dropdown}>

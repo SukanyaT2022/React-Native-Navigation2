@@ -17,7 +17,7 @@ const CheckBox = ({item}:CheckboxProp) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.checkBox}>
-      <Icon style={styles.checkIcon} name="check" size={30} color="red" />
+      <Icon style={styles.checkIcon} name="check" size={30} color={myColor.iconColor} />
       </TouchableOpacity>
       <Text>{item}</Text>
     </View>
@@ -31,13 +31,13 @@ alignItems:'center',
 
 },
   checkBox: {
-    width: 30,
-    height: 30,
+  width: 30,
+  height: 30,
 borderColor:myColor.borderColor,
 borderRadius: myCardBorder,
-    borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
+  borderWidth: 2,
+  alignItems: 'center',
+  justifyContent: 'center',
 
   },
   checkIcon:{
