@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginTop: 30,
+    marginBottom: 10,
   },
   wrapper: {
     marginVertical: 20,
