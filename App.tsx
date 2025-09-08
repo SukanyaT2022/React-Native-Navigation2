@@ -24,6 +24,7 @@ import ExtraServiceScreen from './src/screenFolder/ExtraServiceScreen';
 import BackScreen1 from './src/screenFolder/BackScreen1';
 import BackScreen2 from './src/screenFolder/BackScreen2';
 import CheckoutScreen from './src/screenFolder/CheckoutScreen';
+import AppNavigatorRootLayout from './src/appNavigator/AppNavigatorRootLayout';
 
 const Stack = createStackNavigator();
 
@@ -56,7 +57,18 @@ const CustomHeader = ({navigation}: any) => {
 const App = () => {
   return (
     <View style={styles.container}>
-    <NavigationContainer>
+<AppNavigatorRootLayout />
+
+
+
+
+
+
+
+
+
+      {/* old without bottom navigator */}
+    {/* <NavigationContainer>
       <Stack.Navigator
         // initialRouteName={screen.home}
         screenOptions={({navigation}) => ({
@@ -101,7 +113,7 @@ const App = () => {
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */}
    </View>
   );
 };
