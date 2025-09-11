@@ -9,31 +9,59 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 // Screens
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeNavigatorLayout from './src/navigatorFolder/HomeNavigatorLayout';
+import HomeScreen from '../screenFolder/HomeScreen';
+import DetailsScreen from '../screenFolder/DetailScreen';
+import RegisterScreen from '../screenFolder/RegisterScreen';
+import LoginScreen from '../screenFolder/LoginScreen';
+import ConfirmScreen from '../screenFolder/ConfirmScreen';
+import ProductScreen from '../screenFolder/ProductScreen';
+import InsuranceProtectionScreen from '../screenFolder/InsuranceProtectionScreen';
+import ExtraServiceScreen from '../screenFolder/ExtraServiceScreen';
+import CheckoutScreen from '../screenFolder/CheckoutScreen';
+import BackScreen1 from '../screenFolder/BackScreen1';
+import BackScreen2 from '../screenFolder/BackScreen2';
+import { myColor } from '../constant/color';
 
-// step 1 crate bottom tab navigator below 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-const App = () => {
+export const screen = {
+  home: 'Home',
+  details: 'Details',
+  register: 'Register',
+  login: 'Login',
+  confirm: 'Confirm',
+  productscreen: 'ProductScreen',
+  insuranceScreen: 'InsuranceProtectionScreen',
+  extraServiceScreen: 'ExtraServiceScreen',
+  checkout: 'CheckoutScreen',
+  backScreen1: 'BackScreen1',
+  backScreen2: 'BackScreen2',
+};
+
+const CustomHeader = ({navigation}: any) => {
+  return (
+    <View style={styles.headerContainer}>
+      <TouchableOpacity
+        style={styles.arrowHeader}
+        onPress={() => navigation.canGoBack() && navigation.goBack()}>
+        <Icon name="chevron-left" size={20} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const HomeNavigatorLayout = () => {
   return (
     <View style={styles.container}>
     <NavigationContainer>
 {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
-<Tab.Navigator>
-<Tab.Screen
-  name={"homelayout"}
-  // Home navigator come from file in navigation folder
-  component={HomeNavigatorLayout}
-/>
-
-</Tab.Navigator>
-
       {/* below only connect screen not include bottom tab */}
-      {/* <Stack.Navigator
+      <Stack.Navigator
         // initialRouteName={screen.home}
         screenOptions={({navigation}) => ({
           headerLeft: () => <CustomHeader navigation={navigation} />,
@@ -76,7 +104,7 @@ const App = () => {
         <Stack.Screen name={screen.checkout} component={CheckoutScreen} />
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
-      </Stack.Navigator> */}
+      </Stack.Navigator>
 
 
     </NavigationContainer>
@@ -86,7 +114,7 @@ const App = () => {
 
 // Stack containing your actual screens
 
-export default App;
+export default HomeNavigatorLayout;
 
 const styles = StyleSheet.create({
   container: {
