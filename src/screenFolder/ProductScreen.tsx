@@ -2,9 +2,10 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import ProductItemComp from '../componentFolder/ProductItemComp';
 import FilterTypeCarComp from '../componentFolder/FilterTypeCarComp';
-import {screen} from '../../App';
+
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {carData} from '../constant/carData';
+import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 
 const ProductScreen = ({navigation}: any) => {
   //step 1

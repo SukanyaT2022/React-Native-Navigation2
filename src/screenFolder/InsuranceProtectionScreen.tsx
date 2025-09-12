@@ -5,9 +5,10 @@ import BoxProtectionScreenComp, {
 } from '../componentFolder/BoxProtectionScreenComp';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import ButttonComp from '../componentFolder/ButttonComp';
-import {screen} from '../../App';
+
 import {extraServiceData} from '../constant/extraServiceData';
 import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBoxComp';
+import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 // interface ProtectionDataType{
 //   id:string;
 //   data:

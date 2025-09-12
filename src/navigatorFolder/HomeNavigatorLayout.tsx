@@ -58,7 +58,7 @@ const CustomHeader = ({navigation}: any) => {
 const HomeNavigatorLayout = () => {
   return (
     <View style={styles.container}>
-    <NavigationContainer>
+
 {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
       {/* below only connect screen not include bottom tab */}
       <Stack.Navigator
@@ -105,9 +105,7 @@ const HomeNavigatorLayout = () => {
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
       </Stack.Navigator>
-
-
-    </NavigationContainer>
+ 
    </View>
   );
 };

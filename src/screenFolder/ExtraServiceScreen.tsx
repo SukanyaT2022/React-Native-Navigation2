@@ -1,32 +1,40 @@
-import {FlatList, StyleSheet, Text, View, Animated, NativeSyntheticEvent, NativeScrollEvent} from 'react-native';
-import React, { useState, useRef } from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from 'react-native';
+import React, {useState, useRef} from 'react';
 import ExtraServiceOneMainBoxComp from '../componentFolder/ExtraServiceOneMainBoxComp';
 import gaspump from '../asset/imagesFolder/gaspumpimg2.jpg';
 import truck from '../asset/imagesFolder/cat1.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ScrollView } from 'react-native-gesture-handler';
-import { extraServiceData } from '../constant/extraServiceData';
+import {ScrollView} from 'react-native-gesture-handler';
+import {extraServiceData} from '../constant/extraServiceData';
 import ButttonComp from '../componentFolder/ButttonComp';
-import { screen } from '../../App';
+import {screen} from '../navigatorFolder/HomeNavigatorLayout';
 
-const ExtraServiceScreen = ({navigation}:any) => {
-  const [selectedItem, setSelectedItem] = useState<string[]>([])
+const ExtraServiceScreen = ({navigation}: any) => {
+  const [selectedItem, setSelectedItem] = useState<string[]>([]);
   const scrollY = useRef(new Animated.Value(0)).current;
-  const [showContinueButton, setShowContinueButton] = useState(false)
-  
-  const handleSelectBox = (id:string)=>{
+  const [showContinueButton, setShowContinueButton] = useState(false);
+
+  const handleSelectBox = (id: string) => {
     //if click again the green border chnage to gray as original color
     var checkIfAlreadyCkick = selectedItem.includes(id);
-    if (checkIfAlreadyCkick){
-      setSelectedItem((prevState)=>prevState.filter((item)=>item !== id));
-    }else{
-      setSelectedItem((pervState)=>[...pervState, id])
+    if (checkIfAlreadyCkick) {
+      setSelectedItem(prevState => prevState.filter(item => item !== id));
+    } else {
+      setSelectedItem(pervState => [...pervState, id]);
     }
-  }
+  };
 
   // const handleScroll = Animated.event(
   //   [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-  //   { 
+  //   {
   //     useNativeDriver: false,
   //     listener: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
   //       const offsetY = event.nativeEvent.contentOffset.y;
@@ -42,27 +50,27 @@ const ExtraServiceScreen = ({navigation}:any) => {
   return (
     <View style={styles.main}>
       <Text style={styles.header}>Coverages & Improve your trip</Text>
- <View style={styles.wrapFlatlistStyle}>
-      <FlatList
-        contentContainerStyle={{gap:15, paddingBottom:30, paddingTop:20 }}
-        data={extraServiceData}
-        keyExtractor={(item)=>item.id.toString()}
-        // onScroll={handleScroll}
-        scrollEventThrottle={16}
-        renderItem={({item})=>
-          <ExtraServiceOneMainBoxComp
-            recommendationTag={item.type === "Recommended"}
-            title={item.name}
-            smallImg={item.icon as any}
-            message={item.description}
-            iconProp={<Icon name="shield" size={30} color="green" />}
-            shieldMessage={item.benefits}
-            priceText={item.price.toString()}
-            selected={selectedItem.includes(item.id.toString())}
-            onPressXtraProp={()=>handleSelectBox(item.id.toString())}
-          />
-        }
-      />
+      <View style={styles.wrapFlatlistStyle}>
+        <FlatList
+          contentContainerStyle={{gap: 15, paddingBottom: 30, paddingTop: 20}}
+          data={extraServiceData}
+          keyExtractor={item => item.id.toString()}
+          // onScroll={handleScroll}
+          scrollEventThrottle={16}
+          renderItem={({item}) => (
+            <ExtraServiceOneMainBoxComp
+              recommendationTag={item.type === 'Recommended'}
+              title={item.name}
+              smallImg={item.icon as any}
+              message={item.description}
+              iconProp={<Icon name="shield" size={30} color="green" />}
+              shieldMessage={item.benefits}
+              priceText={item.price.toString()}
+              selected={selectedItem.includes(item.id.toString())}
+              onPressXtraProp={() => handleSelectBox(item.id.toString())}
+            />
+          )}
+        />
       </View>
       {/* // close view flate list */}
 
@@ -91,12 +99,12 @@ const ExtraServiceScreen = ({navigation}:any) => {
       )}
        */}
       <View style={styles.submitBtnStyle}>
-           <ButttonComp 
-            buttonText="Continue"
-            selectedProp={false}
-            onPressProp={()=>navigation.navigate(screen.checkout)}
-          />
-          </View>
+        <ButttonComp
+          buttonText="Continue"
+          selectedProp={false}
+          onPressProp={() => navigation.navigate(screen.checkout)}
+        />
+      </View>
     </View>
   );
 };
@@ -104,52 +112,42 @@ const ExtraServiceScreen = ({navigation}:any) => {
 export default ExtraServiceScreen;
 
 const styles = StyleSheet.create({
-  wrapFlatlistStyle:{
+  wrapFlatlistStyle: {
     // backgroundColor:'red',
     // padding:10,
     // flex:1,
-    height:'85%',
+    height: '85%',
     // width:'100%',
   },
-  main:{
-    padding:10,
+  main: {
+    padding: 10,
     // flex: 1,
   },
-  header:{
-    fontSize:18,
-    fontWeight:'bold',
-    paddingVertical:10,
-    alignSelf:'center',
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingVertical: 10,
+    alignSelf: 'center',
   },
-  // buttonContainer: {
-  //   position: 'absolute',
-  //   bottom: 20,
-  //   left: 10,
-  //   right: 10,
-  //   backgroundColor: 'white',
-  //   padding: 10,
-  //   borderRadius: 10,
-  //   shadowColor: "#000",
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 2,
-  //   },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 3.84,
-  //   elevation: 5,
-  // },
-  submitBtnStyle:{
+ 
+  submitBtnStyle: {
     // marginVertical:10,
     // paddingVertical:10,
-  }
+  },
 });
 
+{
+  /* if not use flat list do like below code */
+}
+{
+  /* <ScrollView contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20}}> */
+}
+{
+  /* <Text>ExtraServiceScreen</Text> */
+}
 
-{/* if not use flat list do like below code */}
-      {/* <ScrollView contentContainerStyle={{gap:15, paddingBottom:50, paddingTop:20}}> */}
-      {/* <Text>ExtraServiceScreen</Text> */}
-      
-      {/* <ExtraServiceOneMainBoxComp
+{
+  /* <ExtraServiceOneMainBoxComp
       recommendationTag = {true}// leave it like that it's a boolean
         title="Skip the Pump and Save Time"
         smallImg={gaspump as any}
@@ -186,5 +184,8 @@ const styles = StyleSheet.create({
           'No waiting in toll lanes',
         ]}
         priceText="$19.99/ rental"
-      /> */}
-      {/* </ScrollView> */}
+      /> */
+}
+{
+  /* </ScrollView> */
+}

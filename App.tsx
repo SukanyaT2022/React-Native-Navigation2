@@ -14,6 +14,8 @@ import {
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeNavigatorLayout from './src/navigatorFolder/HomeNavigatorLayout';
+import { myColor } from './src/constant/color';
+import DetailsScreen from './src/screenFolder/DetailScreen';
 
 // step 1 crate bottom tab navigator below 
 const Tab = createBottomTabNavigator();
@@ -24,10 +26,21 @@ const App = () => {
     <NavigationContainer>
 {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
 <Tab.Navigator>
+
+  {/* //bottom tab screen go back to home screen */}
 <Tab.Screen
-  name={"homelayout"}
+  name={"Home"}
   // Home navigator come from file in navigation folder
   component={HomeNavigatorLayout}
+  // we need word home to navigate to homscreen - to hide we use option
+  options={{ headerShown: false }}
+/>
+<Tab.Screen
+  name={"Details"}
+  // Home navigator come from file in navigation folder
+  component={DetailsScreen}
+  // we need word home to navigate to homscreen - to hide we use option
+  options={{ headerShown: false }}
 />
 
 </Tab.Navigator>

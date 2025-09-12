@@ -8,9 +8,9 @@ import PickupInputBox from '../componentFolder/PickupInputBox';
 import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
-import {screen} from '../../App';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
+import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingTop: 20,
-    gap: 20,
+    gap: 14,
     paddingHorizontal: 10,
   },
   wrapDateTime: {

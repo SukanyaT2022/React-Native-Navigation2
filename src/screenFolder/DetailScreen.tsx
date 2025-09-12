@@ -1,5 +1,5 @@
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
-import {screen} from '../../App';
+
 import {useRoute} from '@react-navigation/native';
 import {carData} from '../constant/carData';
 import CheckoutCarDateComp from '../componentFolder/CheckoutCarDateComp';
@@ -7,6 +7,7 @@ import Checkout2PayNow from '../componentFolder/Checkout2PayNow';
 import {ScrollView} from 'react-native-gesture-handler';
 import Checkput3DriveDetail from '../componentFolder/Checkput3DriveDetail';
 import NewCountryCode2 from '../componentFolder/NewCountryCode2';
+import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
