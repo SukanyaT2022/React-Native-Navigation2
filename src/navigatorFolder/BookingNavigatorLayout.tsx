@@ -1,29 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
+import BookingScreen from '../screenFolder/BookingScreen';
+import EditBookingScreen from '../screenFolder/EditBookingScreen';
 // step one create stack navigator
 const Stack = createStackNavigator();
 // step 2
-export const profileScreen = {
-    home: 'Home',
-    details: 'Details',
-    register: 'Register',
-    login: 'Login',
-    confirm: 'Confirm',
-    productscreen: 'ProductScreen',
-    insuranceScreen: 'InsuranceProtectionScreen',
-    extraServiceScreen: 'ExtraServiceScreen',
-    checkout: 'CheckoutScreen',
-    backScreen1: 'BackScreen1',
-    backScreen2: 'BackScreen2',
+export const bookingScreen = {
+   booking: 'Booking',
+   editBooking: 'EditBooking', 
   };
 
 
 const BookingNavigatorLayout = () => {
   return (
-    <View>
-      <Text>BookingNavigatorLayout</Text>
-    </View>
+    <Stack.Navigator>
+    <Stack.Screen name={bookingScreen.booking} component={BookingScreen} />
+    <Stack.Screen name={bookingScreen.editBooking} component={EditBookingScreen} />
+ </Stack.Navigator>
   )
 }
 
