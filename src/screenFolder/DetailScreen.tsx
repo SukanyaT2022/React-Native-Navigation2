@@ -8,6 +8,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Checkput3DriveDetail from '../componentFolder/Checkput3DriveDetail';
 import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
+import PaymentComp from '../componentFolder/PaymentComp';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
@@ -73,6 +74,7 @@ const DetailsScreen = ({navigation}: any) => {
           onSelect={() => console.log('Pay Now selected')}
           dataProp={storePayNowPayLater}
         />
+        <PaymentComp />
 
         <Checkput3DriveDetail />
         {/* <Button

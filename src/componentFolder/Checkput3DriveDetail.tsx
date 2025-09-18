@@ -102,6 +102,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     marginVertical: 20,
-    gap: 5,
+    gap: 10,
   },
 });
