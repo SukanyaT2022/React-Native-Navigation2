@@ -10,6 +10,7 @@ import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 import PaymentComp from '../componentFolder/PaymentComp';
 
+
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
   const {params} = route;
@@ -75,7 +76,7 @@ const DetailsScreen = ({navigation}: any) => {
           dataProp={storePayNowPayLater}
         />
         <PaymentComp />
-
+    
         <Checkput3DriveDetail />
         {/* <Button
           title="Go back to HomeScreen"

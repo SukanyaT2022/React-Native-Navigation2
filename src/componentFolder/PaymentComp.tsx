@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import InputBox from './InputBox';
 import { myColor } from '../constant/color';
+import CreditCardComp from './CreditCardComp';
 const paymentProps = {
     cardNumber: '',
     cardHolderName: '',
@@ -17,8 +18,8 @@ const PaymentComp = () => {
     <View style={styles.mainBox}> 
       <Text style={styles.title}>Payment Details</Text>
   
-      <InputBox placeholderAr='Card Number' value={cardNum} onchangeFuncProp={(text)=>{setCardNum(text)}} />
-
+     
+      <CreditCardComp/>
       <InputBox placeholderAr='Card Holder Name' value={cardHolderName}   onchangeFuncProp={(text)=>{setCardHolderName(text)}} />
 
       <InputBox placeholderAr='Card Expiration Date' value={expiryDate} onchangeFuncProp={(text)=>{setExpiryDate(text)}} />

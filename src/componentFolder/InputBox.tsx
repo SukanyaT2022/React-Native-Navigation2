@@ -31,8 +31,9 @@ const InputBox = ({item, placeholderAr, onchangeFuncProp, value}: InputBoxProp) 
 };
 const styles = StyleSheet.create({
   wrapperInput: {
-    borderWidth: 1.5,
-    borderColor: myColor.greenColor,
+    borderWidth: 1,
+    height: 45,
+    borderColor: myColor.borderColor,
     padding: 10,
     borderRadius: myCardBorder,
     backgroundColor: 'white',
