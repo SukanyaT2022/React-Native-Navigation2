@@ -25,7 +25,7 @@ const Checkout2PayNow = ({
   console.log(activeIndex, 'activeIndex');
   const tax = 7; 
   return (
-    <View>
+    <View style={styles.mainBox}>
       <Text style={styles.titleSelectUrPrice}>Select your options</Text>
       {dataProp.map((item, index) => {
         const isSelected = activeIndex === index;
@@ -75,13 +75,15 @@ const Checkout2PayNow = ({
 };
 
 const styles = StyleSheet.create({
+  mainBox:{
+gap:10,
+  },
   card: {
     flexDirection: 'row',
     padding: 16,
-    borderWidth: 1.5,
-    borderColor: myColor.greenColor,
+    borderWidth: 1,
+    borderColor: myColor.borderColor,
     borderRadius: 10,
-    marginBottom: 12,
     alignItems: 'flex-start',
   },
   selectedCard: {
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 10,
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: myColor.greenColor,
     alignItems: 'center',
     justifyContent: 'center',
@@ -127,11 +129,10 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   titleSelectUrPrice: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 16,
     borderColor: myColor.greenColor,
-    marginVertical: 30,
+ 
   },
 });
 

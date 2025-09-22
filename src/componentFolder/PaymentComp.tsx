@@ -35,14 +35,13 @@ export default PaymentComp
 const styles = StyleSheet.create({
   mainBox:{ 
 gap:10,
-paddingTop:30
+
     },
     title: {
-  fontSize: 18,
+  fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 16,
     borderColor: myColor.greenColor,
-    marginVertical: 30,
+
     },
 
 })

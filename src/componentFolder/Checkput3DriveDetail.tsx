@@ -50,7 +50,7 @@ const  Checkput3DriveDetail = () => {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          <Text style={{fontSize:18, fontWeight:600}}>Driver Details</Text>
+          <Text style={{fontSize:16, fontWeight:600}}>Driver Details</Text>
 
           {/* //option1 part 2 */}
           {/* <InputBox placeholderAr='First Name' onchangeFuncProp={(text)=>setFirstName(text)}  />
@@ -93,15 +93,9 @@ export default Checkput3DriveDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderColor: myColor.greenColor,
-    borderWidth: 1.5,
-    padding: 10,
     borderRadius: 10,
-    marginTop: 30,
-    marginBottom: 10,
   },
   wrapper: {
-    marginVertical: 20,
     gap: 10,
   },
 });

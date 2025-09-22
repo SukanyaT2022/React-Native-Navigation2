@@ -65,7 +65,7 @@ main:{
     borderWidth: 1.5, 
     borderColor: myColor.greenColor, 
     borderRadius: 10, 
-    marginBottom: 10
+
     },
     wrapTextImg:{
 flexDirection: 'row',

@@ -9,6 +9,7 @@ import Checkput3DriveDetail from '../componentFolder/Checkput3DriveDetail';
 import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 import PaymentComp from '../componentFolder/PaymentComp';
+import BillAddress from '../componentFolder/BillAddress';
 
 
 const DetailsScreen = ({navigation}: any) => {
@@ -82,6 +83,7 @@ const DetailsScreen = ({navigation}: any) => {
           title="Go back to HomeScreen"
           onPress={() => goBackHomeFunc()}
         /> */}
+        <BillAddress/>
       </View>
       {/* <NewCountryCode2/> */}
     </ScrollView>
@@ -100,5 +102,6 @@ const styles = StyleSheet.create({
   mainBox: {
     flex: 1,
     padding: 20,
+    gap: 30,
   },
 });
