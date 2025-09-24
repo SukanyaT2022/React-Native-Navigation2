@@ -89,6 +89,7 @@ const NewCountryCode2 = ({onCountrySelection}: NewCountryProp) => {
             onchangeFuncProp={text => handleSearch(text)}
 value={searchCountryParam}
           />
+            <Icon name="chevron-down" size={20} color={myColor.greenColor} />
         </View>
 
         {/* {selectedCountry ? (
@@ -96,7 +97,7 @@ value={searchCountryParam}
         ) : (
           <Text style={{color: 'gray'}}>Select a country</Text>
         )} */}
-        <Icon name="chevron-down" size={20} color={myColor.greenColor} />
+      
       </TouchableOpacity>
       {showCountries && (
         <ScrollView style={styles.dropdown}>

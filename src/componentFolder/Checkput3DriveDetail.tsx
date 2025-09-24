@@ -5,6 +5,7 @@ import InputBox from './InputBox';
 import NewCountryCodePicker from './NewCountryCodePicker';
 import NewCountryCode2 from './NewCountryCode2';
 import { myColor } from '../constant/color';
+import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -74,6 +75,10 @@ const  Checkput3DriveDetail = () => {
             placeholderAr="Phone Number"
             onchangeFuncProp={text => handleInputChange('phone', text)}
           />
+            <InputboxDropdownMenuComp placeholderProp='State'  onchangeFuncProp={()=>{}}/>
+    
+         <InputboxDropdownMenuComp placeholderProp='Select Country' onchangeFuncProp={()=>{}}/>
+       
         </View>
         <View>
           <NewCountryCode2

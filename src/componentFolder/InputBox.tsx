@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 import { myCardBorder, myColor } from '../constant/color';
+import { inputBoxHeight } from '../constant/inputBoxHeight';
 
 interface InputBoxProp {
   item?: string;
@@ -32,7 +33,7 @@ const InputBox = ({item, placeholderAr, onchangeFuncProp, value}: InputBoxProp) 
 const styles = StyleSheet.create({
   wrapperInput: {
     borderWidth: 1,
-    height: 45,
+    height: inputBoxHeight,
     borderColor: myColor.borderColor,
     padding: 10,
     borderRadius: myCardBorder,
