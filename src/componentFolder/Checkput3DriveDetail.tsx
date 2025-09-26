@@ -36,36 +36,61 @@ const  Checkput3DriveDetail = () => {
   });
 
   //fetch data below
-
+  const [states, setstates] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
   // This useEffect fetch the list of countries from the api.
-  useEffect(() => {
-    axios
-      .get('https://restcountries.com/v3.1/all?fields=name,idd,cca2')
-      .then(response => {
-        const formatted = response.data
-          .filter((c: any) => c.idd?.root)
-          .map((c: any) => ({
-            label: `${c.name.common} (${c.idd.root}${
-              c.idd.suffixes?.[0] || ''
-            })`,
-            value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
-          }))
-          .sort((a, b) => a.label.localeCompare(b.label));
-        setCountries(formatted); // This stored the fetched and formated countries on the country state above.
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('https://restcountries.com/v3.1/all?fields=name,idd,cca2')
+  //     .then(response => {
+  //       // console.log('THE FETCHED COUNTRIES', response.data);
+  //       const formatted = response.data
+  //         .filter((c: any) => c.idd?.root)
+  //         .map((c: any) => ({
+  //           label: `${c.name.common} (${c.idd.root}${
+  //             c.idd.suffixes?.[0] || ''
+  //           })`,
+  //           value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
+  //         }))
+  //         .sort((a, b) => a.label.localeCompare(b.label));
+  //       setCountries(formatted); // This stored the fetched and formated countries on the country state above.
+  //     })
+  //     .catch(console.error)
+  //     .finally(() => setLoading(false));
+  // }, []);
 
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
+  // if (loading) {
+  //   return <Text>Loading...</Text>;
+  // }
 // We will use this useEffect to search for a country on typing in the input box.
 // It will filter the countries based on the search paremater the user selects or types.
 
 
+//state
+useEffect(() => {
+  axios
+    .get('https://countrystatecity.in/')
+    .then(response => {
+      console.log('THE FETCHED STATES', response.data);
+      // const formatted = response.data
+      //   .filter((c: any) => c.idd?.root)
+      //   .map((c: any) => ({
+      //     label: `${c.name.common} (${c.idd.root}${
+      //       c.idd.suffixes?.[0] || ''
+      //     })`,
+      //     value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
+      //   }))
+      //   .sort((a, b) => a.label.localeCompare(b.label));
+      // setCountries(formatted); 
+    })
+    .catch(console.error)
+    .finally(() => setLoading(false));
+}, []);
+
+
+// We will use this useEffect to search for a country on typing in the input box.
+// It will filter the countries based on the search paremater the user selects or types.
   //option1 part 1
   // const [firstName, setFirstName] = useState<string>()
   // const [lastName, setLastName] = useState<string>()
@@ -107,19 +132,14 @@ const  Checkput3DriveDetail = () => {
             placeholderAr="Phone Number"
             onchangeFuncProp={text => handleInputChange('phone', text)}
           />
-            <InputboxDropdownMenuComp placeholderProp='State'  onchangeFuncProp={()=>{}}/>
-    
-         <InputboxDropdownMenuComp dataProp = {countries} placeholderProp='Select Country' onchangeFuncProp={()=>{}}/>
+             <InputboxDropdownMenuComp dataProp = {countries} placeholderProp='Select Country' onchangeFuncProp={()=>{}}/>
+            <InputboxDropdownMenuComp dataProp = {[]} placeholderProp='State'  onchangeFuncProp={()=>{}}/>
+            <InputboxDropdownMenuComp dataProp = {[]} placeholderProp='City'  onchangeFuncProp={()=>{}}/>
+      
        
         </View>
         <View>
-          <NewCountryCode2
-            onCountrySelection={val => {
-              handleInputChange('phone', val)
-              console.log('THE COUNTRY VALUE SELECTED', val)
-            }
-            }
-          />
+        
         </View>
       </View>
     );
