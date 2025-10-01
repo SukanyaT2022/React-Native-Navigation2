@@ -7,6 +7,7 @@ import NewCountryCode2 from './NewCountryCode2';
 import { myColor } from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 import axios from 'axios';
+import { getCountries } from '../utils/helpers';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -69,23 +70,10 @@ const  Checkput3DriveDetail = () => {
 
 //state
 useEffect(() => {
-  axios
-    .get('https://countrystatecity.in/')
-    .then(response => {
-      console.log('THE FETCHED STATES', response.data);
-      // const formatted = response.data
-      //   .filter((c: any) => c.idd?.root)
-      //   .map((c: any) => ({
-      //     label: `${c.name.common} (${c.idd.root}${
-      //       c.idd.suffixes?.[0] || ''
-      //     })`,
-      //     value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
-      //   }))
-      //   .sort((a, b) => a.label.localeCompare(b.label));
-      // setCountries(formatted); 
-    })
-    .catch(console.error)
-    .finally(() => setLoading(false));
+  const fetchCountries = async()=>{await getCountries()
+  
+  };
+  fetchCountries()
 }, []);
 
 
