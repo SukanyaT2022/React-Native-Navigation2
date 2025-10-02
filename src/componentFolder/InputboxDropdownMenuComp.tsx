@@ -75,13 +75,13 @@ const InputboxDropdownMenuComp = ({
                   onPress={() => {
                     // when we select any country from the dropdown list
                     // below setSelectedValue hold the selected country value
-                    setSelectedValue(item.label);
+                    setSelectedValue(item.name);
                     // below onchangeFuncProp send the selected country value to the parent component
                     onchangeFuncProp(item.value);
                     // after selecting any country from the dropdown list close the dropdown list
                     setShowOptions(false);
                   }}>
-                  <Text>{item.label}</Text>
+                  <Text>{item.name}</Text>
                 </TouchableOpacity>
               )}
             />

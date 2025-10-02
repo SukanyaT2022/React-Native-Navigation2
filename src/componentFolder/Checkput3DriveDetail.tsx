@@ -7,7 +7,7 @@ import NewCountryCode2 from './NewCountryCode2';
 import { myColor } from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 import axios from 'axios';
-import { getCountries } from '../utils/helpers';
+import { getCountries, getStatesByCountry } from '../utils/helpers';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -37,54 +37,35 @@ const  Checkput3DriveDetail = () => {
   });
 
   //fetch data below
-  const [states, setstates] = useState<any[]>([]);
+  const [states, setStates] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-  // This useEffect fetch the list of countries from the api.
-  // useEffect(() => {
-  //   axios
-  //     .get('https://restcountries.com/v3.1/all?fields=name,idd,cca2')
-  //     .then(response => {
-  //       // console.log('THE FETCHED COUNTRIES', response.data);
-  //       const formatted = response.data
-  //         .filter((c: any) => c.idd?.root)
-  //         .map((c: any) => ({
-  //           label: `${c.name.common} (${c.idd.root}${
-  //             c.idd.suffixes?.[0] || ''
-  //           })`,
-  //           value: `${c.idd.root}${c.idd.suffixes?.[0] || ''}`,
-  //         }))
-  //         .sort((a, b) => a.label.localeCompare(b.label));
-  //       setCountries(formatted); // This stored the fetched and formated countries on the country state above.
-  //     })
-  //     .catch(console.error)
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-  // if (loading) {
-  //   return <Text>Loading...</Text>;
-  // }
-// We will use this useEffect to search for a country on typing in the input box.
-// It will filter the countries based on the search paremater the user selects or types.
-
-
-//state
-useEffect(() => {
-  const fetchCountries = async()=>{await getCountries()
   
-  };
+useEffect(() => {
+ 
+  //callmethod countryfrom lone 50 const fetchCountries = async()=>{
   fetchCountries()
-}, []);
+    //callmethod state from lone 50 const fetchCountries = async()=>{
+  fetchState()
+}, [countries, states]);
+//above inside [] comefrom line 40 41 states and countries
+const fetchCountries = async()=>{
+  setLoading(true)
+  const countryData = await getCountries()
+  //getCountries() is from helper.ts
+  setCountries(countryData)
+  setLoading(false)
+ 
+}
 
-
-// We will use this useEffect to search for a country on typing in the input box.
-// It will filter the countries based on the search paremater the user selects or types.
-  //option1 part 1
-  // const [firstName, setFirstName] = useState<string>()
-  // const [lastName, setLastName] = useState<string>()
-  // const [email, setEmail] = useState<string>()
-  // const [countryCode, setCountryCode] = useState<string>()
-  // console.log('THE FIRST NAME', firstName, lastName,email,countryCode)
+const fetchState = async()=>{
+  setLoading(true)
+  const stateData = await getStatesByCountry('TH')
+  //getStatebyCountries() is from helper.ts
+  setStates(stateData)
+  setLoading(false)
+ 
+}
 
   const handleInputChange = (field: keyof DriverDataProp, value: string) => {
     setDriverData(prevState => ({
@@ -121,7 +102,8 @@ useEffect(() => {
             onchangeFuncProp={text => handleInputChange('phone', text)}
           />
              <InputboxDropdownMenuComp dataProp = {countries} placeholderProp='Select Country' onchangeFuncProp={()=>{}}/>
-            <InputboxDropdownMenuComp dataProp = {[]} placeholderProp='State'  onchangeFuncProp={()=>{}}/>
+            {/* //data state comefrom state line 40 */}
+            <InputboxDropdownMenuComp dataProp = {states} placeholderProp='State'  onchangeFuncProp={()=>{}}/>
             <InputboxDropdownMenuComp dataProp = {[]} placeholderProp='City'  onchangeFuncProp={()=>{}}/>
       
        
