@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import InputBox from './InputBox';
+import InputBox from './InputBoxPractice';
 import {myColor} from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 import CheckBox from './CheckBox';

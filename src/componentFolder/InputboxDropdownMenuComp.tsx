@@ -16,12 +16,14 @@ import ButttonComp from './ButttonComp';
 interface InputboxDropdownMenuCompProps {
   placeholderProp: string;
   onchangeFuncProp: (text: string) => void;
+  onSelectFuncProp?: (itemCountryStateCity: any) => void;
   dataProp: any[];
 }
 const InputboxDropdownMenuComp = ({
   placeholderProp,
   onchangeFuncProp,
   dataProp,
+  onSelectFuncProp,
 }: InputboxDropdownMenuCompProps) => {
   // for toggle arrow show drop down or no show-- fasle is mean close dropdown
   const [showOptions, setShowOptions] = React.useState<boolean>(false);
@@ -73,6 +75,9 @@ const InputboxDropdownMenuComp = ({
                     borderBottomColor: myColor.borderColor,
                   }}
                   onPress={() => {
+                    //item below comform item line 70
+                  onSelectFuncProp && onSelectFuncProp(item);  
+                    
                     // when we select any country from the dropdown list
                     // below setSelectedValue hold the selected country value
                     setSelectedValue(item.name);
@@ -80,6 +85,7 @@ const InputboxDropdownMenuComp = ({
                     onchangeFuncProp(item.value);
                     // after selecting any country from the dropdown list close the dropdown list
                     setShowOptions(false);
+                    
                   }}>
                   <Text>{item.name}</Text>
                 </TouchableOpacity>
@@ -121,6 +127,7 @@ const styles = StyleSheet.create({
   // },
   modalView: {
     height: 600,
+    width: '80%',
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,

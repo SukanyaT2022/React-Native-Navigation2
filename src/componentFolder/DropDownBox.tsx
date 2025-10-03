@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   mainViewModalCountry: {
     backgroundColor: 'white',
     borderRadius: 20,
+
     flex: 1,
   },
   wrapperCountryModal: {

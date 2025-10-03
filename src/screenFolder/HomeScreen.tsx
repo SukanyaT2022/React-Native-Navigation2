@@ -3,7 +3,7 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import CheckBox from '../componentFolder/CheckBox';
-import InputBox from '../componentFolder/InputBox';
+import InputBox from '../componentFolder/InputBoxPractice';
 import PickupInputBox from '../componentFolder/PickupInputBox';
 import PickupTime from '../componentFolder/PickupTime';
 import DropDownBox from '../componentFolder/DropDownBox';

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ScrollView} from 'react-native-gesture-handler';
-import InputBox from './InputBox';
+import InputBox from './InputBoxPractice';
 import { myColor } from '../constant/color';
 
 // The interfaces defined the types and the properties your component is going to take, for example
