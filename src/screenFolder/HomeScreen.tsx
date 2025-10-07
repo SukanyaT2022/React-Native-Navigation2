@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import CheckBox from '../componentFolder/CheckBox';
@@ -11,6 +11,7 @@ import ButttonComp from '../componentFolder/ButttonComp';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
+import dogImg from '../../assets/imagesFolder/dog1.png'
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
@@ -18,6 +19,7 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
+      <Image source={dogImg} style={styles.imgStyle}/>
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
@@ -56,6 +58,12 @@ const HomeScreen = ({navigation}: any) => {
   );
 };
 const styles = StyleSheet.create({
+  imgStyle:{
+width:'100%',
+objectFit:'cover',
+height:150,
+marginBottom:10,
+  },
   inputBox: {
     width: '80%',
     padding: 10,
@@ -66,7 +74,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingTop: 20,
-    gap: 14,
+    gap: 12,
     paddingHorizontal: 10,
   },
   wrapDateTime: {
