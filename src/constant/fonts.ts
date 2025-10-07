@@ -2,8 +2,8 @@ import { Platform } from 'react-native';
 
 // Font configuration for cross-platform compatibility
 export const fonts = {
-  monoton: Platform.OS === 'ios' ? 'Monoton-Regular' : 'Monoton-Regular',
-  righteous: Platform.OS === 'ios' ? 'Righteous-Regular' : 'Righteous',
+  monoton: 'Monoton-Regular' ,
+  righteous:'Righteous-Regular' 
 };
 
 // Helper function to get font family
