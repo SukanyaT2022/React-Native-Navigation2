@@ -84,7 +84,7 @@ const HomeNavigatorLayout = () => {
           name={screen.home}
           component={HomeScreen}
           //we put logo on option
-          options={{headerLeft: () =>  <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 30,width:500, color: "green", paddingTop:5, paddingLeft:10, fontWeight:'bold' }}>
+          options={{headerLeft: () =>  <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 30,width:500, color: "green", paddingBottom:10, paddingLeft:10, fontWeight:'bold' }}>
   Roam
          </Text>}}
         />

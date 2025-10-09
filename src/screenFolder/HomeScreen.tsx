@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import CheckBox from '../componentFolder/CheckBox';
@@ -11,7 +11,7 @@ import ButttonComp from '../componentFolder/ButttonComp';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
-
+import headerImg from '../../assets/imagesFolder/dog1.png';
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -21,6 +21,7 @@ const HomeScreen = ({navigation}: any) => {
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
+      <Image source={headerImg} style={{width:'100%', height:150, objectFit:'cover'}}/>
       <Text style={{fontWeight: 'bold'}}>
         FIND YOUR BEST CAR RENTAL WITH ROAM
       </Text>
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingTop: 20,
-    gap: 14,
+    gap: 12,
     paddingHorizontal: 10,
   },
   wrapDateTime: {
