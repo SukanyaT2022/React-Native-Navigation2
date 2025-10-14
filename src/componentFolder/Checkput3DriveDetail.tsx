@@ -7,7 +7,7 @@ import NewCountryCode2 from './NewCountryCode2';
 import { myColor } from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 import axios from 'axios';
-import { getCountries, getStatesByCountry } from '../utils/helpers';
+import { getCountries, getStatesByCountry, getCitiesByState } from '../utils/helpers';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -37,12 +37,14 @@ const  Checkput3DriveDetail = () => {
   });
 
   //fetch data below
+
   const [states, setStates] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
   const [cities, setCities] = useState<any[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<string>('');
   const [selectedState, setSelectedState] = useState<string>('');
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>('');
+  const [selectedStateCode, setSelectedStateCode] = useState<string>('');// select state code to get a city
   const [loading, setLoading] = useState<boolean>(true);
   
 useEffect(() => {
@@ -55,19 +57,30 @@ const fetchCountries = async()=>{
   const countryData = await getCountries()
   //getCountries() is from helper.ts
   setCountries(countryData)
-  setLoading(false)
- 
+  setLoading(false) 
 }
 
 const fetchStatesByCountry = async(countryCode: string)=>{
   setLoading(true)
   const stateData = await getStatesByCountry(countryCode)
+
   //getStatebyCountries() is from helper.ts
   setStates(stateData)
   setLoading(false)
 }
-console.log('test select country',selectedCountry);
+console.log('test select cities',selectedStateCode);
 console.log('test select state',selectedCountryCode);
+
+//fech cities by state and country
+const fetchCitiesByStates = async(countryCode: string, stateCode:string)=>{
+  setLoading(true)
+  const citiesData = await getCitiesByState(countryCode, stateCode)
+  console.log('citiesData',citiesData);
+  //getStatebyCountries() is from helper.ts
+  setCities(citiesData)
+  setLoading(false)
+}
+
 // Fetch states when country is selected
 useEffect(() => {
   if (selectedCountryCode) {
@@ -77,6 +90,15 @@ useEffect(() => {
   }
 }, [selectedCountryCode]);
 
+// Fetch cities when country and state are selected
+useEffect(() => {
+  if (selectedCountryCode && selectedStateCode ) {
+    fetchCitiesByStates(selectedCountryCode, selectedStateCode);
+    setSelectedState(''); // Reset selected state when country changes
+  }
+}, [selectedCountryCode, selectedStateCode]);
+
+
 // Handle country selection
 const handleCountryChange = (countryCode: string) => {
   setSelectedCountry(countryCode);
@@ -84,10 +106,10 @@ const handleCountryChange = (countryCode: string) => {
 
 // Handle state selection  
 const handleStateChange = (stateCode: string) => {
-  setSelectedState(stateCode);
+  setSelectedState(stateCode);//give value of that state
   // Here you can add logic to fetch cities based on selected state
   // For now, we'll just clear cities
-  setCities([]);
+ 
 };
 
   const handleInputChange = (field: keyof DriverDataProp, value: string) => {
@@ -141,6 +163,9 @@ const handleStateChange = (stateCode: string) => {
                dataProp={states} 
                placeholderProp='Select State'  
                onchangeFuncProp={handleStateChange}
+                onSelectFuncProp={(itemState: any) => {
+                  setSelectedStateCode(itemState.iso2);
+                }}
             />
             <InputboxDropdownMenuComp 
                dataProp={cities} 

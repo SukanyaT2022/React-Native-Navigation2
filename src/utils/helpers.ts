@@ -23,5 +23,23 @@ import { COUNTRY_APIKEY } from "../constant/countryApiKey";
           console.error('Country not found or no states available');
         }
       };
+
+      export const getCitiesByState = async (countryCode:string, stateCode:string) => {
+        const response = await fetch(
+          `https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`, 
+          {
+            headers: { 'X-CSCAPI-KEY': COUNTRY_APIKEY}
+          }
+        );
       
+        if (response.ok) {
+          const cities = await response.json();
+          console.log(`Found ${cities.length} cities in ${stateCode}, ${countryCode}`);
+          return cities;
+        } else {
+          console.error('State not found or no cities available');
+          return [];
+        }
+      };
+
     
