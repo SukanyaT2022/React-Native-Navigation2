@@ -83,7 +83,7 @@ const fetchCitiesByStates = async(countryCode: string, stateCode:string)=>{
   setLoading(false)
 }
 
-// Fetch states when country is selected
+// Fetch states when country is selected====
 useEffect(() => {
   if (selectedCountryCode) {
     fetchStatesByCountry(selectedCountryCode);
