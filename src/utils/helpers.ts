@@ -11,6 +11,7 @@ import { COUNTRY_APIKEY } from "../constant/countryApiKey";
     }
 
     export const getStatesByCountry = async (countryCode:string) => {
+      console.log('Fetching states for country code:', countryCode);
         const response = await fetch(`https://api.countrystatecity.in/v1/countries/${countryCode}/states`, {
           headers: { 'X-CSCAPI-KEY': COUNTRY_APIKEY }
         });

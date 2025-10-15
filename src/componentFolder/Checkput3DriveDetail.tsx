@@ -41,6 +41,8 @@ const  Checkput3DriveDetail = () => {
   const [states, setStates] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
   const [cities, setCities] = useState<any[]>([]);
+  const [selectedCityCode, setSelectedCityCode] = useState<string>('');
+
   const [selectedCountry, setSelectedCountry] = useState<string>('');
   const [selectedState, setSelectedState] = useState<string>('');
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>('');
@@ -111,6 +113,10 @@ const handleStateChange = (stateCode: string) => {
   // For now, we'll just clear cities
  
 };
+// Handle cities selection  
+const handleCityChange = (stateCode: string) => {
+  setSelectedState(stateCode);
+};
 
   const handleInputChange = (field: keyof DriverDataProp, value: string) => {
     setDriverData(prevState => ({
@@ -170,10 +176,10 @@ const handleStateChange = (stateCode: string) => {
             <InputboxDropdownMenuComp 
                dataProp={cities} 
                placeholderProp='Select City'  
-               onchangeFuncProp={(cityCode: string) => {
-                 // Handle city selection here
-                 console.log('Selected city:', cityCode);
-               }}
+               onchangeFuncProp={handleCityChange}
+               onSelectFuncProp={(itemState: any) => {
+                setSelectedCityCode(itemState.iso2);
+              }}
             />
       
        
