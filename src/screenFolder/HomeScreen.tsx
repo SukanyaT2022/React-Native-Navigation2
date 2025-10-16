@@ -11,18 +11,18 @@ import ButttonComp from '../componentFolder/ButttonComp';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
-import dogImg from '../../assets/imagesFolder/dog1.png'
-
+import headerImg from '../../assets/imagesFolder/dog1.png';
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
-      <Image source={dogImg} style={styles.imgStyle}/>
+     
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
+      <Image source={headerImg} style={{width:'100%', height:150, objectFit:'cover'}}/>
       <Text style={{fontWeight: 'bold'}}>
         FIND YOUR BEST CAR RENTAL WITH ROAM
       </Text>
