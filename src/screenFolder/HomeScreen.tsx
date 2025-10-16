@@ -18,6 +18,7 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
+     
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
@@ -57,6 +58,12 @@ const HomeScreen = ({navigation}: any) => {
   );
 };
 const styles = StyleSheet.create({
+  imgStyle:{
+width:'100%',
+objectFit:'cover',
+height:150,
+marginBottom:10,
+  },
   inputBox: {
     width: '80%',
     padding: 10,

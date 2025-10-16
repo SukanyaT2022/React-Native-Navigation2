@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Monoton-Regular.ttf",
+      "sha1": "153a328e43fe091266e300116d93536044d74109"
+    },
+    {
+      "path": "assets/fonts/Righteous-Regular.ttf",
+      "sha1": "74244e2996e950a9ebacf1a0aa1f30d1a3d37281"
+    },
+    {
+      "path": "assets/fonts/RubikMaze-Regular.ttf",
+      "sha1": "440b61c1ff22336f626ed0e44a91ad56b750caf9"
+    }
+  ]
+}

@@ -26,6 +26,7 @@ import CheckoutScreen from '../screenFolder/CheckoutScreen';
 import BackScreen1 from '../screenFolder/BackScreen1';
 import BackScreen2 from '../screenFolder/BackScreen2';
 import { myColor } from '../constant/color';
+import { getFontFamily } from '../constant/fonts';
 
 const Stack = createStackNavigator();
 
