@@ -17,6 +17,7 @@ interface DriverDataProp {
   email: string;
   phone: string;
   countryCode: string;
+  address: string;
 }
 
 // Defining the properties that this component shoult take,
@@ -34,6 +35,7 @@ const  Checkput3DriveDetail = () => {
     email: '',
     phone: '',
     countryCode: '',
+    address: '',
   });
 
   //fetch data below
@@ -119,7 +121,9 @@ const handleCityChange = (stateCode: string) => {
 };
 
   const handleInputChange = (field: keyof DriverDataProp, value: string) => {
+    console.log('FIELD AND VALUE', field, value);
     setDriverData(prevState => ({
+
       ...prevState,
       [field]: value,
     }));
@@ -139,18 +143,27 @@ const handleCityChange = (stateCode: string) => {
           <InputBox
             placeholderAr="First Name"
             onchangeFuncProp={text => handleInputChange('fName', text)}
+            value={driverData.fName}
           />
           <InputBox
             placeholderAr="Last Name"
             onchangeFuncProp={text => handleInputChange('lName', text)}
+            value={driverData.lName}
           />
           <InputBox
             placeholderAr="Email address"
             onchangeFuncProp={text => handleInputChange('email', text)}
+            value={driverData.email}
           />
           <InputBox
             placeholderAr="Phone Number"
             onchangeFuncProp={text => handleInputChange('phone', text)}
+            value={driverData.phone}
+          />
+           <InputBox
+            placeholderAr="Address"
+            onchangeFuncProp={text => handleInputChange('address', text)}
+            value={driverData.address}
           />
              <InputboxDropdownMenuComp 
                dataProp={countries} 
