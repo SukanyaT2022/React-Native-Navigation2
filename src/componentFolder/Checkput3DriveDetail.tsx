@@ -8,6 +8,7 @@ import { myColor } from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 import axios from 'axios';
 import { getCountries, getStatesByCountry, getCitiesByState } from '../utils/helpers';
+import CheckBox from './CheckBox';
 
 // this is the skeleton of the driver user info.
 // this is the structur of the driverData in the useState of line 24
@@ -50,6 +51,9 @@ const  Checkput3DriveDetail = () => {
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>('');
   const [selectedStateCode, setSelectedStateCode] = useState<string>('');// select state code to get a city
   const [loading, setLoading] = useState<boolean>(true);
+
+  // same address or not at detailscreen
+  const [sameAddress, setSameAddress] = useState<boolean>(false);
   
 useEffect(() => {
   //callmethod countryfrom lone 50 const fetchCountries = async()=>{
@@ -194,11 +198,13 @@ const handleCityChange = (stateCode: string) => {
                 setSelectedCityCode(itemState.iso2);
               }}
             />
+
       
        
         </View>
         <View>
-        
+          {/* check if the same address as bill address */}
+          <CheckBox item="Same as Driver's Address?"/>
         </View>
       </View>
     );

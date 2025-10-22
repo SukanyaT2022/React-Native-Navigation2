@@ -3,13 +3,13 @@ import React from 'react';
 import InputBox from './InputBoxPractice';
 import {myColor} from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
-import CheckBox from './CheckBox';
+
 
 const BillAddress = () => {
   return (
     <View style={styles.mainBox}>
       <Text style={styles.title}>Billing Address</Text>
-      <CheckBox item="Same as Driver's Address?"/>
+    
       <InputBox placeholderAr="Street Address" />
       <Text style={styles.text}>+ Add Suite/ Apartment etc</Text>
       <InputboxDropdownMenuComp
