@@ -202,7 +202,8 @@ const handleCityChange = (stateCode: string) => {
       
        
         </View>
-        <View>
+        <View style={{marginTop:20
+        }}>
           {/* check if the same address as bill address */}
           <CheckBox item="Same as Driver's Address?"/>
         </View>
