@@ -1,53 +1,72 @@
 // src/store/slices/addressSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
- sameDriverAddress: false,
+  sameDriverAddress: false,
   user: null,
-loading: false,
+  loading: false,
+
+  fname: '',
+  lname: '',
+  phone: '',
+  email: '',
+  address: '',
+  country: '',
+  state: '',
+  city: '',
+
 };
 
 const addressSlice = createSlice({
   name: 'address',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.counter += 1;
+    
+    updateFname: (state, action) => {
+      state.fname = action.payload;
     },
-    decrement: (state) => {
-      state.counter -= 1;
+    updateLname: (state, action) => {
+      state.lname = action.payload;
     },
-    incrementByAmount: (state, action) => {
-      state.counter += action.payload;
+    updatePhone: (state, action) => {
+      state.phone = action.payload;
     },
-    setUser: (state, action) => {
-      state.user = action.payload;
+    updateEmail: (state, action) => {
+      state.email = action.payload;
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
+    updateAddress: (state, action) => {
+      state.address = action.payload;
     },
-    reset: (state) => {
-      state.counter = 0;
-      state.user = null;
-      state.loading = false;
+    updateCountry: (state, action) => {
+      state.country = action.payload;
     },
+    updateState: (state, action) => {
+      state.state = action.payload;
+    },
+    updateCity: (state, action) => {
+      state.city = action.payload;
+    },
+   
+    
   },
 });
 
 // Export actions
-export const { 
-  increment, 
-  decrement, 
-  incrementByAmount, 
-  setUser, 
-  setLoading, 
-  reset 
+export const {
+  updateFname,
+  updateLname,
+  updatePhone,
+  updateEmail,
+  updateAddress,
+  updateCountry,
+  updateState,
+  updateCity,  
 } = addressSlice.actions;
 
 // Export selectors
-export const selectCounter = (state:any) => state.example.counter;
-export const selectUser = (state:any) => state.example.user;
-export const selectLoading = (state:any) => state.example.loading;
+export const selectCounter = (state: any) => state.example.counter;
+export const selectUser = (state: any) => state.example.user;
+export const selectLoading = (state: any) => state.example.loading;
 
 // Export reducer
 export default addressSlice.reducer;

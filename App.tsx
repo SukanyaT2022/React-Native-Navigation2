@@ -19,12 +19,16 @@ import { myColor } from './src/constant/color';
 import DetailsScreen from './src/screenFolder/DetailScreen';
 import ProfileNavigatorLayout from './src/navigatorFolder/ProfileNavigatorLayout';
 import BookingNavigatorLayout from './src/navigatorFolder/BookingNavigatorLayout';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 // step 1 crate bottom tab navigator below 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
+    //wrape view with provider so that we can pass data from redux store
+    <Provider store={store}>
     <View style={styles.container}>
     <NavigationContainer>
 {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
@@ -56,6 +60,7 @@ const App = () => {
 </Tab.Navigator>
     </NavigationContainer>
    </View>
+   </Provider>
   );
 };
 
