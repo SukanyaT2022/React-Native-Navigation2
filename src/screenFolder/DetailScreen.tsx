@@ -10,13 +10,26 @@ import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 import PaymentComp from '../componentFolder/PaymentComp';
 import BillAddress from '../componentFolder/BillAddress';
-
+//bring redux below
+import {  useSelector } from 'react-redux';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
   const {params} = route;
   const {id} = params || {}; // Extract id from params, default to undefined if not present
   console.log('DetailsScreen id:', id); // Log the id to verify it's being passed correctly
+  
+  //redux part 2
+  const {
+   sameDriverAddress,
+    // address,
+    // country,
+    // state,
+    // city,
+  
+     } = useSelector((state: any) => state.address);
+
+  
   const findItemBasedOnId = carData.find(item => item.id === id);
   // find((item) => item.id === id); method help to find item
   // that match id 1 that sent from product screen
@@ -83,7 +96,9 @@ const DetailsScreen = ({navigation}: any) => {
           title="Go back to HomeScreen"
           onPress={() => goBackHomeFunc()}
         /> */}
-        <BillAddress/>
+
+      {/* //below if not same address true show bill address component- if not hide it */}
+        {!sameDriverAddress && <BillAddress/>}
       </View>
       {/* <NewCountryCode2/> */}
     </ScrollView>

@@ -12,12 +12,41 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
 import headerImg from '../../assets/imagesFolder/dog1.png';
+//bring redux- we already
+// if send data to the store use  distpatch - on driverdetail3 screencomp
+
+//  but home screen we just want to show data 
+// //but not send datat back to the store--so we use only selector
+//brin redux below 
+import {  useSelector } from 'react-redux';
+
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
+    //below redux part 2 -- we donot use dispatch here-coz we not send data back
+
+const {
+fname,
+lname,      
+phone,
+email,
+address,
+country,
+state,
+city,
+
+ } = useSelector((state: any) => state.address);
+
+
   return (
+
     <ScrollView contentContainerStyle={styles.mainContainer}>
+
+
+       {/* from redux below */}
+     {/* <Text style={{fontSize:24, fontWeight:'bold', textAlign:'center', marginBottom:10}}>{fname}</Text> */}
+      
      
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars

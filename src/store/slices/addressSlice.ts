@@ -5,7 +5,6 @@ const initialState = {
   sameDriverAddress: false,
   user: null,
   loading: false,
-
   fname: '',
   lname: '',
   phone: '',
@@ -21,7 +20,9 @@ const addressSlice = createSlice({
   name: 'address',
   initialState,
   reducers: {
-    
+    updateSameAddress: (state, action) => {
+      state.sameDriverAddress = action.payload;
+    },
     updateFname: (state, action) => {
       state.fname = action.payload;
     },
@@ -53,6 +54,7 @@ const addressSlice = createSlice({
 
 // Export actions
 export const {
+  updateSameAddress,
   updateFname,
   updateLname,
   updatePhone,
