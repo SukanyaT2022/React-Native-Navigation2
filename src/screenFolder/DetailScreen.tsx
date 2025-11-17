@@ -1,10 +1,9 @@
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
-
+import {Button, Image, StyleSheet, Text, View, Platform, Keyboard} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useRoute} from '@react-navigation/native';
 import {carData} from '../constant/carData';
 import CheckoutCarDateComp from '../componentFolder/CheckoutCarDateComp';
 import Checkout2PayNow from '../componentFolder/Checkout2PayNow';
-import {ScrollView} from 'react-native-gesture-handler';
 import Checkput3DriveDetail from '../componentFolder/Checkput3DriveDetail';
 import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import { screen } from '../navigatorFolder/HomeNavigatorLayout';
@@ -61,7 +60,15 @@ const DetailsScreen = ({navigation}: any) => {
   ];
 
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView
+      style={{flex: 1}}
+      contentContainerStyle={{paddingBottom: 50}}
+      enableOnAndroid={true}
+      enableAutomaticScroll={true}
+      extraScrollHeight={150}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={true}
+    >
       <View style={styles.mainBox}>
         {/* <Text>Details Screen</Text> */}
         <Text style={{fontSize:20, fontWeight:600, marginBottom:5}}>{findItemBasedOnId?.type}</Text>
@@ -101,7 +108,7 @@ const DetailsScreen = ({navigation}: any) => {
         {!sameDriverAddress && <BillAddress/>}
       </View>
       {/* <NewCountryCode2/> */}
-    </ScrollView>
+    </KeyboardAwareScrollView>
   ); //close return
 };
 
