@@ -1,5 +1,5 @@
-import {Button, Image, StyleSheet, Text, View, Platform, Keyboard} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Button, Image, StyleSheet, Text, View, Platform, Keyboard, KeyboardAvoidingView} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {useRoute} from '@react-navigation/native';
 import {carData} from '../constant/carData';
 import CheckoutCarDateComp from '../componentFolder/CheckoutCarDateComp';
@@ -11,6 +11,7 @@ import PaymentComp from '../componentFolder/PaymentComp';
 import BillAddress from '../componentFolder/BillAddress';
 //bring redux below
 import {  useSelector } from 'react-redux';
+import ButttonComp from '../componentFolder/ButttonComp';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
@@ -60,16 +61,18 @@ const DetailsScreen = ({navigation}: any) => {
   ];
 
   return (
-    <KeyboardAwareScrollView
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={{flex: 1}}
-      contentContainerStyle={{paddingBottom: 50}}
-      enableOnAndroid={true}
-      enableAutomaticScroll={true}
-      extraScrollHeight={150}
-      keyboardShouldPersistTaps="handled"
-      showsVerticalScrollIndicator={true}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 150 : 0}
     >
-      <View style={styles.mainBox}>
+      <ScrollView
+        contentContainerStyle={{paddingBottom: 20}}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={true}
+        nestedScrollEnabled={true}
+      >
+        <View style={styles.mainBox}>
         {/* <Text>Details Screen</Text> */}
         <Text style={{fontSize:20, fontWeight:600, marginBottom:5}}>{findItemBasedOnId?.type}</Text>
         <Text>{findItemBasedOnId?.brand}</Text>
@@ -106,9 +109,14 @@ const DetailsScreen = ({navigation}: any) => {
 
       {/* //below if not same address true show bill address component- if not hide it */}
         {!sameDriverAddress && <BillAddress/>}
+      <ButttonComp
+      buttonText = "Continue"
+      onPressProp = {() => navigation.navigate(screen.confirm)}
+      selectedProp = {true}
+      />  
       </View>
-      {/* <NewCountryCode2/> */}
-    </KeyboardAwareScrollView>
+    </ScrollView>
+    </KeyboardAvoidingView>
   ); //close return
 };
 
