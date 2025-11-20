@@ -2,7 +2,9 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/AntDesign';
+import CarIcon from 'react-native-vector-icons/AntDesign';
+import UserIcon from 'react-native-vector-icons/AntDesign';
+import HouseIcon from 'react-native-vector-icons/Feather';
 import {
   View,
   Text,
@@ -24,8 +26,16 @@ import store from './src/store';
 
 // step 1 crate bottom tab navigator below
 const Tab = createBottomTabNavigator();
-
+// const toggleIconColorFunc = (focused: boolean) => {
+//   return focused ? myColor.greenColor : myColor.darkYellow;
+// }
 const App = () => {
+// all of code condition the same 34 to 37
+  myColor?.borderColor; 
+  // above if no border color execute
+  myColor.iconColor ??'#ffcd05';
+  myColor.darkYellow || '#FFCD06';
+  myColor.greenColor ? '#0DB184' : '#000000';
   return (
     //wrape view with provider so that we can pass data from redux store
     <Provider store={store}>
@@ -35,18 +45,21 @@ const App = () => {
           <Tab.Navigator>
             {/* //bottom tab screen go back to home screen */}
             <Tab.Screen
+           
               name={'Home'}
               // Home navigator come from file in navigation folder
               component={HomeNavigatorLayout}
               // we need word home to navigate to homscreen - to hide we use option
               options={{
+              
                 tabBarLabel(props) {
                   return null;
                 },
                 headerShown: false,
                 tabBarIcon(props) {
+          
                   return (
-                    <Icon name="home" size={30} color={myColor.iconColor} />
+                    <HouseIcon name="home" size={25} color={ props.focused ? myColor.greenColor : myColor.iconColor} />
                   );
                   // <Text style={{color: props.color}}>🏠</Text>;
                 },
@@ -57,14 +70,36 @@ const App = () => {
               // Home navigator come from file in navigation folder
               component={ProfileNavigatorLayout}
               // we need word home to navigate to homscreen - to hide we use option
-              options={{headerShown: false}}
+              options={{
+                tabBarLabel(props) {
+                  return null;
+                },
+                headerShown: false,
+                tabBarIcon(props) {
+                  return (
+                    <UserIcon name="user" size={25} color={props.focused ? myColor.greenColor : myColor.iconColor} />
+                  );
+                  // <Text style={{color: props.color}}>🏠</Text>;
+                },
+              }}
             />
             <Tab.Screen
               name={'Booking Layout'}
               // Home navigator come from file in navigation folder
               component={BookingNavigatorLayout}
               // we need word home to navigate to homscreen - to hide we use option
-              options={{headerShown: false}}
+              options={{
+                tabBarLabel(props) {
+                  return null;
+                },
+                headerShown: false,
+                tabBarIcon(props) {
+                  return (
+                    <CarIcon name="car" size={25} color={props.focused ? myColor.greenColor : myColor.iconColor} />
+                  );
+                  // <Text style={{color: props.color}}>🏠</Text>;
+                },
+              }}
             />
           </Tab.Navigator>
         </NavigationContainer>
