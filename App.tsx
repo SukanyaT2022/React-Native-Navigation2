@@ -42,7 +42,9 @@ const App = () => {
       <View style={styles.container}>
         <NavigationContainer>
           {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
-          <Tab.Navigator>
+          
+          {/* increase paddint top at tab bar bottom navigation style */}
+          <Tab.Navigator screenOptions={{tabBarStyle: {paddingTop: 10}}}>
             {/* //bottom tab screen go back to home screen */}
             <Tab.Screen
            

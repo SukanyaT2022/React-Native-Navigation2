@@ -10,8 +10,10 @@ interface ProfileCompProps {
 const ProfileComp = ({iconProp, textProp, onclickProp}: ProfileCompProps) => {
   return (
     <TouchableOpacity style={styles.main}>
+      <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
       {iconProp}
       <Text>{textProp}</Text>
+      </View>
       <View style={styles.circleWrapArrowIcon}>
         <ArrowIcon name="arrow-up-right" size={20} color={myColor.greenColor} />
       </View>
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 10,
     borderWidth: 1,
-    borderColor: myColor.borderColor,
+    borderColor: myColor.greenColor,
     borderRadius: 20,
     padding: 10,
   },
