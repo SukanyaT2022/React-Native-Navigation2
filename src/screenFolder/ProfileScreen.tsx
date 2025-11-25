@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import ButttonComp from '../componentFolder/ButttonComp';
 import {profileScreen} from '../navigatorFolder/ProfileNavigatorLayout';
 import ProfileComp from '../componentFolder/ProfileComp';
@@ -8,7 +8,9 @@ import CarIcon from 'react-native-vector-icons/AntDesign';
 import PaymentIcon from 'react-native-vector-icons/MaterialIcons';
 import HelpIcon from 'react-native-vector-icons/MaterialIcons';
 import { myColor } from '../constant/color';
+import BottomSheetTest from '../componentFolder/BottomSheetTest';
 const ProfileScreen = ({navigation}: any) => {
+  const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
   return (
     <View style={styles.main}>
       {/* <Text>Profile</Text> */}
@@ -24,7 +26,8 @@ const ProfileScreen = ({navigation}: any) => {
       <View>
         <ProfileComp
           iconProp={<UserIcon name="user" style={styles.iconStyle} />}
-          textProp="Edit Profile"
+          textProp="Edit Profile" 
+          onclickProp={()=>setShowEditProfileBtnSheet(true)}
         />
         <ProfileComp
           iconProp={<CarIcon name="car" style={styles.iconStyle} />}
@@ -43,6 +46,9 @@ const ProfileScreen = ({navigation}: any) => {
         buttonText="Edit Profile"
         onPressProp={() => navigation.navigate(profileScreen.editProfile)}
       /> */}
+      {
+        showEditProfileBtnSheet && <BottomSheetTest/>
+      }
     </View>
   );
 };

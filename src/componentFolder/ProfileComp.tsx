@@ -9,7 +9,7 @@ interface ProfileCompProps {
 }
 const ProfileComp = ({iconProp, textProp, onclickProp}: ProfileCompProps) => {
   return (
-    <TouchableOpacity style={styles.main}>
+    <TouchableOpacity style={styles.main} onPress={onclickProp}>
       <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
       {iconProp}
       <Text>{textProp}</Text>
