@@ -8,7 +8,7 @@ import CarIcon from 'react-native-vector-icons/AntDesign';
 import PaymentIcon from 'react-native-vector-icons/MaterialIcons';
 import HelpIcon from 'react-native-vector-icons/MaterialIcons';
 import { myColor } from '../constant/color';
-import BottomSheetTest from '../componentFolder/BottomSheetTest';
+import BottomSheetTest from '../componentFolder/EditProfileBottomShiftComp';
 const ProfileScreen = ({navigation}: any) => {
   const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
   return (

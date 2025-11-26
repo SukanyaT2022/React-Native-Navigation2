@@ -1,9 +1,12 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import InputBox from './InputBoxPractice';
 
-export default function BottomSheetTest() {
+export default function EditProfileBottomShiftComp() {
+  const [storeFullname, setStoreFullname] = useState<string>("")
+
   const bottomSheetRef = useRef(null) as any;
 
   // Snap points define where the bottom sheet stops when dragging
@@ -14,6 +17,7 @@ export default function BottomSheetTest() {
   };
 
   const handleClosePress = () => {
+
     bottomSheetRef.current?.close();
   };
 
@@ -33,11 +37,24 @@ export default function BottomSheetTest() {
         handleIndicatorStyle={styles.handleIndicator}
       >
         <BottomSheetView style={styles.bottomSheetContent}>
-          <Text style={styles.bottomSheetTitle}>Bottom Sheet Content</Text>
+          {/* <Text style={styles.bottomSheetTitle}>Bottom Sheet Content</Text>
           <Text style={styles.bottomSheetText}>
             Drag the handle to resize or swipe down to close.
           </Text>
-          <Button title="Close" onPress={handleClosePress} />
+          <Button title="Close" onPress={handleClosePress} /> */}
+
+          <Text>Edit Profile</Text>
+          <InputBox
+           placeholderAr = "Fullname"
+           onchangeFuncProp= {(text) => setStoreFullname(text)}   
+           value={storeFullname}
+           />
+           <InputBox
+           placeholderAr = "Fullname"
+           onchangeFuncProp= {(text) => setStoreFullname(text)}   
+           value={storeFullname}
+           />
+
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>
