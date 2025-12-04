@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ButttonComp from '../componentFolder/ButttonComp';
 import {profileScreen} from '../navigatorFolder/ProfileNavigatorLayout';
 import ProfileComp from '../componentFolder/ProfileComp';
@@ -9,8 +9,16 @@ import PaymentIcon from 'react-native-vector-icons/MaterialIcons';
 import HelpIcon from 'react-native-vector-icons/MaterialIcons';
 import { myColor } from '../constant/color';
 import BottomSheetTest from '../componentFolder/EditProfileBottomShiftComp';
+import EditProfileBottomShiftComp from '../componentFolder/EditProfileBottomShiftComp';
 const ProfileScreen = ({navigation}: any) => {
   const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
+  
+    const bottomSheetRef = useRef(null) as any;
+
+    const handleOpenPress = () => {
+    bottomSheetRef.current?.expand();
+    setShowEditProfileBtnSheet(true)
+  };
   return (
     <View style={styles.main}>
       {/* <Text>Profile</Text> */}
@@ -27,7 +35,7 @@ const ProfileScreen = ({navigation}: any) => {
         <ProfileComp
           iconProp={<UserIcon name="user" style={styles.iconStyle} />}
           textProp="Edit Profile" 
-          onclickProp={()=>setShowEditProfileBtnSheet(true)}
+          onclickProp={()=>handleOpenPress()}
         />
         <ProfileComp
           iconProp={<CarIcon name="car" style={styles.iconStyle} />}
@@ -47,7 +55,10 @@ const ProfileScreen = ({navigation}: any) => {
         onPressProp={() => navigation.navigate(profileScreen.editProfile)}
       /> */}
       {
-        showEditProfileBtnSheet && <BottomSheetTest/>
+        showEditProfileBtnSheet && <EditProfileBottomShiftComp 
+   bottomSheetRefprop={bottomSheetRef}
+     
+         />
       }
     </View>
   );
@@ -59,18 +70,19 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     paddingHorizontal: 20,
-    
+    paddingTop: 20,
   },
   imgStyle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
     marginHorizontal: 'auto',
     marginVertical: 20,
+    borderWidth: 3,
+    borderColor: myColor.greenColor,
   },
   iconStyle: {
     fontSize: 30,
     color: myColor.greenColor,
-
   },
 });

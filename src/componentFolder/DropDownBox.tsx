@@ -41,7 +41,7 @@ const DropDownBox = ({onSelect}: DropDownBoxProp) => {
         }));
         setData(formattedData);
       })
-      .catch(err => console.error('Error:', err));
+      .catch(err => console.log('Error:', err));
   }, []);
 
   return (

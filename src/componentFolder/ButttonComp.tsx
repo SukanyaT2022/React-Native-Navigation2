@@ -11,8 +11,8 @@ selectedProp?: boolean,
 const ButttonComp = ({buttonText, onPressProp,selectedProp }:ButtonProp) => {
 
   return (
-    <TouchableOpacity style={[styles.buttonStyle, selectedProp && {backgroundColor:myColor.greenColor}]} onPress={onPressProp} >
-      <Icon name="plus" size={17} color="white" />
+    <TouchableOpacity style={[styles.buttonStyle, selectedProp && {backgroundColor:'white'}]} onPress={onPressProp} >
+      <Icon name="check-circle" size={24} color="green" />
       {/* <Image source={iconBtnCompProp}/> */}
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>
     </TouchableOpacity>
@@ -24,8 +24,8 @@ export default ButttonComp
 const styles = StyleSheet.create({
 buttonStyle:{
 // backgroundColor:myColor.verylightGray,
-backgroundColor:'#fff',
-borderWidth:2,
+// backgroundColor:'#fff',
+borderWidth:1.5,
 borderColor:'green',
 alignItems:'center',
 padding:10,
@@ -38,7 +38,7 @@ justifyContent:'center',
   },
   buttonTextStyle:{
 color:'green',
-fontWeight:'bold',
+fontWeight:'500',
 fontSize:16,
   },
 })

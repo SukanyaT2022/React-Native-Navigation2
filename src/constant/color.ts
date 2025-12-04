@@ -12,4 +12,4 @@ export const myColor = {
   red:'#cb4335',
 };
 // we set every border radious is 5 
-export const myCardBorder = 5;
+export const myCardBorder = 20;

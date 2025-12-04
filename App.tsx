@@ -48,7 +48,7 @@ const App = () => {
             {/* //bottom tab screen go back to home screen */}
             <Tab.Screen
            
-              name={'Home'}
+              name={'HomeTab'}
               // Home navigator come from file in navigation folder
               component={HomeNavigatorLayout}
               // we need word home to navigate to homscreen - to hide we use option

@@ -1,61 +1,132 @@
-import React, { useRef, useMemo, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import React, {useRef, useMemo, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import BottomSheet, {
+  BottomSheetView,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import InputBox from './InputBoxPractice';
+import {Edge} from 'react-native-safe-area-context';
+import ButttonComp from './ButttonComp';
+import CameraIcon from 'react-native-vector-icons/Feather';
+import CloseIcon from 'react-native-vector-icons/AntDesign';
 
-export default function EditProfileBottomShiftComp() {
-  const [storeFullname, setStoreFullname] = useState<string>("")
+interface EditProfileProps {
+  handlePressProps?: () => void;
+  bottomSheetRefprop: any;
+}
 
-  const bottomSheetRef = useRef(null) as any;
+export default function EditProfileBottomShiftComp({
+  handlePressProps,
+  bottomSheetRefprop,
+}: EditProfileProps) {
+  const [storeFname, setStoreFname] = useState<string>('');
+  const [storeLname, setStoreLname] = useState<string>('');
+  const [storeDOB, setStoreDOB] = useState<string>('');
+  const [storeEmail, setStoreEmail] = useState<string>('');
+  const [storeLocation, setStoreLocation] = useState<string>('');
+  const [storePhone, setStorePhone] = useState<string>('');
 
   // Snap points define where the bottom sheet stops when dragging
-  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
+  const snapPoints = useMemo(() => ['50%', '75%', '95%'], []);
+const closeEditProfileFunc = () => {
+  bottomSheetRefprop.current?.close();
+}
+  // const handleClosePress = () => {
+  //   bottomSheetRef.current?.close();
+  // };
 
-  const handleOpenPress = () => {
-    bottomSheetRef.current?.expand();
-  };
-
-  const handleClosePress = () => {
-
-    bottomSheetRef.current?.close();
+  const handleSavePress = () => {
+    console.log('Saving profile:', {
+      storeFname,
+      storeLname,
+      storeDOB,
+      storeEmail,
+      storeLocation,
+      storePhone,
+    });
+    // Close the bottom sheet after saving
+    bottomSheetRefprop.current?.close();
   };
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Bottom Sheet Demo</Text>
-        <Button title="Open Bottom Sheet" onPress={handleOpenPress} />
-      </View>
-
       <BottomSheet
-        ref={bottomSheetRef}
+        ref={bottomSheetRefprop}
         index={-1} // Start closed (-1), or 0 for first snap point
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         backgroundStyle={styles.bottomSheetBackground}
-        handleIndicatorStyle={styles.handleIndicator}
-      >
-        <BottomSheetView style={styles.bottomSheetContent}>
-          {/* <Text style={styles.bottomSheetTitle}>Bottom Sheet Content</Text>
-          <Text style={styles.bottomSheetText}>
-            Drag the handle to resize or swipe down to close.
-          </Text>
-          <Button title="Close" onPress={handleClosePress} /> */}
+        handleIndicatorStyle={styles.handleIndicator}>
+        <BottomSheetScrollView
+          style={styles.bottomSheetContent}
+          contentContainerStyle={styles.scrollContent}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={styles.title}>Manage Account</Text>
+            <CloseIcon onPress={closeEditProfileFunc}
+            style={{position: 'absolute', right: 0, top:2}}
+            name="close" size={30} color="green" />
+          </View>
 
-          <Text>Edit Profile</Text>
+          <View style={styles.profileImageContainer}>
+            <Image
+              source={require('../../assets/imagesFolder/cat1.png')}
+              style={styles.profileImage}
+            />
+            <TouchableOpacity style={styles.cameraButton}>
+              <CameraIcon name="camera" size={20} color="white" />
+            </TouchableOpacity>
+          </View>
+
           <InputBox
-           placeholderAr = "Fullname"
-           onchangeFuncProp= {(text) => setStoreFullname(text)}   
-           value={storeFullname}
-           />
-           <InputBox
-           placeholderAr = "Fullname"
-           onchangeFuncProp= {(text) => setStoreFullname(text)}   
-           value={storeFullname}
-           />
+            placeholderAr="First Name"
+            onchangeFuncProp={text => setStoreFname(text)}
+            value={storeFname}
+          />
+          <InputBox
+            placeholderAr="Last Name"
+            onchangeFuncProp={text => setStoreLname(text)}
+            value={storeLname}
+          />
+          <InputBox
+            placeholderAr="Date of Birth"
+            onchangeFuncProp={text => setStoreDOB(text)}
+            value={storeDOB}
+          />
+          <InputBox
+            placeholderAr="Email"
+            onchangeFuncProp={text => setStoreEmail(text)}
+            value={storeEmail}
+          />
+          <InputBox
+            placeholderAr="Location"
+            onchangeFuncProp={text => setStoreLocation(text)}
+            value={storeLocation}
+          />
+          <InputBox
+            placeholderAr="Phone"
+            onchangeFuncProp={text => setStorePhone(text)}
+            value={storePhone}
+          />
 
-        </BottomSheetView>
+          <ButttonComp
+            buttonText="Save Changes"
+            onPressProp={handleSavePress}
+            selectedProp={true}
+          />
+        </BottomSheetScrollView>
       </BottomSheet>
     </GestureHandlerRootView>
   );
@@ -63,18 +134,47 @@ export default function EditProfileBottomShiftComp() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   content: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: '600',
     marginBottom: 20,
+    textAlign: 'center',
+  },
+  profileImageContainer: {
+    alignSelf: 'center',
+    marginBottom: 20,
+    position: 'relative',
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: 'green',
+  },
+  cameraButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: 'green',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: 'white',
   },
   bottomSheetBackground: {
     backgroundColor: 'white',
@@ -95,8 +195,11 @@ const styles = StyleSheet.create({
   },
   bottomSheetContent: {
     flex: 1,
-    padding: 20,
-    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    paddingBottom: 40,
+    gap: 20,
   },
   bottomSheetTitle: {
     fontSize: 20,
