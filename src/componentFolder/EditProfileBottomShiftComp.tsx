@@ -6,6 +6,8 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  Alert,
+  Platform,
 } from 'react-native';
 import BottomSheet, {
   BottomSheetView,
@@ -17,6 +19,7 @@ import {Edge} from 'react-native-safe-area-context';
 import ButttonComp from './ButttonComp';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
+import {launchCamera, launchImageLibrary, ImagePickerResponse} from 'react-native-image-picker';
 
 interface EditProfileProps {
   handlePressProps?: () => void;
@@ -33,15 +36,14 @@ export default function EditProfileBottomShiftComp({
   const [storeEmail, setStoreEmail] = useState<string>('');
   const [storeLocation, setStoreLocation] = useState<string>('');
   const [storePhone, setStorePhone] = useState<string>('');
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
   // Snap points define where the bottom sheet stops when dragging
   const snapPoints = useMemo(() => ['50%', '75%', '95%'], []);
-const closeEditProfileFunc = () => {
-  bottomSheetRefprop.current?.close();
-}
-  // const handleClosePress = () => {
-  //   bottomSheetRef.current?.close();
-  // };
+  
+  const closeEditProfileFunc = () => {
+    bottomSheetRefprop.current?.close();
+  };
 
   const handleSavePress = () => {
     console.log('Saving profile:', {
@@ -51,9 +53,79 @@ const closeEditProfileFunc = () => {
       storeEmail,
       storeLocation,
       storePhone,
+      profileImage,
     });
     // Close the bottom sheet after saving
     bottomSheetRefprop.current?.close();
+  };
+
+  const handleImagePicker = () => {
+    Alert.alert(
+      'Select Photo',
+      'Choose an option',
+      [
+        {
+          text: 'Take Photo',
+          onPress: () => openCamera(),
+        },
+        {
+          text: 'Choose from Library',
+          onPress: () => openGallery(),
+        },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+      {cancelable: true}
+    );
+  };
+
+  const openCamera = () => {
+    const options = {
+      mediaType: 'photo' as const,
+      quality: 0.8 as const,
+      saveToPhotos: true,
+      cameraType: 'back' as const,
+    };
+
+    launchCamera(options, (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        console.log('User cancelled camera');
+      } else if (response.errorCode) {
+        console.log('Camera Error: ', response.errorMessage);
+        Alert.alert('Error', response.errorMessage || 'Failed to open camera');
+      } else if (response.assets && response.assets[0]) {
+        const imageUri = response.assets[0].uri;
+        if (imageUri) {
+          setProfileImage(imageUri);
+          console.log('Image selected from camera:', imageUri);
+        }
+      }
+    });
+  };
+
+  const openGallery = () => {
+    const options = {
+      mediaType: 'photo' as const,
+      quality: 0.8 as const,
+      selectionLimit: 1,
+    };
+
+    launchImageLibrary(options, (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+        Alert.alert('Error', response.errorMessage || 'Failed to open gallery');
+      } else if (response.assets && response.assets[0]) {
+        const imageUri = response.assets[0].uri;
+        if (imageUri) {
+          setProfileImage(imageUri);
+          console.log('Image selected from gallery:', imageUri);
+        }
+      }
+    });
   };
 
   return (
@@ -82,10 +154,17 @@ const closeEditProfileFunc = () => {
 
           <View style={styles.profileImageContainer}>
             <Image
-              source={require('../../assets/imagesFolder/cat1.png')}
+              source={
+                profileImage
+                  ? {uri: profileImage}
+                  : require('../../assets/imagesFolder/cat1.png')
+              }
               style={styles.profileImage}
             />
-            <TouchableOpacity style={styles.cameraButton}>
+            <TouchableOpacity 
+              style={styles.cameraButton}
+              onPress={handleImagePicker}
+            >
               <CameraIcon name="camera" size={20} color="white" />
             </TouchableOpacity>
           </View>

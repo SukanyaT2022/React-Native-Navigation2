@@ -10,6 +10,7 @@ import HelpIcon from 'react-native-vector-icons/MaterialIcons';
 import { myColor } from '../constant/color';
 import BottomSheetTest from '../componentFolder/EditProfileBottomShiftComp';
 import EditProfileBottomShiftComp from '../componentFolder/EditProfileBottomShiftComp';
+import ImagePickerTest from '../componentFolder/ImagePickertest';
 const ProfileScreen = ({navigation}: any) => {
   const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
   
@@ -21,6 +22,7 @@ const ProfileScreen = ({navigation}: any) => {
   };
   return (
     <View style={styles.main}>
+
       {/* <Text>Profile</Text> */}
       <View style={{alignItems: 'center', gap: 10}}>
         <Image
@@ -50,6 +52,7 @@ const ProfileScreen = ({navigation}: any) => {
           textProp="Help & Support"
         />
       </View>
+      <ImagePickerTest/>
       {/* <ButttonComp
         buttonText="Edit Profile"
         onPressProp={() => navigation.navigate(profileScreen.editProfile)}
