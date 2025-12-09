@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { View, Button, Image, StyleSheet } from 'react-native';
+
+// we need line 4 to put onto editprofiledhiftcomp.tsx
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 
 const ImagePickerTest = () => {
+
+  // copy line 9 to 45 and put on where to use where to take camera. 
+  //this one just for test 
+  // we put line 9 to 45 to editprofiledhiftcomp.tsx
+
   const [imageUri, setImageUri] = useState(null);
 
   const pickImageFromGallery = () => {
