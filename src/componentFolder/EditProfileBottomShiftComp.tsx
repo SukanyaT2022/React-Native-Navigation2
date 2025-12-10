@@ -20,6 +20,8 @@ import ButttonComp from './ButttonComp';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import {launchCamera, launchImageLibrary, ImagePickerResponse} from 'react-native-image-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateImageProfile } from '../store/slices/addressSlice';
 
 
 interface EditProfileProps {
@@ -31,55 +33,68 @@ export default function EditProfileBottomShiftComp({
   handlePressProps,
   bottomSheetRefprop,
 }: EditProfileProps) {
+  // redux step 1 below- 
+  // also copy const{imageprofile} to profile screenn.tsx and selector to get datat image from redux
+   const dispatch = useDispatch() as any; // to dispatch action to redux store
+  const {imageProfile} =
+    useSelector((state: any) => state.address);
+
   const [storeFname, setStoreFname] = useState<string>('');
   const [storeLname, setStoreLname] = useState<string>('');
   const [storeDOB, setStoreDOB] = useState<string>('');
   const [storeEmail, setStoreEmail] = useState<string>('');
   const [storeLocation, setStoreLocation] = useState<string>('');
   const [storePhone, setStorePhone] = useState<string>('');
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImage, setProfileImage] = useState<string | null>(imageProfile);
 
   // Snap points define where the bottom sheet stops when dragging
   const snapPoints = useMemo(() => ['50%', '75%', '95%'], []);
 
-  //  below comfrom ImagePickerTest.tsx
-  const [imageUri, setImageUri] = useState(null);
+// redux bring image profileImage- dispatch / sent value to redux 
+// and useSelector/ get value from redux
+
+
+
+
+
+  // //  below comfrom ImagePickerTest.tsx
+  // const [imageUri, setImageUri] = useState(null);
   
-    const pickImageFromGallery = () => {
-      const options = {
-        mediaType: 'photo',
-        quality: 1,
-        selectionLimit: 1, // 0 for multiple images
-      };
+  //   const pickImageFromGallery = () => {
+  //     const options = {
+  //       mediaType: 'photo',
+  //       quality: 1,
+  //       selectionLimit: 1, // 0 for multiple images
+  //     };
   
-      launchImageLibrary(options, (response) => {
-        if (response.didCancel) {
-          console.log('User cancelled');
-        } else if (response.errorCode) {
-          console.log('Error: ', response.errorMessage);
-        } else if (response.assets) {
-          setImageUri(response.assets[0].uri);
-        }
-      });
-    };
+  //     launchImageLibrary(options, (response) => {
+  //       if (response.didCancel) {
+  //         console.log('User cancelled');
+  //       } else if (response.errorCode) {
+  //         console.log('Error: ', response.errorMessage);
+  //       } else if (response.assets) {
+  //         setImageUri(response.assets[0].uri);
+  //       }
+  //     });
+  //   };
   
-    const takePhoto = () => {
-      const options = {
-        mediaType: 'photo',
-        quality: 1,
-        saveToPhotos: true,
-      };
+  //   const takePhoto = () => {
+  //     const options = {
+  //       mediaType: 'photo',
+  //       quality: 1,
+  //       saveToPhotos: true,
+  //     };
   
-      launchCamera(options, (response) => {
-        if (response.didCancel) {
-          console.log('User cancelled');
-        } else if (response.errorCode) {
-          console.log('Error: ', response.errorMessage);
-        } else if (response.assets) {
-          setImageUri(response.assets[0].uri);
-        }
-      });
-    };
+  //     launchCamera(options, (response) => {
+  //       if (response.didCancel) {
+  //         console.log('User cancelled');
+  //       } else if (response.errorCode) {
+  //         console.log('Error: ', response.errorMessage);
+  //       } else if (response.assets) {
+  //         setImageUri(response.assets[0].uri);
+  //       }
+  //     });
+  //   };
   
 
   const closeEditProfileFunc = () => {
@@ -121,7 +136,7 @@ export default function EditProfileBottomShiftComp({
       {cancelable: true}
     );
   };
-
+// take pic from take camera
   const openCamera = () => {
     const options = {
       mediaType: 'photo' as const,
@@ -140,12 +155,16 @@ export default function EditProfileBottomShiftComp({
         const imageUri = response.assets[0].uri;
         if (imageUri) {
           setProfileImage(imageUri);
+
+          //redux dispatch here part 2 below
+          dispatch(updateImageProfile(imageUri));
+
           console.log('Image selected from camera:', imageUri);
         }
       }
     });
   };
-
+// take pic from library 
   const openGallery = () => {
     const options = {
       mediaType: 'photo' as const,
@@ -163,6 +182,11 @@ export default function EditProfileBottomShiftComp({
         const imageUri = response.assets[0].uri;
         if (imageUri) {
           setProfileImage(imageUri);
+
+          //redux dispatch here part 3 below
+          dispatch(updateImageProfile(imageUri));
+
+
           console.log('Image selected from gallery:', imageUri);
         }
       }

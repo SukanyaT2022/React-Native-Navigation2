@@ -11,14 +11,20 @@ import { myColor } from '../constant/color';
 import BottomSheetTest from '../componentFolder/EditProfileBottomShiftComp';
 import EditProfileBottomShiftComp from '../componentFolder/EditProfileBottomShiftComp';
 import ImagePickerTest from '../componentFolder/ImagePickertest';
+import { useSelector } from 'react-redux';
 const ProfileScreen = ({navigation}: any) => {
   const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
   
     const bottomSheetRef = useRef(null) as any;
+// redux step 1 below
+    const {imageProfile} =
+    useSelector((state: any) => state.address);
 
     const handleOpenPress = () => {
-    bottomSheetRef.current?.expand();
     setShowEditProfileBtnSheet(true)
+    bottomSheetRef.current?.expand();
+
+
   };
   return (
     <View style={styles.main}>
@@ -26,7 +32,8 @@ const ProfileScreen = ({navigation}: any) => {
       {/* <Text>Profile</Text> */}
       <View style={{alignItems: 'center', gap: 10}}>
         <Image
-          source={require('../../assets/imagesFolder/dog1.png')}
+          source={imageProfile ? {uri: imageProfile} : require('../../assets/imagesFolder/dog1.png')}
+          // source={require('../../assets/imagesFolder/dog1.png')}
           style={styles.imgStyle}
         />
         <Text>First name: Last name:</Text>
@@ -52,7 +59,7 @@ const ProfileScreen = ({navigation}: any) => {
           textProp="Help & Support"
         />
       </View>
-      <ImagePickerTest/>
+    
       {/* <ButttonComp
         buttonText="Edit Profile"
         onPressProp={() => navigation.navigate(profileScreen.editProfile)}

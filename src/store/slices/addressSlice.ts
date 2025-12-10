@@ -13,7 +13,7 @@ const initialState = {
   country: '',
   state: '',
   city: '',
-
+  imageProfile:'',
 };
 
 const addressSlice = createSlice({
@@ -47,7 +47,9 @@ const addressSlice = createSlice({
     updateCity: (state, action) => {
       state.city = action.payload;
     },
-   
+      updateImageProfile: (state, action) => {
+      state.imageProfile = action.payload;
+    },
     
   },
 });
@@ -63,6 +65,7 @@ export const {
   updateCountry,
   updateState,
   updateCity,  
+  updateImageProfile
 } = addressSlice.actions;
 
 // Export selectors
