@@ -1,30 +1,24 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React, { useRef, useState } from 'react';
-import ButttonComp from '../componentFolder/ButttonComp';
-import {profileScreen} from '../navigatorFolder/ProfileNavigatorLayout';
+import React, { useRef } from 'react';
 import ProfileComp from '../componentFolder/ProfileComp';
 import UserIcon from 'react-native-vector-icons/AntDesign';
 import CarIcon from 'react-native-vector-icons/AntDesign';
 import PaymentIcon from 'react-native-vector-icons/MaterialIcons';
 import HelpIcon from 'react-native-vector-icons/MaterialIcons';
 import { myColor } from '../constant/color';
-import BottomSheetTest from '../componentFolder/EditProfileBottomShiftComp';
 import EditProfileBottomShiftComp from '../componentFolder/EditProfileBottomShiftComp';
-import ImagePickerTest from '../componentFolder/ImagePickertest';
 import { useSelector } from 'react-redux';
 const ProfileScreen = ({navigation}: any) => {
-  const [showEditProfileBtnSheet, setShowEditProfileBtnSheet] = useState<boolean>(false)
+  const bottomSheetRef = useRef(null) as any;
   
-    const bottomSheetRef = useRef(null) as any;
-// redux step 1 below
-    const {imageProfile} =
-    useSelector((state: any) => state.address);
+  // redux step 1 below
+  const {imageProfile} = useSelector((state: any) => state.address);
 
-    const handleOpenPress = () => {
-    setShowEditProfileBtnSheet(true)
-    bottomSheetRef.current?.expand();
-
-
+  const handleOpenPress = () => {
+    // Use setTimeout to ensure the component is mounted before calling expand
+    setTimeout(() => {
+      bottomSheetRef.current?.expand();
+    }, 100);
   };
   return (
     <View style={styles.main}>
@@ -64,12 +58,10 @@ const ProfileScreen = ({navigation}: any) => {
         buttonText="Edit Profile"
         onPressProp={() => navigation.navigate(profileScreen.editProfile)}
       /> */}
-      {
-        showEditProfileBtnSheet && <EditProfileBottomShiftComp 
-   bottomSheetRefprop={bottomSheetRef}
-     
-         />
-      }
+      
+      <EditProfileBottomShiftComp 
+        bottomSheetRefprop={bottomSheetRef}
+      />
     </View>
   );
 };

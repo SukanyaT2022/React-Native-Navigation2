@@ -19,12 +19,36 @@ const PaymentComp = () => {
       <Text style={styles.title}>Payment Details</Text>
   
      
-      <CreditCardComp/>
-      <InputBox placeholderAr='Card Holder Name' value={cardHolderName}   onchangeFuncProp={(text)=>{setCardHolderName(text)}} />
+      <CreditCardComp 
+        value={cardNum}
+        onChangeText={(text) => setCardNum(text)}
+      />
+      
+      <InputBox 
+        placeholderAr='Card Holder Name' 
+        value={cardHolderName}   
+        onchangeFuncProp={(text) => {setCardHolderName(text)}}
+        inputType='text'
+        keyboardType='default'
+      />
 
-      <InputBox placeholderAr='Card Expiration Date' value={expiryDate} onchangeFuncProp={(text)=>{setExpiryDate(text)}} />
+      <InputBox 
+        placeholderAr='Card Expiration Date (MM/YY)' 
+        value={expiryDate} 
+        onchangeFuncProp={(text) => {setExpiryDate(text)}}
+        inputType='number'
+        keyboardType='number-pad'
+        maxLength={5}
+      />
 
-      <InputBox placeholderAr='Security Code' value={securityCode} onchangeFuncProp={(text)=>{setSecurityCode(text)}} />
+      <InputBox 
+        placeholderAr='Security Code (CVV)' 
+        value={securityCode} 
+        onchangeFuncProp={(text) => {setSecurityCode(text)}}
+        inputType='number'
+        keyboardType='number-pad'
+        maxLength={4}
+      />
 
     </View>
   )

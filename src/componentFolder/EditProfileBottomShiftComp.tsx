@@ -13,7 +13,6 @@ import BottomSheet, {
   BottomSheetView,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import InputBox from './InputBoxPractice';
 import {Edge} from 'react-native-safe-area-context';
 import ButttonComp from './ButttonComp';
@@ -194,7 +193,7 @@ export default function EditProfileBottomShiftComp({
   };
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <BottomSheet
         ref={bottomSheetRefprop}
         index={-1} // Start closed (-1), or 0 for first snap point
@@ -272,7 +271,7 @@ export default function EditProfileBottomShiftComp({
           />
         </BottomSheetScrollView>
       </BottomSheet>
-    </GestureHandlerRootView>
+    </View>
   );
 }
 

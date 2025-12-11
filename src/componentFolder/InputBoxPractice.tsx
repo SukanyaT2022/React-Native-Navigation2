@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, View, KeyboardTypeOptions} from 'react-native';
 import { myCardBorder, myColor } from '../constant/color';
 import { inputBoxHeight } from '../constant/inputBoxHeight';
 
@@ -8,14 +8,37 @@ interface InputBoxProp {
   placeholderAr: string;
   onchangeFuncProp?: (text: string) => void;
   value?: string;
+  keyboardType?: KeyboardTypeOptions;
+  maxLength?: number;
+  inputType?: 'text' | 'number' | 'default';
 }
 
-const InputBox = ({item, placeholderAr, onchangeFuncProp, value}: InputBoxProp) => {
+const InputBox = ({
+  item, 
+  placeholderAr, 
+  onchangeFuncProp, 
+  value, 
+  keyboardType = 'default',
+  maxLength,
+  inputType = 'default'
+}: InputBoxProp) => {
   const [text, setText] = React.useState<string>('');
+  
   const onChangeTextFunc = (text: string) => {
-    setText(text);
+    let filteredText = text;
+    
+    // Apply validation based on inputType
+    if (inputType === 'text') {
+      // Only allow letters and spaces
+      filteredText = text.replace(/[^a-zA-Z\s]/g, '');
+    } else if (inputType === 'number') {
+      // Only allow numbers
+      filteredText = text.replace(/[^0-9]/g, '');
+    }
+    
+    setText(filteredText);
     if (onchangeFuncProp) {
-      onchangeFuncProp(text);
+      onchangeFuncProp(filteredText);
     }
   };
 
@@ -26,6 +49,8 @@ const InputBox = ({item, placeholderAr, onchangeFuncProp, value}: InputBoxProp) 
         value={value}
         onChangeText={onChangeTextFunc}
         style={styles.wrapperInput}
+        keyboardType={keyboardType}
+        maxLength={maxLength}
       />
     </View>
   );

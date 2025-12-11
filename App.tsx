@@ -12,6 +12,7 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 // Screens
 
@@ -38,9 +39,10 @@ const App = () => {
   myColor.greenColor ? '#0DB184' : '#000000';
   return (
     //wrape view with provider so that we can pass data from redux store
-    <Provider store={store}>
-      <View style={styles.container}>
-        <NavigationContainer>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <NavigationContainer>
           {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
           
           {/* increase paddint top at tab bar bottom navigation style */}
@@ -107,6 +109,7 @@ const App = () => {
         </NavigationContainer>
       </View>
     </Provider>
+    </GestureHandlerRootView>
   );
 };
 
