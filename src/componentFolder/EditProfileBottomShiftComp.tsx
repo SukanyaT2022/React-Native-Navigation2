@@ -21,6 +21,7 @@ import CloseIcon from 'react-native-vector-icons/AntDesign';
 import {launchCamera, launchImageLibrary, ImagePickerResponse} from 'react-native-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateImageProfile } from '../store/slices/addressSlice';
+import PhotoSelectionModal from './PhotoSelectedModal';
 
 
 interface EditProfileProps {
@@ -193,7 +194,9 @@ export default function EditProfileBottomShiftComp({
   };
 
   return (
+  
     <View style={styles.container}>
+      <PhotoSelectionModal />
       <BottomSheet
         ref={bottomSheetRefprop}
         index={-1} // Start closed (-1), or 0 for first snap point
