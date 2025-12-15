@@ -22,6 +22,7 @@ import {launchCamera, launchImageLibrary, ImagePickerResponse} from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 import { updateImageProfile } from '../store/slices/addressSlice';
 import PhotoSelectionModal from './PhotoSelectedModal';
+import PhotoSelectedModal from './PhotoSelectedModal';
 
 
 interface EditProfileProps {
@@ -46,6 +47,8 @@ export default function EditProfileBottomShiftComp({
   const [storeLocation, setStoreLocation] = useState<string>('');
   const [storePhone, setStorePhone] = useState<string>('');
   const [profileImage, setProfileImage] = useState<string | null>(imageProfile);
+
+  const [closeEditModal, setCloseEditModal] = useState(false);
 
   // Snap points define where the bottom sheet stops when dragging
   const snapPoints = useMemo(() => ['50%', '75%', '95%'], []);
@@ -143,6 +146,8 @@ export default function EditProfileBottomShiftComp({
       quality: 0.8 as const,
       saveToPhotos: true,
       cameraType: 'back' as const,
+      
+      
     };
 
     launchCamera(options, (response: ImagePickerResponse) => {
@@ -194,9 +199,18 @@ export default function EditProfileBottomShiftComp({
   };
 
   return (
+    // takePhotoFunc={}  chooseFromLibraryFunc={}
   
     <View style={styles.container}>
-      <PhotoSelectionModal />
+
+     { closeEditModal && <PhotoSelectedModal 
+      onVisible={closeEditModal}
+      titleSelectedPhotoProp='Select Photo!' 
+      takePhotoProp={openCamera}
+      chooseFromLibraryProp={openGallery}
+      onClose={()=>setCloseEditModal(false)}
+      />}
+
       <BottomSheet
         ref={bottomSheetRefprop}
         index={-1} // Start closed (-1), or 0 for first snap point

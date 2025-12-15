@@ -13,25 +13,19 @@ import {
 interface PhotoSelectionModalProps {
   onVisible?: boolean;
   onClose?: () => void;
-  takePhotoFunc?: () => void;
-  chooseFromLibraryFunc?: () => void;
+  takePhotoProp?: () => void;
+  chooseFromLibraryProp
+  ?: () => void;
+  titleSelectedPhotoProp?: string;
 } 
 
-const PhotoSelectionModal = ({ onVisible, onClose, takePhotoFunc, chooseFromLibraryFunc}: PhotoSelectionModalProps) => {
+const PhotoSelectedModal = ({ onVisible, onClose, takePhotoProp, chooseFromLibraryProp
+  , titleSelectedPhotoProp}: PhotoSelectionModalProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      
-      {/* Demo Button */}
-      <TouchableOpacity
-        style={styles.demoButton}
-        onPress={() => setIsVisible(true)}
-      >
-        <Text style={styles.demoButtonText}>Open Photo Selector</Text>
-      </TouchableOpacity>
-
+  
       {/* Modal */}
       <Modal
         visible={onVisible}
@@ -48,7 +42,7 @@ const PhotoSelectionModal = ({ onVisible, onClose, takePhotoFunc, chooseFromLibr
             {/* Header */}
             <View style={styles.header}>
               <View>
-                <Text style={styles.title}>Select Photo</Text>
+                <Text style={styles.title}>{titleSelectedPhotoProp}</Text>
                 <Text style={styles.subtitle}>Choose an option</Text>
               </View>
               <TouchableOpacity
@@ -64,7 +58,7 @@ const PhotoSelectionModal = ({ onVisible, onClose, takePhotoFunc, chooseFromLibr
               {/* Take Photo */}
               <TouchableOpacity
                 style={[styles.optionButton, styles.cameraOption]}
-                onPress={takePhotoFunc}
+                onPress={takePhotoProp}
               >
                 <View style={[styles.iconCircle, styles.cameraIconBg]}>
                   <Text style={styles.iconText}>📷</Text>
@@ -78,7 +72,9 @@ const PhotoSelectionModal = ({ onVisible, onClose, takePhotoFunc, chooseFromLibr
               {/* Choose from Library */}
               <TouchableOpacity
                 style={[styles.optionButton, styles.libraryOption]}
-                onPress={chooseFromLibraryFunc}
+                onPress={chooseFromLibraryProp
+
+                }
               >
                 <View style={[styles.iconCircle, styles.libraryIconBg]}>
                   <Text style={styles.iconText}>🖼️</Text>
@@ -233,4 +229,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PhotoSelectionModal;
+export default PhotoSelectedModal;
