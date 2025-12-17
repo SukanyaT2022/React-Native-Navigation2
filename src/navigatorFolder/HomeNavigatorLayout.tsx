@@ -27,6 +27,7 @@ import BackScreen1 from '../screenFolder/BackScreen1';
 import BackScreen2 from '../screenFolder/BackScreen2';
 import { myColor } from '../constant/color';
 import { getFontFamily } from '../constant/fonts';
+import FinalScreen from '../screenFolder/FinalScreen';
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ export const screen = {
   checkout: 'CheckoutScreen',
   backScreen1: 'BackScreen1',
   backScreen2: 'BackScreen2',
+  finalScreenKey: 'FinalScreen',
 };
 
 const CustomHeader = ({navigation}: any) => {
@@ -105,6 +107,7 @@ const HomeNavigatorLayout = () => {
         <Stack.Screen name={screen.checkout} component={CheckoutScreen} />
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
+        <Stack.Screen name={screen.finalScreenKey} component={FinalScreen} />
       </Stack.Navigator>
  
    </View>

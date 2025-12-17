@@ -21,7 +21,6 @@ import CloseIcon from 'react-native-vector-icons/AntDesign';
 import {launchCamera, launchImageLibrary, ImagePickerResponse} from 'react-native-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateImageProfile } from '../store/slices/addressSlice';
-import PhotoSelectionModal from './PhotoSelectedModal';
 import PhotoSelectedModal from './PhotoSelectedModal';
 
 
@@ -57,49 +56,6 @@ export default function EditProfileBottomShiftComp({
 // and useSelector/ get value from redux
 
 
-
-
-
-  // //  below comfrom ImagePickerTest.tsx
-  // const [imageUri, setImageUri] = useState(null);
-  
-  //   const pickImageFromGallery = () => {
-  //     const options = {
-  //       mediaType: 'photo',
-  //       quality: 1,
-  //       selectionLimit: 1, // 0 for multiple images
-  //     };
-  
-  //     launchImageLibrary(options, (response) => {
-  //       if (response.didCancel) {
-  //         console.log('User cancelled');
-  //       } else if (response.errorCode) {
-  //         console.log('Error: ', response.errorMessage);
-  //       } else if (response.assets) {
-  //         setImageUri(response.assets[0].uri);
-  //       }
-  //     });
-  //   };
-  
-  //   const takePhoto = () => {
-  //     const options = {
-  //       mediaType: 'photo',
-  //       quality: 1,
-  //       saveToPhotos: true,
-  //     };
-  
-  //     launchCamera(options, (response) => {
-  //       if (response.didCancel) {
-  //         console.log('User cancelled');
-  //       } else if (response.errorCode) {
-  //         console.log('Error: ', response.errorMessage);
-  //       } else if (response.assets) {
-  //         setImageUri(response.assets[0].uri);
-  //       }
-  //     });
-  //   };
-  
-
   const closeEditProfileFunc = () => {
     bottomSheetRefprop.current?.close();
   };
@@ -119,25 +75,26 @@ export default function EditProfileBottomShiftComp({
   };
 
   const handleImagePicker = () => {
-    Alert.alert(
-      'Select Photo',
-      'Choose an option',
-      [
-        {
-          text: 'Take Photo',
-          onPress: () => openCamera(),
-        },
-        {
-          text: 'Choose from Library',
-          onPress: () => openGallery(),
-        },
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-      ],
-      {cancelable: true}
-    );
+    setCloseEditModal(true);
+    // Alert.alert(
+    //   'Select Photo',
+    //   'Choose an option',
+    //   [
+    //     {
+    //       text: 'Take Photo',
+    //       onPress: () => openCamera(),
+    //     },
+    //     {
+    //       text: 'Choose from Library',
+    //       onPress: () => openGallery(),
+    //     },
+    //     {
+    //       text: 'Cancel',
+    //       style: 'cancel',
+    //     },
+    //   ],
+    //   {cancelable: true}
+    // );
   };
 // take pic from take camera
   const openCamera = () => {
@@ -242,12 +199,14 @@ export default function EditProfileBottomShiftComp({
               }
               style={styles.profileImage}
             />
+
             <TouchableOpacity 
               style={styles.cameraButton}
               onPress={handleImagePicker}
             >
               <CameraIcon name="camera" size={20} color="white" />
             </TouchableOpacity>
+            
           </View>
 
           <InputBox
