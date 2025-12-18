@@ -1,31 +1,93 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 const FinalScreen = () => {
   return (
-    <View>
-      <Text>Thanks for your booking with Roam!</Text>
-      <Text>We have emailed your confirmation to : </Text>
-      <Text>Confirmation number:</Text>
+    <View style={styles.main}>
+    
+        <Text style={styles.headerStyle}>
+          Thanks for your booking with Roam!
+        </Text>
+        <Text>We have emailed your confirmation to : </Text>
+        <Text style={styles.confirmtext}>
+          Confirmation number:{' '}
+          <Text style={styles.confirmationNumber}>L0999964</Text>
+        </Text>
 
-      {/* car typee and picture */}
-      <View>
-        <View>
-          <Text>Car size:</Text>
-          <Text>Car Type:</Text>
+        {/* car typee and picture */}
+
+        <View style={styles.MainCarType}>
+          <View style={styles.wrapCarSizeType}>
+            <Text>Car size: Intermediate</Text>
+            <Text>Car Type: Nissan Rouge</Text>
+          </View>
+          <View>
+            <Image
+              source={require('../../assets/imagesFolder/gaspumpimg2.jpg')}
+              style={styles.imageStyle}
+            />
+          </View>
         </View>
-        <View>
-            <Image source={require('../../assets/imagesFolder/gaspumpimg2.jpg')} />
+
+        {/* start location time view */}
+        <View style={styles.mainlocationTime}>
+          <View>
+            <Icon name="location-dot" size={20} color="#000" />
+          </View>
+          <View>
+            <Text>Start Location:</Text>
+            <Text>Start Time:</Text>
+            <Text>Start Time:</Text>
+          </View>
         </View>
+      {/* end main view */}
       </View>
-      {/* end car type */}
-
-
-    </View>
+  
   );
 };
 
 export default FinalScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  main: {
+    padding: 20,
+    justifyContent: 'space-between',
+    marginVertical: 10,
+    backgroundColor: 'pink',
+  },
+  headerStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+  confirmationNumber: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  confirmtext: {
+    marginVertical: 10,
+  },
+  imageStyle: {width: 100, height: 100},
+
+  MainCarType: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor:'lightgreen',
+marginTop:10,
+
+  },
+  wrapCarSizeType: {  
+   gap: 5,
+justifyContent:'center',    
+paddingLeft:10,
+
+    },
+    mainlocationTime: {
+      gap: 10,
+      marginTop: 10,
+      backgroundColor: 'lightblue',
+      flexDirection: 'row',
+    },
+});
