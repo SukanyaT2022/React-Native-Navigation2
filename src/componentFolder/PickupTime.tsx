@@ -13,8 +13,9 @@ import {myCardBorder, myColor} from '../constant/color';
 
 interface PickupTimeProp {
   messageTime: string;
+  onselectedTime: (selectedTime: Date) => void;
 }
-const PickupTime = ({messageTime}: PickupTimeProp) => {
+const PickupTime = ({messageTime, onselectedTime}: PickupTimeProp) => {
   const [time, setTime] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
 
@@ -22,6 +23,7 @@ const PickupTime = ({messageTime}: PickupTimeProp) => {
     setShowPicker(false); // Hide the picker
     if (selectedTime) {
       setTime(selectedTime);
+      
     }
   };
 
@@ -43,6 +45,7 @@ const PickupTime = ({messageTime}: PickupTimeProp) => {
         isVisible={showPicker}
         mode="time"
         onConfirm={selectedTime => {
+          onselectedTime(selectedTime);
           setTime(selectedTime);
           setShowPicker(false); // Automatically close after selection
         }}

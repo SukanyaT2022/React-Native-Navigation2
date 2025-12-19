@@ -7,26 +7,16 @@ import { myCardBorder, myColor } from '../constant/color';
 
 
 interface PickupProp{
-    message:string,
+    message: string,
+    onselectDate: (date: Date) => void,
 }
 
-const PickupInputBox = ({message}:PickupProp) => {
+
+const PickupInputBox = ({message, onselectDate}:PickupProp) => {
      const [date, setDate] = useState(new Date())
      console.log(date.toISOString())
      const [open, setOpen] = useState(false) 
 
-    //  const formatDate = (dateToFormat: Date) => {
-    //   const dt = dateToFormat.toISOString().slice(0, 10);  // get only date from the Date object
-    //   console.log('DATE STARTED: ', dt);
-    //   let splittedDate = dt.split('-');
-    //   let format = splittedDate.reverse().join();
-    //   console.log('format: ', format);
-    //   let newD= format.replaceAll(',', '/');
-    //  let myr = newD.split('/');
-    //  [myr[0], myr[1]] = [myr[1], myr[0]];
-    //  return myr.join('/');
-    
-    //  }
 
     const popUpFunc =()=>{
 setOpen(true)
@@ -49,6 +39,7 @@ setOpen(true)
               onConfirm={(date) => {
                 setOpen(false)
                 setDate(date)
+                onselectDate(date)
               }}
               onCancel={() => {
                 setOpen(false)

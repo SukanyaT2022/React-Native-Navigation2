@@ -18,25 +18,30 @@ import headerImg from '../../assets/imagesFolder/dog1.png';
 //  but home screen we just want to show data 
 // //but not send datat back to the store--so we use only selector
 //brin redux below 
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
+import { updatePickupDate, updatePickupTime, updateReturnDate, updateReturnTime } from '../store/slices/summarySlice';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+//use redux so we use dispatch to send data to store
+  const dispatch = useDispatch();
 
     //below redux part 2 -- we donot use dispatch here-coz we not send data back
 
-const {
-fname,
-lname,      
-phone,
-email,
-address,
-country,
-state,
-city,
+    // below just for check if data come
 
- } = useSelector((state: any) => state.address);
+// const {
+// fname,
+// lname,      
+// phone,
+// email,
+// address,
+// country,
+// state,
+// city,
+
+//  } = useSelector((state: any) => state.address);
 
 
   return (
@@ -60,19 +65,19 @@ city,
       <InputBox placeholderAr="Enter your return location or zip code" />
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Pick-up Date'} />
+          <PickupInputBox message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date))}/>
         </View>
         <View style={styles.oneBox}>
-          <PickupTime messageTime="Pick-up Time" />
+          <PickupTime messageTime="Pick-up Time" onselectedTime={(selectedTime)=>dispatch(updatePickupTime(selectedTime))}/>
         </View>
       </View>
 
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Return Date'} />
+          <PickupInputBox message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date))} />
         </View>
         <View style={styles.oneBox}>
-          <PickupTime messageTime="Drop-off Time" />
+          <PickupTime messageTime="Drop-off Time" onselectedTime={(selectedTime)=>dispatch(updateReturnTime(selectedTime))  } />
         </View>
       </View>
 

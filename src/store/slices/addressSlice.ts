@@ -68,10 +68,6 @@ export const {
   updateImageProfile
 } = addressSlice.actions;
 
-// Export selectors
-export const selectCounter = (state: any) => state.example.counter;
-export const selectUser = (state: any) => state.example.user;
-export const selectLoading = (state: any) => state.example.loading;
 
 // Export reducer
 export default addressSlice.reducer;

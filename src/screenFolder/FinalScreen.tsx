@@ -35,10 +35,12 @@ const FinalScreen = () => {
           <View>
             <Icon name="location-dot" size={20} color="#000" />
           </View>
-          <View>
-            <Text>Start Location:</Text>
-            <Text>Start Time:</Text>
-            <Text>Start Time:</Text>
+          <View style={styles.wrapPickupLocationTime}>
+            <Text>Pick up Location:</Text>
+            <Text>Pick up Date:</Text>
+            <Text>Pick up Time:</Text>
+             <Text>Return Date:</Text>
+            <Text>Return Time:</Text>
           </View>
         </View>
       {/* end main view */}
@@ -85,9 +87,12 @@ paddingLeft:10,
 
     },
     mainlocationTime: {
-      gap: 10,
+      gap: 20,
       marginTop: 10,
       backgroundColor: 'lightblue',
       flexDirection: 'row',
+    },
+    wrapPickupLocationTime: {
+gap:5,
     },
 });
