@@ -16,9 +16,11 @@ import headerImg from '../../assets/imagesFolder/dog1.png';
 // if send data to the store use  distpatch - on driverdetail3 screencomp
 
 //  but home screen we just want to show data 
-// //but not send datat back to the store--so we use only selector
+//but not send datat back to the store use duspatch--so we use only selector when get data from redux
 //brin redux below 
 import {  useDispatch, useSelector } from 'react-redux';
+
+//below we sent data to the store 
 import { updatePickupDate, updatePickupTime, updateReturnDate, updateReturnTime } from '../store/slices/summarySlice';
 
 const HomeScreen = ({navigation}: any) => {
@@ -65,16 +67,16 @@ const HomeScreen = ({navigation}: any) => {
       <InputBox placeholderAr="Enter your return location or zip code" />
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date))}/>
+          <PickupInputBox message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date.toString()))}/>
         </View>
         <View style={styles.oneBox}>
-          <PickupTime messageTime="Pick-up Time" onselectedTime={(selectedTime)=>dispatch(updatePickupTime(selectedTime))}/>
+          <PickupTime messageTime="Pick-up Time" onselectedTime={(selectedTime)=>dispatch(updatePickupTime(selectedTime.toString()))}/>
         </View>
       </View>
 
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date))} />
+          <PickupInputBox message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date.toString()))} />
         </View>
         <View style={styles.oneBox}>
           <PickupTime messageTime="Drop-off Time" onselectedTime={(selectedTime)=>dispatch(updateReturnTime(selectedTime))  } />

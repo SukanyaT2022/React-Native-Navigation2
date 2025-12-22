@@ -40,6 +40,8 @@ const App = () => {
   return (
     //wrape view with provider so that we can pass data from redux store
     <GestureHandlerRootView style={{flex: 1}}>
+
+      {/* //provider come from redux so that we can pass data from redux store */}
       <Provider store={store}>
         <View style={styles.container}>
           <NavigationContainer>

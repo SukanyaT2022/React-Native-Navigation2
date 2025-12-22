@@ -2,8 +2,24 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
+//but not send datat back to the store use useDispatch--so we use only selector when get data from redux
+import {useSelector} from 'react-redux';
 const FinalScreen = () => {
+
+  //below we bring redux data from store
+const {
+  // var we bring from summary slice line4 to 11
+pickupLocation,
+  pickupDate,
+  pickupTime,
+  returnDate,
+  returnTime,
+  carSize,
+  carType,
+
+} = useSelector((state:any) => state.summary);
   return (
+
     <View style={styles.main}>
     
         <Text style={styles.headerStyle}>
@@ -19,8 +35,8 @@ const FinalScreen = () => {
 
         <View style={styles.MainCarType}>
           <View style={styles.wrapCarSizeType}>
-            <Text>Car size: Intermediate</Text>
-            <Text>Car Type: Nissan Rouge</Text>
+            <Text>Car size: {carSize}</Text>
+            <Text>Car Type: {carType}</Text>
           </View>
           <View>
             <Image
@@ -36,11 +52,11 @@ const FinalScreen = () => {
             <Icon name="location-dot" size={20} color="#000" />
           </View>
           <View style={styles.wrapPickupLocationTime}>
-            <Text>Pick up Location:</Text>
-            <Text>Pick up Date:</Text>
-            <Text>Pick up Time:</Text>
-             <Text>Return Date:</Text>
-            <Text>Return Time:</Text>
+            <Text>Pick up Location: {pickupLocation}</Text>
+            <Text>Pick up Date: {pickupDate}</Text>
+            <Text>Pick up Time: {pickupTime}</Text>
+             <Text>Return Date: {returnDate}</Text>
+            <Text>Return Time: {returnTime}</Text>
           </View>
         </View>
       {/* end main view */}
