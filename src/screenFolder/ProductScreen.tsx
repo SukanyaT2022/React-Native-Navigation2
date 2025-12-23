@@ -61,7 +61,9 @@ const ProductScreen = ({navigation}: any) => {
               totalPricePerWeek={item.price_per_day * 7}
               capacity={item.capacity}
               onPressProp={() =>
-                navigation.navigate(screen.details, {id: item.id})
+                {navigation.navigate(screen.details, {id: item.id})
+                
+              }
               } // Pass the item to the detail screen
             />
             // id: item.id} is for param in detailscreen

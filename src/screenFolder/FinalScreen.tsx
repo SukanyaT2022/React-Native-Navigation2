@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 
 //but not send datat back to the store use useDispatch--so we use only selector when get data from redux
 import {useSelector} from 'react-redux';
+import moment from 'moment';
 const FinalScreen = () => {
 
   //below we bring redux data from store
@@ -18,6 +19,11 @@ pickupLocation,
   carType,
 
 } = useSelector((state:any) => state.summary);
+
+const formattedDate = moment(pickupDate).format('ddd, MMM D, YYYY');
+
+const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
+
   return (
 
     <View style={styles.main}>
@@ -53,9 +59,9 @@ pickupLocation,
           </View>
           <View style={styles.wrapPickupLocationTime}>
             <Text>Pick up Location: {pickupLocation}</Text>
-            <Text>Pick up Date: {pickupDate}</Text>
+            <Text>Pick up Date: {formattedDate}</Text>
             <Text>Pick up Time: {pickupTime}</Text>
-             <Text>Return Date: {returnDate}</Text>
+             <Text>Return Date: {formattedDateReturn}</Text>
             <Text>Return Time: {returnTime}</Text>
           </View>
         </View>
