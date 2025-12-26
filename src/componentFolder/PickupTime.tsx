@@ -1,11 +1,11 @@
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {myCardBorder, myColor} from '../constant/color';
-
+// to use date and time install date picker
 // time third party
 // https://www.npmjs.com/package/@react-native-community/datetimepicker
 //1install npm install @react-native-community/datetimepicker --save
@@ -28,7 +28,7 @@ const PickupTime = ({messageTime, onselectedTime}: PickupTimeProp) => {
   };
 
   return (
-    <View>
+    <TouchableOpacity onPress={() => setShowPicker(true)}>
       <View style={styles.containerTime}>
         <View style={styles.dateStyle}>
           <Text>{messageTime}</Text>
@@ -43,6 +43,9 @@ const PickupTime = ({messageTime, onselectedTime}: PickupTimeProp) => {
       </View>
       <DateTimePickerModal
         isVisible={showPicker}
+
+          //mode is make date picker show only time - hide date - if show both time and date no need to put mode
+
         mode="time"
         onConfirm={selectedTime => {
           console.log('Selected Time:', selectedTime);
@@ -54,7 +57,7 @@ const PickupTime = ({messageTime, onselectedTime}: PickupTimeProp) => {
         }}
         onCancel={() => setShowPicker(false)}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

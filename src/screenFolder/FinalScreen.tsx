@@ -17,6 +17,7 @@ pickupLocation,
   returnTime,
   carSize,
   carType,
+  carBrand,
 
 } = useSelector((state:any) => state.summary);
 
@@ -41,8 +42,9 @@ const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
 
         <View style={styles.MainCarType}>
           <View style={styles.wrapCarSizeType}>
-            <Text>Car size: {carSize}</Text>
             <Text>Car Type: {carType}</Text>
+            <Text>Passenger: {carSize}</Text>
+               <Text>Car Brand: {carBrand}</Text>
           </View>
           <View>
             <Image

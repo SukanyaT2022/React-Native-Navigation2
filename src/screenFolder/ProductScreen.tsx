@@ -5,7 +5,14 @@ import FilterTypeCarComp from '../componentFolder/FilterTypeCarComp';
 
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {carData} from '../constant/carData';
-import { screen } from '../navigatorFolder/HomeNavigatorLayout';
+import {screen} from '../navigatorFolder/HomeNavigatorLayout';
+// useDispatch send data from here to slice redux
+import {useDispatch} from 'react-redux';
+import {
+  updateCarBrand,
+  updateCarSize,
+  updateCarType,
+} from '../store/slices/summarySlice';
 
 const ProductScreen = ({navigation}: any) => {
   //step 1
@@ -14,6 +21,7 @@ const ProductScreen = ({navigation}: any) => {
   const [filterdCarTypeArray, setFilteredCarTypeArray] = React.useState<any[]>(
     [],
   );
+  const dispatch = useDispatch();
   // Our goal is to filter the products by the car type.
   // When we click on the car type, we display just the cars related to that car type.
 
@@ -60,11 +68,13 @@ const ProductScreen = ({navigation}: any) => {
               pricePerDay={item.price_per_day}
               totalPricePerWeek={item.price_per_day * 7}
               capacity={item.capacity}
-              onPressProp={() =>
-                {navigation.navigate(screen.details, {id: item.id})
-                
-              }
-              } // Pass the item to the detail screen
+              onPressProp={() => {
+                navigation.navigate(screen.details, {id: item.id});
+                //below sent data that user click this datt sent to summary store
+                dispatch(updateCarType(item.type));
+                dispatch(updateCarSize(item.capacity));
+                dispatch(updateCarBrand(item.brand));
+              }} // Pass the item to the detail screen
             />
             // id: item.id} is for param in detailscreen
           );

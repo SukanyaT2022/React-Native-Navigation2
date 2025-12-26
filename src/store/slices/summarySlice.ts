@@ -9,6 +9,7 @@ const initialState = {
   returnTime: '',
   carSize: '',
   carType: '',
+  carBrand:'',
 };
 
 const summarySlice = createSlice({
@@ -36,6 +37,9 @@ const summarySlice = createSlice({
     updateCarType: (state, action) => {
       state.carType = action.payload;
     },
+    updateCarBrand: (state, action) => {
+      state.carBrand = action.payload;
+    },
   },
 });
 
@@ -48,6 +52,7 @@ export const {
   updateReturnTime,
   updateCarSize,
   updateCarType,
+  updateCarBrand,
 } = summarySlice.actions;
 
 // Export reducer

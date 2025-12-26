@@ -67,7 +67,7 @@ const HomeScreen = ({navigation}: any) => {
       <InputBox placeholderAr="Enter your return location or zip code" />
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date.toString()))}/>
+          <PickupInputBox getMinimumDateProp={new Date()} message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date.toString()))}/>
         </View>
         <View style={styles.oneBox}>
           <PickupTime messageTime="Pick-up Time" onselectedTime={(selectedTime)=>dispatch(updatePickupTime(selectedTime.toString()))}/>
@@ -76,7 +76,8 @@ const HomeScreen = ({navigation}: any) => {
 
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date.toString()))} />
+          {/* getMinimumDateProp={new Date()} new date() means minimun today only- can not be the past to use only date picker*/}
+          <PickupInputBox  getMinimumDateProp={new Date()} message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date.toString()))} />
         </View>
         <View style={styles.oneBox}>
           <PickupTime messageTime="Drop-off Time" onselectedTime={(selectedTime)=>dispatch(updateReturnTime(selectedTime))  } />
