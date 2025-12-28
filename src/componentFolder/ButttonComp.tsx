@@ -7,11 +7,13 @@ interface ButtonProp{
 buttonText:string,
 onPressProp:()=>void,
 selectedProp?: boolean,
+disableProp?: boolean,
 }
-const ButttonComp = ({buttonText, onPressProp,selectedProp }:ButtonProp) => {
+const ButttonComp = ({buttonText, onPressProp,selectedProp, disableProp }:ButtonProp) => {
 
   return (
-    <TouchableOpacity style={[styles.buttonStyle, selectedProp && {backgroundColor:'white'}]} onPress={onPressProp} >
+    <TouchableOpacity style={[styles.buttonStyle, selectedProp && {backgroundColor:'white'}]} onPress={onPressProp} 
+    disabled={disableProp}>
       <Icon name="check-circle" size={24} color="green" />
       {/* <Image source={iconBtnCompProp}/> */}
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>

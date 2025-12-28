@@ -12,6 +12,7 @@ import BillAddress from '../componentFolder/BillAddress';
 //bring redux below
 import {  useSelector } from 'react-redux';
 import ButttonComp from '../componentFolder/ButttonComp';
+import { bookingScreen } from '../navigatorFolder/BookingNavigatorLayout';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
@@ -111,8 +112,9 @@ const DetailsScreen = ({navigation}: any) => {
         {!sameDriverAddress && <BillAddress/>}
       <ButttonComp
       buttonText = "Continue"
-      onPressProp = {() => navigation.navigate(screen.confirm)}
+      onPressProp = {() => navigation.navigate(bookingScreen.finalKey)}
       selectedProp = {true}
+      disableProp={true}
       />  
       </View>
     </ScrollView>

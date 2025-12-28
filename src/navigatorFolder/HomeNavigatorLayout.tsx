@@ -18,7 +18,6 @@ import HomeScreen from '../screenFolder/HomeScreen';
 import DetailsScreen from '../screenFolder/DetailScreen';
 import RegisterScreen from '../screenFolder/RegisterScreen';
 import LoginScreen from '../screenFolder/LoginScreen';
-import ConfirmScreen from '../screenFolder/ConfirmScreen';
 import ProductScreen from '../screenFolder/ProductScreen';
 import InsuranceProtectionScreen from '../screenFolder/InsuranceProtectionScreen';
 import ExtraServiceScreen from '../screenFolder/ExtraServiceScreen';
@@ -94,7 +93,6 @@ const HomeNavigatorLayout = () => {
         <Stack.Screen name={screen.details} component={DetailsScreen} />
         <Stack.Screen name={screen.register} component={RegisterScreen} />
         <Stack.Screen name={screen.login} component={LoginScreen} />
-        <Stack.Screen name={screen.confirm} component={ConfirmScreen} />
         <Stack.Screen name={screen.productscreen} component={ProductScreen} />
         <Stack.Screen
           name={screen.insuranceScreen}

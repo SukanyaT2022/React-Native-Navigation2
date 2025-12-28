@@ -85,7 +85,7 @@ const HomeScreen = ({navigation}: any) => {
       </View>
 
       <CheckBox item="Renter's age is 25 or over" />
-      <DropDownBox onSelect={item => console.log(item)} />
+      {/* <DropDownBox onSelect={item => console.log(item)} /> */}
 
       <ButttonComp
         buttonText="Select My Car"
