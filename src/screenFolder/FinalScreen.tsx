@@ -19,7 +19,12 @@ pickupLocation,
   carType,
   carBrand,
 
+
 } = useSelector((state:any) => state.summary);
+const {
+  userOver25,
+
+} = useSelector((state:any) => state.address);
 
 const formattedDate = moment(pickupDate).format('ddd, MMM D, YYYY');
 
@@ -37,6 +42,8 @@ const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
           Confirmation number:{' '}
           <Text style={styles.confirmationNumber}>L0999964</Text>
         </Text>
+         <Text style={styles.confirmationNumber}>A renter is over 25. {userOver25 ? 'Yes' : 'No'}</Text>
+ 
 
         {/* car typee and picture */}
 

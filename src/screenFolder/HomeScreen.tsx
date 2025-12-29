@@ -10,55 +10,59 @@ import DropDownBox from '../componentFolder/DropDownBox';
 import ButttonComp from '../componentFolder/ButttonComp';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
-import { screen } from '../navigatorFolder/HomeNavigatorLayout';
+import {screen} from '../navigatorFolder/HomeNavigatorLayout';
 import headerImg from '../../assets/imagesFolder/dog1.png';
 //bring redux- we already
 // if send data to the store use  distpatch - on driverdetail3 screencomp
 
-//  but home screen we just want to show data 
+//  but home screen we just want to show data
 //but not send datat back to the store use duspatch--so we use only selector when get data from redux
-//brin redux below 
-import {  useDispatch, useSelector } from 'react-redux';
+//brin redux below
+import {useDispatch, useSelector} from 'react-redux';
 
-//below we sent data to the store 
-import { updatePickupDate, updatePickupTime, updateReturnDate, updateReturnTime } from '../store/slices/summarySlice';
+//below we sent data to the store
+import {
+  updatePickupDate,
+  updatePickupTime,
+  updateReturnDate,
+  updateReturnTime,
+} from '../store/slices/summarySlice';
+import {updateUserOver25} from '../store/slices/addressSlice';
 
 const HomeScreen = ({navigation}: any) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-//use redux so we use dispatch to send data to store
+  //use redux so we use dispatch to send data to store
   const dispatch = useDispatch();
 
-    //below redux part 2 -- we donot use dispatch here-coz we not send data back
+  //below redux part 2 -- we donot use dispatch here-coz we not send data back
 
-    // below just for check if data come
+  // below just for check if data come
 
-// const {
-// fname,
-// lname,      
-// phone,
-// email,
-// address,
-// country,
-// state,
-// city,
+  // const {
+  // fname,
+  // lname,
+  // phone,
+  // email,
+  // address,
+  // country,
+  // state,
+  // city,
 
-//  } = useSelector((state: any) => state.address);
-
+  //  } = useSelector((state: any) => state.address);
 
   return (
-
     <ScrollView contentContainerStyle={styles.mainContainer}>
+      {/* from redux below */}
+      {/* <Text style={{fontSize:24, fontWeight:'bold', textAlign:'center', marginBottom:10}}>{fname}</Text> */}
 
-
-       {/* from redux below */}
-     {/* <Text style={{fontSize:24, fontWeight:'bold', textAlign:'center', marginBottom:10}}>{fname}</Text> */}
-      
-     
       {/* <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 20 }}>
        RentCars
       </Text> */}
-      <Image source={headerImg} style={{width:'100%', height:150, objectFit:'cover'}}/>
+      <Image
+        source={headerImg}
+        style={{width: '100%', height: 150, objectFit: 'cover'}}
+      />
       <Text style={{fontWeight: 'bold'}}>
         FIND YOUR BEST CAR RENTAL WITH ROAM
       </Text>
@@ -67,24 +71,49 @@ const HomeScreen = ({navigation}: any) => {
       <InputBox placeholderAr="Enter your return location or zip code" />
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
-          <PickupInputBox getMinimumDateProp={new Date()} message={'Pick-up Date'} onselectDate={(date)=>dispatch(updatePickupDate(date.toString()))}/>
+          <PickupInputBox
+            getMinimumDateProp={new Date()}
+            message={'Pick-up Date'}
+            onselectDate={date => dispatch(updatePickupDate(date.toString()))}
+          />
         </View>
         <View style={styles.oneBox}>
-          <PickupTime messageTime="Pick-up Time" onselectedTime={(selectedTime)=>dispatch(updatePickupTime(selectedTime.toString()))}/>
+          <PickupTime
+            messageTime="Pick-up Time"
+            onselectedTime={selectedTime =>
+              dispatch(updatePickupTime(selectedTime.toString()))
+            }
+          />
         </View>
       </View>
 
       <View style={styles.wrapDateTime}>
         <View style={styles.oneBox}>
           {/* getMinimumDateProp={new Date()} new date() means minimun today only- can not be the past to use only date picker*/}
-          <PickupInputBox  getMinimumDateProp={new Date()} message={'Return Date'} onselectDate={(date)=>dispatch(updateReturnDate(date.toString()))} />
+          <PickupInputBox
+            getMinimumDateProp={new Date()}
+            message={'Return Date'}
+            onselectDate={date => dispatch(updateReturnDate(date.toString()))}
+          />
         </View>
         <View style={styles.oneBox}>
-          <PickupTime messageTime="Drop-off Time" onselectedTime={(selectedTime)=>dispatch(updateReturnTime(selectedTime))  } />
+          <PickupTime
+            messageTime="Drop-off Time"
+            onselectedTime={selectedTime =>
+              dispatch(updateReturnTime(selectedTime))
+            }
+          />
         </View>
       </View>
 
-      <CheckBox item="Renter's age is 25 or over" />
+      <CheckBox
+        item="Renter's age is 25 or over"
+        oncheckProp={over25 => {
+          dispatch(updateUserOver25(over25));
+          console.log('over25 value in home screen:', over25);
+        }}
+      />
+
       {/* <DropDownBox onSelect={item => console.log(item)} /> */}
 
       <ButttonComp
@@ -95,11 +124,11 @@ const HomeScreen = ({navigation}: any) => {
   );
 };
 const styles = StyleSheet.create({
-  imgStyle:{
-width:'100%',
-objectFit:'cover',
-height:150,
-marginBottom:10,
+  imgStyle: {
+    width: '100%',
+    objectFit: 'cover',
+    height: 150,
+    marginBottom: 10,
   },
   inputBox: {
     width: '80%',

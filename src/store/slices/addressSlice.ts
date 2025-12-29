@@ -14,6 +14,7 @@ const initialState = {
   state: '',
   city: '',
   imageProfile:'',
+  userOver25: false,
 };
 
 const addressSlice = createSlice({
@@ -50,6 +51,9 @@ const addressSlice = createSlice({
       updateImageProfile: (state, action) => {
       state.imageProfile = action.payload;
     },
+    updateUserOver25: (state, action) => {
+      state.userOver25 = action.payload;
+    }
     
   },
 });
@@ -65,7 +69,8 @@ export const {
   updateCountry,
   updateState,
   updateCity,  
-  updateImageProfile
+  updateImageProfile,
+  updateUserOver25
 } = addressSlice.actions;
 
 
