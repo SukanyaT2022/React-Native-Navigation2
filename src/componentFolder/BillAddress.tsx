@@ -4,9 +4,11 @@ import InputBox from './InputBoxPractice';
 import {myColor} from '../constant/color';
 import InputboxDropdownMenuComp from './InputboxDropdownMenuComp';
 //below bring datat from redux
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateBillAddress, updateBillAddressCountry,} from '../store/slices/addressSlice';
 
 //step 2 bring datat from redux
+const dispatch = useDispatch();
 const BillAddress = () => {
   const {sameDriverAddress,
      address, 
@@ -15,6 +17,7 @@ const BillAddress = () => {
      city} = useSelector(
     (state: any) => state.address,
   );
+
   return (
     <View style={styles.mainBox}>
       <Text style={styles.title}>Billing Address</Text>
@@ -24,7 +27,9 @@ const BillAddress = () => {
       <InputboxDropdownMenuComp
         dataProp={[]}
         placeholderProp="Select Country"
-        onchangeFuncProp={() => {}}
+        onchangeFuncProp={(text) => dispatch(updateBillAddressCountry(text))}
+
+         // onchangeFuncProp={(text) => dispatch(updateCardName(text))}
       />
       <InputboxDropdownMenuComp
         dataProp={[]}

@@ -1,5 +1,6 @@
 // src/store/slices/addressSlice.js
 import {createSlice} from '@reduxjs/toolkit';
+import BillAddress from '../../componentFolder/BillAddress';
 
 const initialState = {
   sameDriverAddress: false,
@@ -15,6 +16,11 @@ const initialState = {
   city: '',
   imageProfile:'',
   userOver25: false,
+  billingAddress: '',
+  billAddressCountry: '',
+  billAddressState: '',
+  billAddressCity: '',
+  billingZipCode: '',
 };
 
 const addressSlice = createSlice({
@@ -53,7 +59,22 @@ const addressSlice = createSlice({
     },
     updateUserOver25: (state, action) => {
       state.userOver25 = action.payload;
-    }
+    },
+    updateBillAddress: (state, action) => {
+      state.billingAddress = action.payload;
+    },
+    updateBillAddressCountry: (state, action) => {
+      state.billAddressCountry = action.payload;
+    },
+    updateBillAddressState: (state, action) => {
+      state.billAddressState = action.payload;
+    },
+    updateBillAddressCity: (state, action) => {
+      state.billAddressCity = action.payload;
+    },
+    updateBillingZipCode: (state, action) => {
+      state.billingZipCode = action.payload;
+    },
     
   },
 });
@@ -70,7 +91,12 @@ export const {
   updateState,
   updateCity,  
   updateImageProfile,
-  updateUserOver25
+  updateUserOver25,
+  updateBillAddress,
+  updateBillAddressCountry,
+  updateBillAddressState,
+  updateBillAddressCity,
+  updateBillingZipCode,
 } = addressSlice.actions;
 
 
