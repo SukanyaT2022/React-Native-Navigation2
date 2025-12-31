@@ -21,9 +21,15 @@ pickupLocation,
 
 
 } = useSelector((state:any) => state.summary);
+
+
 const {
   userOver25,
-
+billingAddress,
+  billAddressCountry,
+  billAddressState,
+  billAddressCity,
+  billingZipCode,
 } = useSelector((state:any) => state.address);
 
 const formattedDate = moment(pickupDate).format('ddd, MMM D, YYYY');
@@ -73,7 +79,18 @@ const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
              <Text>Return Date: {formattedDateReturn}</Text>
             <Text>Return Time: {returnTime}</Text>
           </View>
+
+
         </View>
+
+
+           <View style={styles.wrapPickupLocationTime}>
+            <Text>Address: {billingAddress}</Text>
+            <Text>Country: {billAddressCountry}</Text>
+            <Text>State: {billAddressState}</Text>
+             <Text>City: {billAddressCity}</Text>
+            <Text>ZipCode: {billingZipCode}</Text>
+          </View>
       {/* end main view */}
       </View>
   
