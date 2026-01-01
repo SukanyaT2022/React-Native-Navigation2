@@ -175,12 +175,10 @@ const BillAddress = () => {
         />
 
 
-
-      <InputboxDropdownMenuComp
-        dataProp={[]}
-        placeholderProp="ZipCode"
+  <InputBox placeholderAr="ZipCode"
         onchangeFuncProp={(text) => dispatch(updateBillingZipCode(text))}
       />
+    
     </View>
   );
 };
