@@ -22,6 +22,7 @@ import BillAddress from '../componentFolder/BillAddress';
 import {useSelector} from 'react-redux';
 import ButttonComp from '../componentFolder/ButttonComp';
 import {bookingScreen} from '../navigatorFolder/BookingNavigatorLayout';
+import { useMemo } from 'react';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
@@ -54,8 +55,9 @@ const DetailsScreen = ({navigation}: any) => {
     (state: any) => state.payment,
   );
 
-  //this function check if user click samde adress or not to validate if bill address shoukd be check
-  const sameAddressPaymentCheckIfnotemptyFunc = () => {
+  //function in able to click continue button- this function check if user click samde adress or not to validate if bill address shoukd be check
+  const sameAddressPaymentCheckIfnotemptyFunc = useMemo( () => {
+    //if it same address  if user check inputbox- true no need to checkbilling address
     if (sameDriverAddress) {
       return (
         fname.length > 0 &&
@@ -66,12 +68,13 @@ const DetailsScreen = ({navigation}: any) => {
         country.length > 0 &&
         state.length > 0 &&
         city.length > 0 &&
-        paymentMethod.length > 0 &&
+        // paymentMethod.length > 0 &&
         cardNumber.length > 0 &&
         cardName.length > 0 &&
         expiryDate.length > 0 &&
         cvv.length > 0
       );
+      //but if user donot click the inputbox is -false then we need billing address
     } else {
       return (
         fname.length > 0 &&
@@ -82,7 +85,7 @@ const DetailsScreen = ({navigation}: any) => {
         country.length > 0 &&
         state.length > 0 &&
         city.length > 0 &&
-        paymentMethod.length > 0 &&
+        // paymentMethod.length > 0 &&
         cardNumber.length > 0 &&
         cardName.length > 0 &&
         expiryDate.length > 0 &&
@@ -94,8 +97,27 @@ const DetailsScreen = ({navigation}: any) => {
         billingZipCode.length > 0
       );
     }
-  };
-const check = sameAddressPaymentCheckIfnotemptyFunc();
+  },[
+    sameDriverAddress,
+    user,
+    fname,
+    lname,
+    phone,
+    email,
+    address,
+    country,
+    state,
+    city,
+    imageProfile,
+    userOver25,
+    billingAddress,
+    billAddressCountry,
+    billAddressState,
+    billAddressCity,
+    billingZipCode,
+    paymentMethod, cardNumber, cardName, expiryDate, cvv
+  ]);
+const check = sameAddressPaymentCheckIfnotemptyFunc;
 console.log('check', check);
   //end of function
   const findItemBasedOnId = carData.find(item => item.id === id);
@@ -180,7 +202,7 @@ console.log('check', check);
             buttonText="Continue"
             onPressProp={() => navigation.navigate(bookingScreen.finalKey)}
             selectedProp={true}
-            disableProp={!sameAddressPaymentCheckIfnotemptyFunc()}
+            disableProp={!sameAddressPaymentCheckIfnotemptyFunc}
           />
         </View>
       </ScrollView>

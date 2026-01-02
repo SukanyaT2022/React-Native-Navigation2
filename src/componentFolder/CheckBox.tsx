@@ -14,6 +14,7 @@ const CheckBox = ({item, oncheckProp}: CheckboxProp) => {
   const [isSelected, setIsSelected] = React.useState(false);
   //we make toggle step 2 make function
 
+  //below toggle if user use the sam as bill address true or false
   const onPressCheckBox = () => {
   setIsSelected(!isSelected);
   oncheckProp && oncheckProp(!isSelected);
