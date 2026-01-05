@@ -63,7 +63,7 @@ const PickupTime = ({messageTime, onselectedTime}: PickupTimeProp) => {
 
 const styles = StyleSheet.create({
   containerTime: {
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: myColor.borderColor,
     borderRadius: myCardBorder,
     padding: 10,

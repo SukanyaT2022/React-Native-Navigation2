@@ -16,6 +16,7 @@ import CheckBox from './CheckBox';
 // import reux 2 thing useDispatch, useSelector
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  updateAddress,
   updateCity,
   updateCountry,
   updateEmail,
@@ -212,7 +213,7 @@ const Checkput3DriveDetail = () => {
           placeholderAr="Address"
           onchangeFuncProp={text => {
             handleInputChange('address', text);
-            dispatch(updatePhone(text));
+            dispatch(updateAddress(text));
           }}
           value={driverData.address}
         />

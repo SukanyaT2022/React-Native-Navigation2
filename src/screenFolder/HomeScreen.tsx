@@ -11,7 +11,7 @@ import ButttonComp from '../componentFolder/ButttonComp';
 import {ScrollView} from 'react-native-gesture-handler';
 import {myCardBorder, myColor} from '../constant/color';
 import {screen} from '../navigatorFolder/HomeNavigatorLayout';
-import headerImg from '../../assets/imagesFolder/dog1.png';
+import headerImg from '../../assets/imagesFolder/picHomeScreen2.jpg';
 //bring redux- we already
 // if send data to the store use  distpatch - on driverdetail3 screencomp
 
@@ -61,9 +61,9 @@ const HomeScreen = ({navigation}: any) => {
       </Text> */}
       <Image
         source={headerImg}
-        style={{width: '100%', height: 150, objectFit: 'cover'}}
+        style={{width: '100%', height: 220, objectFit: 'cover'}}
       />
-      <Text style={{fontWeight: 'bold'}}>
+      <Text style={{fontWeight: 'bold', marginTop: 10, fontSize: 15, }}>
         FIND YOUR BEST CAR RENTAL WITH ROAM
       </Text>
       <CheckBox item="Pick-up and Return to same location" />
@@ -117,7 +117,7 @@ const HomeScreen = ({navigation}: any) => {
       {/* <DropDownBox onSelect={item => console.log(item)} /> */}
 
       <ButttonComp
-        buttonText="Select My Car"
+        buttonText="View vehicles"
         onPressProp={() => navigation.navigate(screen.productscreen)}
       />
     </ScrollView>

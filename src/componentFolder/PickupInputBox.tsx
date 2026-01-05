@@ -49,7 +49,7 @@ const PickupInputBox = ({message, onselectDate, getMinimumDateProp}: PickupProp)
 };
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: myColor.borderColor,
     borderRadius: myCardBorder,
     padding: 10,

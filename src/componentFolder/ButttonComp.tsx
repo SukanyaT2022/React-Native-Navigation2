@@ -14,7 +14,7 @@ const ButttonComp = ({buttonText, onPressProp,selectedProp, disableProp }:Button
   return (
     <TouchableOpacity style={[styles.buttonStyle, selectedProp && {backgroundColor:'white'}]} onPress={onPressProp} 
     disabled={disableProp}>
-      <Icon name="check-circle" size={24} color="green" />
+      {/* <Icon name="check-circle" size={24} color="green" /> */}
       {/* <Image source={iconBtnCompProp}/> */}
       <Text style={styles.buttonTextStyle}>{buttonText}</Text>
     </TouchableOpacity>
@@ -40,7 +40,7 @@ justifyContent:'center',
   },
   buttonTextStyle:{
 color:'green',
-fontWeight:'500',
+fontWeight:'600',
 fontSize:16,
   },
 })

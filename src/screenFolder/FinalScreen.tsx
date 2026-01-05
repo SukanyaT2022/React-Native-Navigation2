@@ -84,13 +84,13 @@ const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
         </View>
 
 
-           <View style={styles.wrapPickupLocationTime}>
+           {/* <View style={styles.wrapPickupLocationTime}>
             <Text>Address: {billingAddress}</Text>
             <Text>Country: {billAddressCountry}</Text>
             <Text>State: {billAddressState}</Text>
              <Text>City: {billAddressCity}</Text>
             <Text>ZipCode: {billingZipCode}</Text>
-          </View>
+          </View> */}
       {/* end main view */}
       </View>
   
