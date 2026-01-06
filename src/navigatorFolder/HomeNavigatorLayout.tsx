@@ -21,7 +21,7 @@ import LoginScreen from '../screenFolder/LoginScreen';
 import ProductScreen from '../screenFolder/ProductScreen';
 import InsuranceProtectionScreen from '../screenFolder/InsuranceProtectionScreen';
 import ExtraServiceScreen from '../screenFolder/ExtraServiceScreen';
-import CheckoutScreen from '../screenFolder/CheckoutScreen';
+
 import BackScreen1 from '../screenFolder/BackScreen1';
 import BackScreen2 from '../screenFolder/BackScreen2';
 import { myColor } from '../constant/color';
@@ -102,7 +102,7 @@ const HomeNavigatorLayout = () => {
           name={screen.extraServiceScreen}
           component={ExtraServiceScreen}
         />
-        <Stack.Screen name={screen.checkout} component={CheckoutScreen} />
+
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
         <Stack.Screen name={screen.finalScreenKey} component={FinalScreen} />

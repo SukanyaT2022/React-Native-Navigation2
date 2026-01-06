@@ -162,13 +162,17 @@ console.log('check', check);
         <View style={styles.mainBox}>
           {/* <Text>Details Screen</Text> */}
           <Text style={{fontSize: 20, fontWeight: 600, marginBottom: 5}}>
+            Checkout
+          </Text>
+          {/* <Text style={{fontSize: 20, fontWeight: 600, marginBottom: 5}}>
             {findItemBasedOnId?.type}
           </Text>
-          <Text>{findItemBasedOnId?.brand}</Text>
+       
+          <Text>{findItemBasedOnId?.brand}</Text> */}
           <Image style={styles.imgStyle} source={findItemBasedOnId?.image} />
 
           <CheckoutCarDateComp
-            title={'Checkout'}
+            // title={''}
             carType={findItemBasedOnId?.type || ''}
             carBrand={findItemBasedOnId?.brand || ''}
             image={findItemBasedOnId?.image || ''}
@@ -214,10 +218,10 @@ export default DetailsScreen;
 
 const styles = StyleSheet.create({
   imgStyle: {
-    width: 200,
+    width: '100%',
     height: 200,
     borderRadius: 10,
-    marginVertical: 20,
+
   },
   mainBox: {
     flex: 1,

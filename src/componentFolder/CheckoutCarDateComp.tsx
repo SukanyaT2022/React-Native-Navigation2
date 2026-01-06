@@ -3,7 +3,7 @@ import React from 'react'
 import { ImageSource } from 'react-native-vector-icons/Icon';
 import { myColor } from '../constant/color';
 interface CheckoutCarDateCompProps {
-    title: string;
+    title?: string;
     carType: string;
     carBrand: string;
     image: ImageSource;
@@ -33,9 +33,9 @@ const CheckoutCarDateComp = ({
     <View style={styles.main}>
         <View style={styles.wrapTextImg}>    
         <View style={styles.wrapText}>        
-      <Text>{title}</Text>
-      <Text>{carType}</Text>
-      <Text>{carBrand}</Text>
+      <Text style={styles.styleTitleSubtitle}>{title}</Text>
+      <Text style={styles.styleTitleSubtitle}>{carType}</Text>
+      <Text style={styles.styleTitleSubtitle}>{carBrand}</Text>
       <Text>{unlimitedmileage ? 'Unlimited Mileage' : 'Limited Mileage'}</Text>
       </View>
           {/* end div textwrap */}
@@ -61,7 +61,7 @@ export default CheckoutCarDateComp
 
 const styles = StyleSheet.create({
 main:{
-    padding: 10, 
+    padding: 20, 
     borderWidth: 1.5, 
     borderColor: myColor.greenColor, 
     borderRadius: 10, 
@@ -70,6 +70,7 @@ main:{
     wrapTextImg:{
 flexDirection: 'row',
 justifyContent: 'space-between',
+
     },
 
     imagestyle:{
@@ -78,6 +79,7 @@ justifyContent: 'space-between',
         borderRadius: 10
     },
     wrapText:{
+        gap: 5,
     },
     wrapImg:{
         marginLeft: 10,
@@ -88,6 +90,10 @@ justifyContent: 'space-between',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 10,
+    },
+    styleTitleSubtitle:{
+        fontSize: 16,
+        fontWeight: '600',
     }
 
 
