@@ -66,7 +66,7 @@ const Checkout2PayNow = ({
       </TouchableOpacity>
       <View  style={[styles.card, selected && styles.selectedCard]}>
       <View style={styles.wrapTitleprice}>
-          <Text style={styles.title}>Total + taxes 7%</Text>
+          <Text style={styles.title}>Total + Taxes 7%</Text>
           <Text style={styles.price}>${pricePlusTax}</Text>
         </View>
         </View>
@@ -114,10 +114,10 @@ gap:10,
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 15,
   },
   price: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#000',
   },

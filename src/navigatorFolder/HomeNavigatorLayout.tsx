@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 
 // Screens
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screenFolder/HomeScreen';
 import DetailsScreen from '../screenFolder/DetailScreen';
 import RegisterScreen from '../screenFolder/RegisterScreen';
@@ -24,8 +24,9 @@ import ExtraServiceScreen from '../screenFolder/ExtraServiceScreen';
 
 import BackScreen1 from '../screenFolder/BackScreen1';
 import BackScreen2 from '../screenFolder/BackScreen2';
-import { myColor } from '../constant/color';
-import { getFontFamily } from '../constant/fonts';
+import {myColor} from '../constant/color';
+import {getFontFamily} from '../constant/fonts';
+import PaymentScreen from '../screenFolder/PaymentScreen';
 import FinalScreen from '../screenFolder/FinalScreen';
 
 const Stack = createStackNavigator();
@@ -42,6 +43,7 @@ export const screen = {
   checkout: 'CheckoutScreen',
   backScreen1: 'BackScreen1',
   backScreen2: 'BackScreen2',
+  paymentScreenKey: 'PaymentScreen',
   finalScreenKey: 'FinalScreen',
 };
 
@@ -60,8 +62,7 @@ const CustomHeader = ({navigation}: any) => {
 const HomeNavigatorLayout = () => {
   return (
     <View style={styles.container}>
-
-{/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
+      {/* // step 2 bootm tab nav - create tab navigator tag and tab.screen */}
       {/* below only connect screen not include bottom tab */}
       <Stack.Navigator
         // initialRouteName={screen.home}
@@ -78,17 +79,27 @@ const HomeNavigatorLayout = () => {
             elevation: 0,
           },
           //chnage all screen background color to cardStyle-- below
-          cardStyle: {backgroundColor: '#fff', paddingTop:5},
-  
-
+          cardStyle: {backgroundColor: '#fff', paddingTop: 5},
         })}>
         <Stack.Screen
           name={screen.home}
           component={HomeScreen}
           //we put logo on option
-          options={{headerLeft: () =>  <Text style={{ fontFamily: 'Monoton-Regular', fontSize: 30,width:500, color: "green", paddingBottom:2, paddingLeft:10}}>
-  Roam
-         </Text>}}
+          options={{
+            headerLeft: () => (
+              <Text
+                style={{
+                  fontFamily: 'Monoton-Regular',
+                  fontSize: 30,
+                  width: 500,
+                  color: 'green',
+                  paddingBottom: 2,
+                  paddingLeft: 10,
+                }}>
+                Roam
+              </Text>
+            ),
+          }}
         />
         <Stack.Screen name={screen.details} component={DetailsScreen} />
         <Stack.Screen name={screen.register} component={RegisterScreen} />
@@ -105,10 +116,10 @@ const HomeNavigatorLayout = () => {
 
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
+        <Stack.Screen name={screen.paymentScreenKey} component={PaymentScreen} />
         <Stack.Screen name={screen.finalScreenKey} component={FinalScreen} />
       </Stack.Navigator>
- 
-   </View>
+    </View>
   );
 };
 
@@ -126,7 +137,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     marginBottom: 20,
     marginLeft: 10,
-
   },
   headerTitle: {
     fontSize: 18,

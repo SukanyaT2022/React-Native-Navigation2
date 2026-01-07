@@ -9,14 +9,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useRoute} from '@react-navigation/native';
+
 import {carData} from '../constant/carData';
 import CheckoutCarDateComp from '../componentFolder/CheckoutCarDateComp';
 import Checkout2PayNow from '../componentFolder/Checkout2PayNow';
 import Checkput3DriveDetail from '../componentFolder/Checkput3DriveDetail';
 import NewCountryCode2 from '../componentFolder/NewCountryCode2';
 import {screen} from '../navigatorFolder/HomeNavigatorLayout';
-import PaymentComp from '../componentFolder/PaymentComp';
+
 import BillAddress from '../componentFolder/BillAddress';
 //bring redux below
 import {useSelector} from 'react-redux';
@@ -160,8 +160,10 @@ console.log('check', check);
         showsVerticalScrollIndicator={true}
         nestedScrollEnabled={true}>
         <View style={styles.mainBox}>
+          {/* from keybordavoidview can be reuse line 153 to 162*/}
+
           {/* <Text>Details Screen</Text> */}
-          <Text style={{fontSize: 20, fontWeight: 600, marginBottom: 5}}>
+          <Text style={{fontSize: 20, fontWeight: 600}}>
             Checkout
           </Text>
           {/* <Text style={{fontSize: 20, fontWeight: 600, marginBottom: 5}}>
@@ -192,22 +194,16 @@ console.log('check', check);
             onSelect={() => console.log('Pay Now selected')}
             dataProp={storePayNowPayLater}
           />
-          <PaymentComp />
+     
+   <ButttonComp
+                   buttonText="Continue"
+                   onPressProp={() => navigation.navigate(screen.paymentScreenKey)}
+                   selectedProp={true}
+                  //  disableProp={!sameAddressPaymentCheckIfnotemptyFunc}
+                 />
 
-          <Checkput3DriveDetail />
-          {/* <Button
-          title="Go back to HomeScreen"
-          onPress={() => goBackHomeFunc()}
-        /> */}
-
-          {/* //below if not same address true show bill address component- if not hide it */}
-          {!sameDriverAddress && <BillAddress />}
-          <ButttonComp
-            buttonText="Continue"
-            onPressProp={() => navigation.navigate(bookingScreen.finalKey)}
-            selectedProp={true}
-            disableProp={!sameAddressPaymentCheckIfnotemptyFunc}
-          />
+           {/* from keybordavoidview close can be reuse line 207 to 209*/}
+         
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -221,6 +217,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     borderRadius: 10,
+    marginTop: -10,
 
   },
   mainBox: {
