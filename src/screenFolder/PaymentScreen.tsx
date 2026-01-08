@@ -36,7 +36,7 @@ const PaymentScreen = ({navigation}: any) => {
     (state: any) => state.payment,
   );
 
-
+//below to checkif all input filled
 //function in able to click continue button- this function check if user click samde adress or not to validate if bill address shoukd be check
   const sameAddressPaymentCheckIfnotemptyFunc = useMemo( () => {
     //if it same address  if user check inputbox- true no need to checkbilling address
@@ -120,7 +120,7 @@ console.log('check', check);
                  {!sameDriverAddress && <BillAddress/>}
                  <ButttonComp
                    buttonText="Continue"
-                   onPressProp={() => NavigationContainer.navigate(bookingScreen.finalKey)}
+                   onPressProp={() => navigation.navigate(bookingScreen.finalKey)}
                    selectedProp={true}
                    disableProp={!sameAddressPaymentCheckIfnotemptyFunc}
                  />

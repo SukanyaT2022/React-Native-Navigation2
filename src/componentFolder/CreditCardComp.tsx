@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   opacityStyle:{
     borderWidth:1,
     borderColor:myColor.borderColor,
-    borderRadius:8,
+    borderRadius:10,
     height: inputBoxHeight,
     flexDirection:'row',
     justifyContent:'space-between',

@@ -23,6 +23,7 @@ import {useSelector} from 'react-redux';
 import ButttonComp from '../componentFolder/ButttonComp';
 import {bookingScreen} from '../navigatorFolder/BookingNavigatorLayout';
 import { useMemo } from 'react';
+import { useRoute } from '@react-navigation/native';
 
 const DetailsScreen = ({navigation}: any) => {
   const route = useRoute();
@@ -30,96 +31,8 @@ const DetailsScreen = ({navigation}: any) => {
   const {id} = params || {}; // Extract id from params, default to undefined if not present
   console.log('DetailsScreen id:', id); // Log the id to verify it's being passed correctly
 
-  //redux part 2
-  const {
-    sameDriverAddress,
-    user,
-    fname,
-    lname,
-    phone,
-    email,
-    address,
-    country,
-    state,
-    city,
-    imageProfile,
-    userOver25,
-    billingAddress,
-    billAddressCountry,
-    billAddressState,
-    billAddressCity,
-    billingZipCode,
-  } = useSelector((state: any) => state.address);
-
-  const {paymentMethod, cardNumber, cardName, expiryDate, cvv} = useSelector(
-    (state: any) => state.payment,
-  );
-
-  //function in able to click continue button- this function check if user click samde adress or not to validate if bill address shoukd be check
-  const sameAddressPaymentCheckIfnotemptyFunc = useMemo( () => {
-    //if it same address  if user check inputbox- true no need to checkbilling address
-    if (sameDriverAddress) {
-      return (
-        fname.length > 0 &&
-        lname.length > 0 &&
-        phone.length > 0 &&
-        email.length > 0 &&
-        address.length > 0 &&
-        country.length > 0 &&
-        state.length > 0 &&
-        city.length > 0 &&
-        // paymentMethod.length > 0 &&
-        cardNumber.length > 0 &&
-        cardName.length > 0 &&
-        expiryDate.length > 0 &&
-        cvv.length > 0
-      );
-      //but if user donot click the inputbox is -false then we need billing address
-    } else {
-      return (
-        fname.length > 0 &&
-        lname.length > 0 &&
-        phone.length > 0 &&
-        email.length > 0 &&
-        address.length > 0 &&
-        country.length > 0 &&
-        state.length > 0 &&
-        city.length > 0 &&
-        // paymentMethod.length > 0 &&
-        cardNumber.length > 0 &&
-        cardName.length > 0 &&
-        expiryDate.length > 0 &&
-        cvv.length > 0 &&
-        billingAddress.length > 0 &&
-        billAddressCountry.length > 0 &&
-        billAddressState.length > 0 &&
-        billAddressCity.length > 0 &&
-        billingZipCode.length > 0
-      );
-    }
-  },[
-    sameDriverAddress,
-    user,
-    fname,
-    lname,
-    phone,
-    email,
-    address,
-    country,
-    state,
-    city,
-    imageProfile,
-    userOver25,
-    billingAddress,
-    billAddressCountry,
-    billAddressState,
-    billAddressCity,
-    billingZipCode,
-    paymentMethod, cardNumber, cardName, expiryDate, cvv
-  ]);
-const check = sameAddressPaymentCheckIfnotemptyFunc;
-console.log('check', check);
-  //end of function
+  
+ 
   const findItemBasedOnId = carData.find(item => item.id === id);
   // find((item) => item.id === id); method help to find item
   // that match id 1 that sent from product screen
