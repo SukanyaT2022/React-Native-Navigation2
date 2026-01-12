@@ -10,6 +10,7 @@ import {screen} from '../navigatorFolder/HomeNavigatorLayout';
 import {useDispatch} from 'react-redux';
 import {
   updateCarBrand,
+  updateCarImage,
   updateCarSize,
   updateCarType,
 } from '../store/slices/summarySlice';
@@ -74,6 +75,7 @@ const ProductScreen = ({navigation}: any) => {
                 dispatch(updateCarType(item.type));
                 dispatch(updateCarSize(item.capacity));
                 dispatch(updateCarBrand(item.brand));
+                  dispatch(updateCarImage(item.image));
               }} // Pass the item to the detail screen
             />
             // id: item.id} is for param in detailscreen

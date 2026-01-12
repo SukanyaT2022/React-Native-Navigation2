@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, ImageSourcePropType} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import check from 'react-native-vector-icons/FontAwesome';
@@ -7,6 +7,7 @@ import check from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 import {myCardBorder, myColor} from '../constant/color';
+import IconCheck from 'react-native-vector-icons/FontAwesome';
 const FinalScreen = () => {
   //below we bring redux data from store
   const {
@@ -19,6 +20,7 @@ const FinalScreen = () => {
     carSize,
     carType,
     carBrand,
+    carImage,
   } = useSelector((state: any) => state.summary);
 
   const {
@@ -35,7 +37,11 @@ const FinalScreen = () => {
   const formattedDateReturn = moment(returnDate).format('ddd, MMM D, YYYY');
 
   return (
+
     <View style={styles.main}>
+      <View style={styles.checkMarkStyle}>
+<IconCheck name="check-square-o" size={50} color={myColor.greenColor} />
+ </View>
       <Text style={styles.headerStyle}>Thanks for your booking with Roam!</Text>
       <Text>We have emailed your confirmation to : </Text>
       <Text style={styles.confirmtext}>
@@ -45,6 +51,15 @@ const FinalScreen = () => {
       {/* <Text style={styles.confirmationNumber}>A renter is over 25. {userOver25 ? 'Yes' : 'No'}</Text> */}
 
       {/* car typee and picture */}
+     <View>
+         <Image
+                 // source={{
+                 //   uri: imageUrl,
+                 // }}
+                 source={carImage as ImageSourcePropType} 
+                 style={styles.imageStyle}
+               />
+        </View>
 
       <View style={styles.MainCarType}>
         <View style={styles.wrapCarSizeType}>
@@ -52,12 +67,7 @@ const FinalScreen = () => {
           <Text>Passenger: {carSize}</Text>
           <Text>Car Brand: {carBrand}</Text>
         </View>
-        <View>
-          <Image
-            source={require('../../assets/imagesFolder/gaspumpimg2.jpg')}
-            style={styles.imageStyle}
-          />
-        </View>
+       
       </View>
 
       {/* start location time view */}
@@ -70,10 +80,16 @@ const FinalScreen = () => {
 export default FinalScreen;
 
 const styles = StyleSheet.create({
+  checkMarkStyle: {
+  margin:'auto',
+
+   
+  },
   main: {
     padding: 20,
     justifyContent: 'space-between',
     marginVertical: 10,
+    gap: 2,
     // backgroundColor: 'pink',
   },
   headerStyle: {
@@ -88,7 +104,13 @@ const styles = StyleSheet.create({
   confirmtext: {
     marginVertical: 10,
   },
-  imageStyle: {width: 100, height: 100},
+  imageStyle: {
+    width: '100%', 
+    height: 200,
+    borderRadius: 10,
+    marginVertical: 10,
+  }
+    ,
 
   MainCarType: {
     marginBottom: 10,
@@ -102,7 +124,7 @@ const styles = StyleSheet.create({
   wrapCarSizeType: {
     gap: 5,
     justifyContent: 'center',
-    paddingLeft: 10,
+    padding: 15,
   },
   mainlocationTime: {
     gap: 20,

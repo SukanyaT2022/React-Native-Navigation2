@@ -49,7 +49,7 @@ const PaymentScreen = ({navigation}: any) => {
         address.length > 0 &&
         country.length > 0 &&
         state.length > 0 &&
-        city.length > 0 &&
+        // city.length > 0 &&
         // paymentMethod.length > 0 &&
         cardNumber.length > 0 &&
         cardName.length > 0 &&
@@ -66,7 +66,7 @@ const PaymentScreen = ({navigation}: any) => {
         address.length > 0 &&
         country.length > 0 &&
         state.length > 0 &&
-        city.length > 0 &&
+        // city.length > 0 &&
         // paymentMethod.length > 0 &&
         cardNumber.length > 0 &&
         cardName.length > 0 &&
@@ -118,6 +118,7 @@ console.log('check', check);
                
                  {/* //below if not same address true show bill address component- if not hide it */}
                  {!sameDriverAddress && <BillAddress/>}
+
                  <ButttonComp
                    buttonText="Continue"
                    onPressProp={() => navigation.navigate(bookingScreen.finalKey)}
