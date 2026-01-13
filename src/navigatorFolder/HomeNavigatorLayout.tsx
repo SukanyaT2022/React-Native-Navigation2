@@ -117,7 +117,8 @@ const HomeNavigatorLayout = () => {
         <Stack.Screen name={screen.backScreen1} component={BackScreen1} />
         <Stack.Screen name={screen.backScreen2} component={BackScreen2} />
         <Stack.Screen name={screen.paymentScreenKey} component={PaymentScreen} />
-        <Stack.Screen name={screen.finalScreenKey} component={FinalScreen} />
+        <Stack.Screen name={screen.finalScreenKey} component={FinalScreen}  />
+
       </Stack.Navigator>
     </View>
   );

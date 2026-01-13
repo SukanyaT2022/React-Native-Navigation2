@@ -8,7 +8,8 @@ import {useSelector} from 'react-redux';
 import moment from 'moment';
 import {myCardBorder, myColor} from '../constant/color';
 import IconCheck from 'react-native-vector-icons/FontAwesome';
-const FinalScreen = () => {
+import ButttonComp from '../componentFolder/ButttonComp';
+const FinalScreen = ({navigation}) => {
   //below we bring redux data from store
   const {
     // var we bring from summary slice line4 to 11
@@ -39,6 +40,15 @@ const FinalScreen = () => {
   return (
 
     <View style={styles.main}>
+  <View style={styles.doneBtnStyle}>
+<ButttonComp
+buttonText = "Done"
+onPressProp = {()=>navigation.navigate('Home')}
+buttonTextColor='white'
+backgroundColorProp={myColor.greenColor}
+borderColorProp={myColor.greenColor}
+/>
+    </View>    
       <View style={styles.checkMarkStyle}>
 <IconCheck name="check-square-o" size={50} color={myColor.greenColor} />
  </View>
@@ -80,10 +90,18 @@ const FinalScreen = () => {
 export default FinalScreen;
 
 const styles = StyleSheet.create({
+  doneBtnStyle:{
+    alignItems:'flex-end',
+    marginBottom:0,
+    position:'absolute',
+    top:-10,
+  right:20,
+  zIndex:999,
+
+  },
   checkMarkStyle: {
   margin:'auto',
-
-   
+  marginVertical:20,
   },
   main: {
     padding: 20,
