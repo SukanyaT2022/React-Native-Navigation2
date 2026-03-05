@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "dec17navigation.app"
-               BlueprintName = "dec17navigation"
-               ReferencedContainer = "container:dec17navigation.xcodeproj">
+               BuildableName = "RoamCarRental.app"
+               BlueprintName = "RoamCarRental"
+               ReferencedContainer = "container:RoamCarRental.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "dec17navigationTests.xctest"
-               BlueprintName = "dec17navigationTests"
-               ReferencedContainer = "container:dec17navigation.xcodeproj">
+               BuildableName = "RoamCarRentalTests.xctest"
+               BlueprintName = "RoamCarRentalTests"
+               ReferencedContainer = "container:RoamCarRental.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "dec17navigation.app"
-            BlueprintName = "dec17navigation"
-            ReferencedContainer = "container:dec17navigation.xcodeproj">
+            BuildableName = "RoamCarRental.app"
+            BlueprintName = "RoamCarRental"
+            ReferencedContainer = "container:RoamCarRental.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "dec17navigation.app"
-            BlueprintName = "dec17navigation"
-            ReferencedContainer = "container:dec17navigation.xcodeproj">
+            BuildableName = "RoamCarRental.app"
+            BlueprintName = "RoamCarRental"
+            ReferencedContainer = "container:RoamCarRental.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
